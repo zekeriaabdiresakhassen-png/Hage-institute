@@ -3,113 +3,1280 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="HAGE Institute for Qur'an Al-Karim — online Qur'an learning institute based in Jijiga.">
-  <title>HAGE Institute for Qur'an Al-Karim</title>
+
+  <meta name="description"
+        content="HAGE Institute for Qur'an Al-Karim — Online Qur'an learning institute based in Jijiga.">
+
+  <meta name="theme-color" content="#07563f">
+
+  <title>HAGE Institute | Qur'an Al-Karim</title>
+
   <style>
-    :root{--green:#07563f;--green2:#0b7253;--gold:#d5ad3b;--cream:#faf8f0;--dark:#16352c;--white:#fff;--muted:#63756e}
-    *{box-sizing:border-box;scroll-behavior:smooth}
-    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--dark);background:var(--cream);line-height:1.65}
-    a{color:inherit}
-    .container{width:min(1120px,92%);margin:auto}
-    header{position:sticky;top:0;z-index:10;background:rgba(7,86,63,.97);color:white;border-bottom:1px solid rgba(255,255,255,.12)}
-    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;letter-spacing:.3px}
-    .brand img{width:52px;height:52px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid var(--gold)}
-    .brand span{max-width:280px;line-height:1.15}
-    nav{display:flex;gap:24px}nav a{text-decoration:none;font-weight:600;font-size:15px}nav a:hover{color:var(--gold)}
-    .hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--green),#063c2e);color:white;padding:96px 0 88px}
-    .hero:before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(213,173,59,.2);border-radius:50%;right:-160px;top:-170px}
-    .hero-content{position:relative;max-width:800px;text-align:center;margin:auto}
-    .arabic{font-family:serif;font-size:30px;color:#f0d77c;margin-bottom:14px}
-    .eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.25);padding:5px 13px;border-radius:99px;font-size:13px;margin-bottom:16px}
-    h1{font-size:clamp(38px,7vw,68px);line-height:1.08;margin:0 0 18px;letter-spacing:-1.5px}
-    .hero p{font-size:19px;max-width:700px;margin:0 auto 26px;color:#e8f1ed}
-    .btn{display:inline-block;text-decoration:none;background:var(--gold);color:#17352c;padding:12px 20px;border-radius:8px;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.16)}
-    .btn.secondary{background:transparent;color:white;border:1px solid rgba(255,255,255,.4);margin-left:8px}
-    section{padding:76px 0}.section-title{text-align:center;margin:0 0 12px;font-size:34px}.section-lead{text-align:center;color:var(--muted);max-width:720px;margin:0 auto 38px}
-    .about{background:white}.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}.about-box{background:var(--cream);border-left:4px solid var(--gold);padding:25px;border-radius:10px}
-    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{background:white;border-radius:14px;padding:24px;box-shadow:0 8px 28px rgba(20,50,42,.08);border:1px solid #edf0eb}.icon{font-size:28px;color:var(--gold)}.card h3{margin:8px 0;color:var(--green)}.card p{color:var(--muted);margin:0}
-    .cta{background:linear-gradient(135deg,#0a654a,#06402f);color:white;text-align:center}.cta .section-lead{color:#dce9e4}.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}.contact-item{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:22px;border-radius:12px}.contact-item strong{display:block;color:#f0d77c;margin-bottom:5px}.contact-item a{text-decoration:none;word-break:break-word}
-    footer{background:#042f24;color:#cddbd6;text-align:center;padding:24px;font-size:14px}.footer-brand{color:white;font-weight:700;margin-bottom:4px}
-    @media(max-width:850px){.cards{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:620px){.nav{min-height:68px}.brand span{font-size:14px}.brand img{width:44px;height:44px}nav{gap:10px}nav a{font-size:13px}.hero{padding:70px 0}.arabic{font-size:25px}.hero p{font-size:17px}.btn.secondary{margin:10px 0 0 0}.cards,.contact-grid{grid-template-columns:1fr}section{padding:58px 0}.section-title{font-size:29px}}
+    :root {
+      --green: #07563f;
+      --green-dark: #043d2d;
+      --green-light: #0b7655;
+      --gold: #d7b54a;
+      --gold-light: #f1d87c;
+      --cream: #faf8f0;
+      --white: #ffffff;
+      --text: #17352c;
+      --muted: #65756f;
+      --border: #e8ece8;
+      --shadow: 0 15px 40px rgba(7, 86, 63, 0.10);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1150px, 92%);
+      margin: auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(4, 61, 45, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .brand img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      background: white;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 15px;
+      line-height: 1.2;
+      letter-spacing: .3px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: .25s;
+    }
+
+    nav a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-admin {
+      padding: 9px 15px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 8px;
+    }
+
+    .menu-btn {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background:
+        radial-gradient(circle at 15% 20%,
+          rgba(215,181,74,.12),
+          transparent 25%),
+        radial-gradient(circle at 90% 80%,
+          rgba(215,181,74,.10),
+          transparent 25%),
+        linear-gradient(135deg,
+          var(--green-dark),
+          var(--green));
+      padding: 105px 0 110px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border: 1px solid rgba(215,181,74,.18);
+      border-radius: 50%;
+      right: -230px;
+      top: -220px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+      left: -190px;
+      bottom: -180px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .arabic {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      color: var(--gold-light);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 16px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 50px;
+      color: #e9f3ef;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .hero-description {
+      max-width: 700px;
+      margin: auto;
+      color: #e5efeb;
+      font-size: 18px;
+    }
+
+    .hero-buttons {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 13px 21px;
+      border-radius: 10px;
+      background: var(--gold);
+      color: #16352c;
+      font-weight: 800;
+      transition: .25s;
+      box-shadow: 0 8px 20px rgba(0,0,0,.15);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--gold-light);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,.35);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,.08);
+      color: white;
+    }
+
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats {
+      margin-top: -45px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .stats-grid {
+      background: white;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .stat {
+      text-align: center;
+      padding: 28px 15px;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--green);
+      font-size: 28px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 45px;
+      text-align: center;
+    }
+
+    .section-label {
+      color: var(--green-light);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(30px,5vw,42px);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .section-lead {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about {
+      background: white;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .about-box {
+      padding: 32px;
+      background: var(--cream);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--gold);
+    }
+
+    .about-box h3 {
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+    }
+
+    .check-list {
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    .check-list li {
+      margin: 10px 0;
+      font-weight: 600;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      color: var(--gold);
+      font-weight: 900;
+      margin-right: 10px;
+    }
+
+    /* =========================
+       PROGRAMS
+    ========================= */
+
+    .programs {
+      background: var(--cream);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px 22px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 25px rgba(20,50,42,.05);
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f6f0d9;
+      border-radius: 14px;
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      color: var(--green);
+      margin-bottom: 8px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================
+       WHY HAGE
+    ========================= */
+
+    .why {
+      background: white;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+
+    .why-card {
+      padding: 28px;
+      border-radius: var(--radius);
+      background: var(--cream);
+      border: 1px solid var(--border);
+    }
+
+    .why-number {
+      color: var(--gold);
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .why-card h3 {
+      margin: 5px 0 8px;
+      color: var(--green);
+    }
+
+    .why-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================
+       CTA / CONTACT
+    ========================= */
+
+    .contact {
+      color: white;
+      background:
+        radial-gradient(circle at 85% 20%,
+          rgba(215,181,74,.13),
+          transparent 28%),
+        linear-gradient(135deg,
+          var(--green),
+          var(--green-dark));
+    }
+
+    .contact .section-label {
+      color: var(--gold-light);
+    }
+
+    .contact .section-lead {
+      color: #dce9e4;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+      margin-top: 35px;
+    }
+
+    .contact-item {
+      padding: 25px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--gold-light);
+      margin-bottom: 5px;
+    }
+
+    .contact-item a {
+      text-decoration: none;
+      color: white;
+      word-break: break-word;
+    }
+
+    .contact-button {
+      text-align: center;
+      margin-top: 35px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #03291f;
+      color: #bfcfc9;
+      padding: 35px 0;
+      text-align: center;
+    }
+
+    .footer-logo {
+      color: white;
+      font-weight: 800;
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+
+    .footer-links {
+      margin: 15px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #cbd8d4;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .copyright {
+      font-size: 13px;
+      color: #8ea49c;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .cards {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .brand img {
+        width: 44px;
+        height: 44px;
+      }
+
+      .brand-name {
+        font-size: 12px;
+        max-width: 190px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        padding: 18px 5%;
+        background: var(--green-dark);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        box-shadow: 0 15px 25px rgba(0,0,0,.15);
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      nav a {
+        padding: 13px 5px;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+
+      .nav-admin {
+        border: 0;
+        padding: 13px 5px;
+      }
+
+      .hero {
+        padding: 80px 0 90px;
+      }
+
+      .arabic {
+        font-size: 25px;
+      }
+
+      h1 {
+        font-size: 42px;
+        letter-spacing: -1px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .stats {
+        margin-top: -30px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .cards,
+      .why-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 30px;
+      }
+    }
   </style>
 </head>
+
 <body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
+
   <div class="container nav">
-    <a class="brand" href="#home" aria-label="HAGE Institute home">
-      <img src="logo.jpg" alt="HAGE Institute for Qur'an Al-Karim logo">
-      <span>HAGE INSTITUTE FOR QUR'AN AL-KARIM</span>
+
+    <a href="#home" class="brand">
+
+      <img
+        src="logo.jpg"
+        alt="HAGE Institute logo"
+      >
+
+      <span class="brand-name">
+        HAGE INSTITUTE FOR<br>
+        QUR'AN AL-KARIM
+      </span>
+
     </a>
-    <nav aria-label="Main navigation">
+
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
+
+    <nav id="navMenu">
+
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#programs">Learning</a>
+      <a href="#why">Why HAGE</a>
+      <a href="#contact">Contact</a>
+
+      <a href="admin.html" class="nav-admin">
+        Admin
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+  <div class="container hero-content">
+
+    <div class="arabic" dir="rtl">
+      وَقُلْ رَبِّ زِدْنِي عِلْمًا
+    </div>
+
+    <span class="eyebrow">
+      ONLINE QUR'AN LEARNING • JIJIGA
+    </span>
+
+    <h1>
+      Learn the Qur'an with purpose and consistency.
+    </h1>
+
+    <p class="hero-description">
+      HAGE Institute for Qur'an Al-Karim provides
+      accessible and organized online Qur'an learning
+      for students seeking to improve their reading,
+      recitation, Tajweed and memorization.
+    </p>
+
+    <div class="hero-buttons">
+
+      <a href="#contact" class="btn">
+        Start Learning
+      </a>
+
+      <a href="#programs" class="btn btn-outline">
+        Explore Programs
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<div class="stats">
+
+  <div class="container">
+
+    <div class="stats-grid">
+
+      <div class="stat">
+        <strong>Online</strong>
+        <span>Learning Access</span>
+      </div>
+
+      <div class="stat">
+        <strong>4+</strong>
+        <span>Learning Areas</span>
+      </div>
+
+      <div class="stat">
+        <strong>Jijiga</strong>
+        <span>Based Institute</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="about" id="about">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="section-label">
+        About Us
+      </div>
+
+      <h2 class="section-title">
+        Welcome to HAGE Institute
+      </h2>
+
+      <p class="section-lead">
+        A dedicated online learning home for students
+        who want to read, recite, memorize and understand
+        the Qur'an.
+      </p>
+
+    </div>
+
+
+    <div class="about-grid">
+
+      <div class="about-text">
+
+        <p>
+          HAGE Institute for Qur'an Al-Karim is based in
+          <strong>Jijiga</strong> and provides Qur'an
+          learning through an organized online learning
+          environment.
+        </p>
+
+        <p>
+          Our aim is to encourage regular study and help
+          learners build confidence in their Qur'an journey
+          through structured learning.
+        </p>
+
+        <ul class="check-list">
+
+          <li>Qur'an reading and recitation</li>
+
+          <li>Tajweed learning</li>
+
+          <li>Memorization support</li>
+
+          <li>Foundational Islamic learning</li>
+
+        </ul>
+
+      </div>
+
+
+      <div class="about-box">
+
+        <h3>
+          Our Learning Philosophy
+        </h3>
+
+        <p>
+          Learning the Qur'an is a journey that requires
+          patience, consistency and guidance. HAGE Institute
+          aims to provide learners with a respectful and
+          organized environment for that journey.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PROGRAMS
+========================= -->
+
+<section class="programs" id="programs">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="section-label">
+        Our Learning Areas
+      </div>
+
+      <h2 class="section-title">
+        Build Your Qur'an Journey
+      </h2>
+
+      <p class="section-lead">
+        Explore the core areas supported through
+        HAGE Institute's learning program.
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+      <article class="card">
+
+        <div class="card-icon">
+          📖
+        </div>
+
+        <h3>
+          Qur'an Reading
+        </h3>
+
+        <p>
+          Develop confidence and consistency in reading
+          the Qur'an through guided practice.
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="card-icon">
+          ✦
+        </div>
+
+        <h3>
+          Tajweed
+        </h3>
+
+        <p>
+          Learn the principles of correct pronunciation
+          and beautiful Qur'an recitation.
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="card-icon">
+          🌙
+        </div>
+
+        <h3>
+          Memorization
+        </h3>
+
+        <p>
+          Follow a structured approach to memorizing
+          selected surahs and Qur'anic passages.
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="card-icon">
+          ☪
+        </div>
+
+        <h3>
+          Islamic Learning
+        </h3>
+
+        <p>
+          Complement Qur'an study with foundational
+          Islamic knowledge.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     WHY HAGE
+========================= -->
+
+<section class="why" id="why">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="section-label">
+        Why HAGE
+      </div>
+
+      <h2 class="section-title">
+        Learning With Purpose
+      </h2>
+
+      <p class="section-lead">
+        A simple approach focused on consistent
+        learning and student development.
+      </p>
+
+    </div>
+
+
+    <div class="why-grid">
+
+      <div class="why-card">
+
+        <div class="why-number">
+          01
+        </div>
+
+        <h3>
+          Accessible Learning
+        </h3>
+
+        <p>
+          Online learning makes it easier for students
+          to access Qur'an education from different
+          locations.
+        </p>
+
+      </div>
+
+
+      <div class="why-card">
+
+        <div class="why-number">
+          02
+        </div>
+
+        <h3>
+          Structured Study
+        </h3>
+
+        <p>
+          Clear learning areas help students approach
+          their Qur'an studies in an organized way.
+        </p>
+
+      </div>
+
+
+      <div class="why-card">
+
+        <div class="why-number">
+          03
+        </div>
+
+        <h3>
+          Consistency
+        </h3>
+
+        <p>
+          Regular practice and commitment are encouraged
+          throughout the learning journey.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="contact" id="contact">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="section-label">
+        Contact HAGE
+      </div>
+
+      <h2 class="section-title">
+        Start Your Qur'an Learning Journey
+      </h2>
+
+      <p class="section-lead">
+        Contact HAGE Institute for enrollment information,
+        class details and general inquiries.
+      </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+      <div class="contact-item">
+
+        <strong>
+          Phone
+        </strong>
+
+        <a href="tel:+251915252254">
+          +251 915 252 254
+        </a>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <strong>
+          Phone
+        </strong>
+
+        <a href="tel:+25177771807">
+          +251 777 718 07
+        </a>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <strong>
+          Email
+        </strong>
+
+        <a href="mailto:zekeriaabdiresakhassen@gmail.com">
+          zekeriaabdiresakhassen@gmail.com
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="contact-button">
+
+      <a
+        href="mailto:zekeriaabdiresakhassen@gmail.com"
+        class="btn"
+      >
+        ✉ Email HAGE Institute
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-logo">
+      HAGE Institute for Qur'an Al-Karim
+    </div>
+
+    <div class="footer-links">
+
+      <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#programs">Learning</a>
       <a href="#contact">Contact</a>
       <a href="admin.html">Admin</a>
-    </nav>
+
+    </div>
+
+    <div class="copyright">
+      Online Qur'an Learning • Based in Jijiga
+      • © 2026 HAGE Institute
+    </div>
+
   </div>
-</header>
 
-<main>
-  <section class="hero" id="home">
-    <div class="container hero-content">
-      <div class="arabic" dir="rtl">وَقُلْ رَبِّ زِدْنِي عِلْمًا</div>
-      <span class="eyebrow">ONLINE QUR'AN LEARNING • JIJIGA</span>
-      <h1>Learn the Qur'an with purpose and consistency.</h1>
-      <p>HAGE Institute for Qur'an Al-Karim is an online Qur'an learning institute based in Jijiga, created to make Qur'an learning accessible and organized for learners.</p>
-      <a class="btn" href="#contact">Contact the Institute</a>
-      <a class="btn secondary" href="#programs">Explore Learning</a>
-    </div>
-  </section>
-
-  <section class="about" id="about">
-    <div class="container">
-      <h2 class="section-title">About HAGE Institute</h2>
-      <p class="section-lead">A simple online learning home for people who want to learn, read, recite and understand the Qur'an.</p>
-      <div class="about-grid">
-        <div>
-          <p>HAGE Institute for Qur'an Al-Karim is based in <strong>Jijiga</strong> and provides Qur'an learning online. The institute is focused on a respectful learning environment and clear, consistent study.</p>
-          <p>Whether you are beginning your Qur'an journey or strengthening your recitation, the institute is designed to support regular learning.</p>
-        </div>
-        <div class="about-box">
-          <strong>Our focus</strong>
-          <p>Qur'an learning, recitation, Tajweed, memorization and foundational Islamic learning.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="programs">
-    <div class="container">
-      <h2 class="section-title">Learning Areas</h2>
-      <p class="section-lead">Core areas that can be presented and organized through the institute's online learning program.</p>
-      <div class="cards">
-        <article class="card"><div class="icon">📖</div><h3>Qur'an Reading</h3><p>Build confidence and consistency in Qur'an reading through guided practice.</p></article>
-        <article class="card"><div class="icon">✦</div><h3>Tajweed</h3><p>Study the principles of correct Qur'an pronunciation and recitation.</p></article>
-        <article class="card"><div class="icon">🌙</div><h3>Memorization</h3><p>Develop a structured approach to memorizing selected surahs and passages.</p></article>
-        <article class="card"><div class="icon">☪</div><h3>Islamic Learning</h3><p>Support Qur'an study with foundational Islamic knowledge.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta" id="contact">
-    <div class="container">
-      <h2 class="section-title">Start Your Qur'an Learning Journey</h2>
-      <p class="section-lead">For enrollment information, class details or general inquiries, contact HAGE Institute directly.</p>
-      <div class="contact-grid">
-        <div class="contact-item"><strong>Phone</strong><a href="tel:+251915252254">+251 915 252 254</a></div>
-        <div class="contact-item"><strong>Phone</strong><a href="tel:+25177771807">+251 777 718 07</a></div>
-        <div class="contact-item"><strong>Email</strong><a href="mailto:zekeriaabdiresakhassen@gmail.com">zekeriaabdiresakhassen@gmail.com</a></div>
-      </div>
-      <div style="margin-top:30px"><a class="btn" href="mailto:zekeriaabdiresakhassen@gmail.com">Email HAGE Institute</a></div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="footer-brand">HAGE Institute for Qur'an Al-Karim</div>
-  <div>Online Qur'an learning • Based in Jijiga • © 2026</div>
 </footer>
+
+
+<!-- =========================
+     MOBILE MENU SCRIPT
+========================= -->
+
+<script>
+
+  const menuBtn = document.getElementById("menuBtn");
+  const navMenu = document.getElementById("navMenu");
+
+  menuBtn.addEventListener("click", function () {
+
+    navMenu.classList.toggle("active");
+
+    const opened =
+      navMenu.classList.contains("active");
+
+    menuBtn.setAttribute(
+      "aria-expanded",
+      opened
+    );
+
+    menuBtn.textContent =
+      opened ? "✕" : "☰";
+
+  });
+
+
+  // Close mobile menu after clicking a link
+
+  document.querySelectorAll("#navMenu a")
+    .forEach(function(link) {
+
+      link.addEventListener("click", function() {
+
+        navMenu.classList.remove("active");
+
+        menuBtn.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        menuBtn.textContent = "☰";
+
+      });
+
+    });
+
+</script>
+
 </body>
 </html>
