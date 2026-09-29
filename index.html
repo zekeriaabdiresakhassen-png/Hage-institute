@@ -4,26 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description"
-        content="HAGE Institute for Qur'an Al-Karim — Online Qur'an learning institute based in Jijiga.">
+  <meta
+    name="description"
+    content="HAGE Institute for Qur'an Al-Karim — Online Qur'an learning institute based in Jijiga."
+  >
 
-  <meta name="theme-color" content="#07563f">
+  <meta name="theme-color" content="#0B1F3A">
 
   <title>HAGE Institute | Qur'an Al-Karim</title>
 
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
+
     :root {
-      --green: #07563f;
-      --green-dark: #043d2d;
-      --green-light: #0b7655;
-      --gold: #d7b54a;
-      --gold-light: #f1d87c;
-      --cream: #faf8f0;
-      --white: #ffffff;
-      --text: #17352c;
-      --muted: #65756f;
-      --border: #e8ece8;
-      --shadow: 0 15px 40px rgba(7, 86, 63, 0.10);
+      --navy: #0B1F3A;
+      --navy-dark: #071528;
+      --navy-light: #123E6A;
+      --blue: #1D5A91;
+
+      --gold: #D4AF37;
+      --gold-light: #F0D77C;
+
+      --white: #FFFFFF;
+      --background: #F5F7FA;
+      --cream: #FAF9F3;
+
+      --text: #172033;
+      --muted: #687589;
+      --border: #E0E5EC;
+
+      --success: #18794E;
+      --danger: #B42318;
+
+      --shadow:
+        0 15px 40px rgba(7, 21, 40, .10);
+
       --radius: 18px;
     }
 
@@ -42,8 +59,9 @@
         "Segoe UI",
         Arial,
         sans-serif;
+
       color: var(--text);
-      background: var(--cream);
+      background: var(--background);
       line-height: 1.7;
     }
 
@@ -56,10 +74,18 @@
       display: block;
     }
 
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
     .container {
       width: min(1150px, 92%);
       margin: auto;
     }
+
 
     /* =========================
        HEADER
@@ -69,16 +95,23 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(4, 61, 45, 0.96);
+
+      background:
+        rgba(7, 21, 40, .97);
+
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,.12);
+
+      border-bottom:
+        1px solid rgba(212, 175, 55, .25);
     }
 
     .nav {
       min-height: 76px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 25px;
     }
 
@@ -86,6 +119,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
+
       text-decoration: none;
       color: white;
     }
@@ -93,9 +127,13 @@
     .brand img {
       width: 52px;
       height: 52px;
+
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--gold);
+
+      border:
+        2px solid var(--gold);
+
       background: white;
     }
 
@@ -113,10 +151,12 @@
     }
 
     nav a {
-      color: #fff;
+      color: white;
       text-decoration: none;
+
       font-size: 14px;
       font-weight: 600;
+
       transition: .25s;
     }
 
@@ -124,20 +164,43 @@
       color: var(--gold-light);
     }
 
+    .nav-register {
+      padding: 9px 16px;
+
+      background: var(--gold);
+      color: #111 !important;
+
+      border-radius: 8px;
+
+      font-weight: 800;
+    }
+
+    .nav-register:hover {
+      background: var(--gold-light);
+    }
+
     .nav-admin {
-      padding: 9px 15px;
-      border: 1px solid rgba(255,255,255,.3);
+      padding: 8px 14px;
+
+      border:
+        1px solid rgba(255,255,255,.3);
+
       border-radius: 8px;
     }
 
     .menu-btn {
       display: none;
+
       border: 0;
       background: transparent;
+
       color: white;
+
       font-size: 28px;
+
       cursor: pointer;
     }
+
 
     /* =========================
        HERO
@@ -146,38 +209,61 @@
     .hero {
       position: relative;
       overflow: hidden;
+
       color: white;
+
       background:
-        radial-gradient(circle at 15% 20%,
-          rgba(215,181,74,.12),
-          transparent 25%),
-        radial-gradient(circle at 90% 80%,
-          rgba(215,181,74,.10),
-          transparent 25%),
-        linear-gradient(135deg,
-          var(--green-dark),
-          var(--green));
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(212,175,55,.14),
+          transparent 25%
+        ),
+
+        radial-gradient(
+          circle at 90% 80%,
+          rgba(212,175,55,.10),
+          transparent 25%
+        ),
+
+        linear-gradient(
+          135deg,
+          var(--navy-dark),
+          var(--navy)
+        );
+
       padding: 105px 0 110px;
     }
 
     .hero::before {
       content: "";
+
       position: absolute;
+
       width: 520px;
       height: 520px;
-      border: 1px solid rgba(215,181,74,.18);
+
+      border:
+        1px solid rgba(212,175,55,.18);
+
       border-radius: 50%;
+
       right: -230px;
       top: -220px;
     }
 
     .hero::after {
       content: "";
+
       position: absolute;
+
       width: 360px;
       height: 360px;
-      border: 1px solid rgba(255,255,255,.08);
+
+      border:
+        1px solid rgba(255,255,255,.08);
+
       border-radius: 50%;
+
       left: -190px;
       bottom: -180px;
     }
@@ -185,82 +271,122 @@
     .hero-content {
       position: relative;
       z-index: 2;
+
       max-width: 850px;
       margin: auto;
+
       text-align: center;
     }
 
     .arabic {
       font-family: Georgia, serif;
+
       font-size: 32px;
+
       color: var(--gold-light);
+
       margin-bottom: 18px;
     }
 
     .eyebrow {
       display: inline-block;
+
       padding: 7px 16px;
-      border: 1px solid rgba(255,255,255,.25);
+
+      border:
+        1px solid rgba(255,255,255,.25);
+
       border-radius: 50px;
-      color: #e9f3ef;
+
+      color: #e8edf4;
+
       font-size: 12px;
       font-weight: 700;
+
       letter-spacing: 1px;
+
       margin-bottom: 20px;
     }
 
     h1 {
-      font-size: clamp(42px, 7vw, 72px);
+      font-size:
+        clamp(42px, 7vw, 72px);
+
       line-height: 1.05;
+
       letter-spacing: -2px;
+
       margin-bottom: 22px;
     }
 
     .hero-description {
       max-width: 700px;
       margin: auto;
-      color: #e5efeb;
+
+      color: #dce5ef;
+
       font-size: 18px;
     }
 
     .hero-buttons {
       margin-top: 32px;
+
       display: flex;
       justify-content: center;
+
       flex-wrap: wrap;
+
       gap: 12px;
     }
 
     .btn {
       display: inline-flex;
+
       align-items: center;
       justify-content: center;
+
       text-decoration: none;
+
       padding: 13px 21px;
+
       border-radius: 10px;
+
       background: var(--gold);
-      color: #16352c;
+
+      color: #101820;
+
       font-weight: 800;
+
       transition: .25s;
-      box-shadow: 0 8px 20px rgba(0,0,0,.15);
+
+      box-shadow:
+        0 8px 20px rgba(0,0,0,.15);
     }
 
     .btn:hover {
       transform: translateY(-2px);
+
       background: var(--gold-light);
     }
 
     .btn-outline {
       background: transparent;
+
       color: white;
-      border: 1px solid rgba(255,255,255,.35);
+
+      border:
+        1px solid rgba(255,255,255,.35);
+
       box-shadow: none;
     }
 
     .btn-outline:hover {
-      background: rgba(255,255,255,.08);
+      background:
+        rgba(255,255,255,.08);
+
       color: white;
     }
+
 
     /* =========================
        STATS
@@ -268,24 +394,36 @@
 
     .stats {
       margin-top: -45px;
+
       position: relative;
       z-index: 5;
     }
 
     .stats-grid {
       background: white;
+
       border-radius: 18px;
+
       box-shadow: var(--shadow);
+
       display: grid;
-      grid-template-columns: repeat(3,1fr);
+
+      grid-template-columns:
+        repeat(3,1fr);
+
       overflow: hidden;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
     }
 
     .stat {
       text-align: center;
+
       padding: 28px 15px;
-      border-right: 1px solid var(--border);
+
+      border-right:
+        1px solid var(--border);
     }
 
     .stat:last-child {
@@ -294,14 +432,18 @@
 
     .stat strong {
       display: block;
-      color: var(--green);
+
+      color: var(--navy);
+
       font-size: 28px;
     }
 
     .stat span {
       color: var(--muted);
+
       font-size: 14px;
     }
+
 
     /* =========================
        SECTIONS
@@ -313,29 +455,44 @@
 
     .section-heading {
       max-width: 720px;
-      margin: 0 auto 45px;
+
+      margin:
+        0 auto 45px;
+
       text-align: center;
     }
 
     .section-label {
-      color: var(--green-light);
+      color: var(--blue);
+
       font-weight: 800;
+
       text-transform: uppercase;
+
       letter-spacing: 1.5px;
+
       font-size: 12px;
+
       margin-bottom: 8px;
     }
 
     .section-title {
-      font-size: clamp(30px,5vw,42px);
+      font-size:
+        clamp(30px,5vw,42px);
+
       line-height: 1.2;
+
       margin-bottom: 12px;
+
+      color: var(--navy);
     }
 
     .section-lead {
       color: var(--muted);
+
       font-size: 16px;
     }
+
 
     /* =========================
        ABOUT
@@ -347,26 +504,38 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
+
+      grid-template-columns:
+        1.15fr .85fr;
+
       gap: 45px;
+
       align-items: center;
     }
 
     .about-text p {
       color: var(--muted);
+
       margin-bottom: 16px;
     }
 
     .about-box {
       padding: 32px;
+
       background: var(--cream);
+
       border-radius: var(--radius);
-      border: 1px solid var(--border);
-      border-top: 4px solid var(--gold);
+
+      border:
+        1px solid var(--border);
+
+      border-top:
+        4px solid var(--gold);
     }
 
     .about-box h3 {
-      color: var(--green);
+      color: var(--navy);
+
       margin-bottom: 12px;
     }
 
@@ -376,71 +545,98 @@
 
     .check-list {
       list-style: none;
+
       margin-top: 20px;
     }
 
     .check-list li {
       margin: 10px 0;
+
       font-weight: 600;
     }
 
     .check-list li::before {
       content: "✓";
+
       color: var(--gold);
+
       font-weight: 900;
+
       margin-right: 10px;
     }
+
 
     /* =========================
        PROGRAMS
     ========================= */
 
     .programs {
-      background: var(--cream);
+      background: var(--background);
     }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(4,1fr);
+
+      grid-template-columns:
+        repeat(4,1fr);
+
       gap: 20px;
     }
 
     .card {
       background: white;
+
       padding: 28px 22px;
+
       border-radius: var(--radius);
-      border: 1px solid var(--border);
-      box-shadow: 0 8px 25px rgba(20,50,42,.05);
+
+      border:
+        1px solid var(--border);
+
+      box-shadow:
+        0 8px 25px rgba(20,50,42,.05);
+
       transition: .3s;
     }
 
     .card:hover {
       transform: translateY(-7px);
+
       box-shadow: var(--shadow);
     }
 
     .card-icon {
       width: 55px;
       height: 55px;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
-      background: #f6f0d9;
+
+      background: #F7F0D7;
+
       border-radius: 14px;
+
       font-size: 26px;
+
       margin-bottom: 18px;
     }
 
     .card h3 {
-      color: var(--green);
+      color: var(--navy);
+
       margin-bottom: 8px;
+
       font-size: 19px;
     }
 
     .card p {
       color: var(--muted);
+
       font-size: 14px;
     }
+
 
     /* =========================
        WHY HAGE
@@ -452,116 +648,372 @@
 
     .why-grid {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
+
+      grid-template-columns:
+        repeat(3,1fr);
+
       gap: 20px;
     }
 
     .why-card {
       padding: 28px;
+
       border-radius: var(--radius);
+
       background: var(--cream);
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
     }
 
     .why-number {
       color: var(--gold);
+
       font-size: 30px;
+
       font-weight: 900;
     }
 
     .why-card h3 {
       margin: 5px 0 8px;
-      color: var(--green);
+
+      color: var(--navy);
     }
 
     .why-card p {
       color: var(--muted);
+
       font-size: 14px;
     }
 
+
     /* =========================
-       CTA / CONTACT
+       REGISTRATION
+    ========================= */
+
+    .register-section {
+      background:
+        linear-gradient(
+          180deg,
+          #F5F7FA,
+          #FFFFFF
+        );
+    }
+
+    .registration-box {
+      max-width: 850px;
+
+      margin: auto;
+
+      background: white;
+
+      padding: 35px;
+
+      border-radius: 20px;
+
+      border:
+        1px solid var(--border);
+
+      box-shadow: var(--shadow);
+    }
+
+    .registration-title {
+      text-align: center;
+
+      margin-bottom: 25px;
+    }
+
+    .registration-title h2 {
+      color: var(--navy);
+
+      font-size: 30px;
+
+      margin-bottom: 7px;
+    }
+
+    .registration-title p {
+      color: var(--muted);
+    }
+
+    .registration-form {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 6px;
+    }
+
+    .form-group.full {
+      grid-column:
+        1 / -1;
+    }
+
+    .form-group label {
+      color: var(--navy);
+
+      font-size: 13px;
+
+      font-weight: 800;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+
+      padding: 13px 14px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 9px;
+
+      background: white;
+
+      color: var(--text);
+
+      outline: none;
+
+      transition: .2s;
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(212,175,55,.12);
+    }
+
+    .required {
+      color: var(--danger);
+    }
+
+    .register-submit {
+      grid-column:
+        1 / -1;
+
+      padding: 14px 20px;
+
+      border: 0;
+
+      border-radius: 9px;
+
+      background: var(--navy);
+
+      color: white;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+    .register-submit:hover {
+      background: var(--navy-light);
+
+      transform: translateY(-1px);
+    }
+
+    .register-submit:disabled {
+      opacity: .65;
+
+      cursor: not-allowed;
+
+      transform: none;
+    }
+
+    .registration-message {
+      grid-column:
+        1 / -1;
+
+      display: none;
+
+      padding: 13px;
+
+      border-radius: 9px;
+
+      font-size: 14px;
+    }
+
+    .registration-message.success {
+      display: block;
+
+      background: #E8F6EF;
+
+      color: var(--success);
+
+      border:
+        1px solid #B9E3CE;
+    }
+
+    .registration-message.error {
+      display: block;
+
+      background: #FDECEC;
+
+      color: var(--danger);
+
+      border:
+        1px solid #F5C2C0;
+    }
+
+    .registration-note {
+      grid-column:
+        1 / -1;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      margin-top: 3px;
+    }
+
+
+    /* =========================
+       CONTACT
     ========================= */
 
     .contact {
       color: white;
+
       background:
-        radial-gradient(circle at 85% 20%,
-          rgba(215,181,74,.13),
-          transparent 28%),
-        linear-gradient(135deg,
-          var(--green),
-          var(--green-dark));
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(212,175,55,.13),
+          transparent 28%
+        ),
+
+        linear-gradient(
+          135deg,
+          var(--navy),
+          var(--navy-dark)
+        );
     }
 
     .contact .section-label {
       color: var(--gold-light);
     }
 
+    .contact .section-title {
+      color: white;
+    }
+
     .contact .section-lead {
-      color: #dce9e4;
+      color: #dce5ef;
     }
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
+
+      grid-template-columns:
+        repeat(3,1fr);
+
       gap: 18px;
+
       margin-top: 35px;
     }
 
     .contact-item {
       padding: 25px;
+
       border-radius: 14px;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.14);
+
+      background:
+        rgba(255,255,255,.07);
+
+      border:
+        1px solid rgba(255,255,255,.14);
     }
 
     .contact-item strong {
       display: block;
+
       color: var(--gold-light);
+
       margin-bottom: 5px;
     }
 
     .contact-item a {
       text-decoration: none;
+
       color: white;
+
       word-break: break-word;
+    }
+
+    .contact-item a:hover {
+      color: var(--gold-light);
     }
 
     .contact-button {
       text-align: center;
+
       margin-top: 35px;
     }
+
 
     /* =========================
        FOOTER
     ========================= */
 
     footer {
-      background: #03291f;
-      color: #bfcfc9;
+      background: #040F20;
+
+      color: #AEBAC9;
+
       padding: 35px 0;
+
       text-align: center;
     }
 
     .footer-logo {
       color: white;
+
       font-weight: 800;
+
       font-size: 17px;
+
       margin-bottom: 5px;
     }
 
     .footer-links {
       margin: 15px 0;
+
       display: flex;
+
       justify-content: center;
+
       gap: 20px;
+
       flex-wrap: wrap;
     }
 
     .footer-links a {
-      color: #cbd8d4;
+      color: #C4CEDA;
+
       text-decoration: none;
+
       font-size: 14px;
     }
 
@@ -571,8 +1023,10 @@
 
     .copyright {
       font-size: 13px;
-      color: #8ea49c;
+
+      color: #8492A5;
     }
+
 
     /* =========================
        MOBILE
@@ -581,7 +1035,8 @@
     @media (max-width: 900px) {
 
       .cards {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns:
+          repeat(2,1fr);
       }
 
       .about-grid {
@@ -589,13 +1044,17 @@
       }
 
       .why-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+          1fr 1fr;
       }
 
       .contact-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+          1fr 1fr;
       }
+
     }
+
 
     @media (max-width: 650px) {
 
@@ -610,6 +1069,7 @@
 
       .brand-name {
         font-size: 12px;
+
         max-width: 190px;
       }
 
@@ -619,16 +1079,27 @@
 
       nav {
         display: none;
+
         position: absolute;
+
         top: 68px;
+
         left: 0;
         right: 0;
+
         padding: 18px 5%;
-        background: var(--green-dark);
+
+        background: var(--navy-dark);
+
         flex-direction: column;
+
         align-items: stretch;
+
         gap: 0;
-        box-shadow: 0 15px 25px rgba(0,0,0,.15);
+
+        box-shadow:
+          0 15px 25px
+          rgba(0,0,0,.15);
       }
 
       nav.active {
@@ -637,11 +1108,21 @@
 
       nav a {
         padding: 13px 5px;
-        border-bottom: 1px solid rgba(255,255,255,.08);
+
+        border-bottom:
+          1px solid
+          rgba(255,255,255,.08);
+      }
+
+      .nav-register {
+        margin-top: 5px;
+
+        text-align: center;
       }
 
       .nav-admin {
         border: 0;
+
         padding: 13px 5px;
       }
 
@@ -655,6 +1136,7 @@
 
       h1 {
         font-size: 42px;
+
         letter-spacing: -1px;
       }
 
@@ -680,7 +1162,9 @@
 
       .stat {
         border-right: 0;
-        border-bottom: 1px solid var(--border);
+
+        border-bottom:
+          1px solid var(--border);
       }
 
       .stat:last-child {
@@ -700,11 +1184,33 @@
       .section-title {
         font-size: 30px;
       }
+
+      .registration-box {
+        padding: 22px 17px;
+      }
+
+      .registration-form {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+      .register-submit,
+      .registration-message,
+      .registration-note {
+        grid-column: auto;
+      }
+
     }
+
   </style>
 </head>
 
+
 <body>
+
 
 <!-- =========================
      HEADER
@@ -714,7 +1220,10 @@
 
   <div class="container nav">
 
-    <a href="#home" class="brand">
+    <a
+      href="#home"
+      class="brand"
+    >
 
       <img
         src="logo.jpg"
@@ -728,6 +1237,7 @@
 
     </a>
 
+
     <button
       class="menu-btn"
       id="menuBtn"
@@ -737,15 +1247,33 @@
       ☰
     </button>
 
+
     <nav id="navMenu">
 
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#programs">Learning</a>
-      <a href="#why">Why HAGE</a>
-      <a href="#contact">Contact</a>
+      <a href="#home">
+        Home
+      </a>
 
-      <a href="admin.html" class="nav-admin">
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#programs">
+        Learning
+      </a>
+
+      <a href="#register">
+        Register
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+      <a
+        href="admin.html"
+        class="nav-admin"
+      >
         Admin
       </a>
 
@@ -756,27 +1284,38 @@
 </header>
 
 
+
 <main>
+
 
 <!-- =========================
      HERO
 ========================= -->
 
-<section class="hero" id="home">
+<section
+  class="hero"
+  id="home"
+>
 
   <div class="container hero-content">
 
-    <div class="arabic" dir="rtl">
+    <div
+      class="arabic"
+      dir="rtl"
+    >
       وَقُلْ رَبِّ زِدْنِي عِلْمًا
     </div>
+
 
     <span class="eyebrow">
       ONLINE QUR'AN LEARNING • JIJIGA
     </span>
 
+
     <h1>
       Learn the Qur'an with purpose and consistency.
     </h1>
+
 
     <p class="hero-description">
       HAGE Institute for Qur'an Al-Karim provides
@@ -785,13 +1324,21 @@
       recitation, Tajweed and memorization.
     </p>
 
+
     <div class="hero-buttons">
 
-      <a href="#contact" class="btn">
-        Start Learning
+      <a
+        href="#register"
+        class="btn"
+      >
+        📝 Register Now
       </a>
 
-      <a href="#programs" class="btn btn-outline">
+
+      <a
+        href="#programs"
+        class="btn btn-outline"
+      >
         Explore Programs
       </a>
 
@@ -800,6 +1347,7 @@
   </div>
 
 </section>
+
 
 
 <!-- =========================
@@ -813,18 +1361,41 @@
     <div class="stats-grid">
 
       <div class="stat">
-        <strong>Online</strong>
-        <span>Learning Access</span>
+
+        <strong>
+          Online
+        </strong>
+
+        <span>
+          Learning Access
+        </span>
+
       </div>
 
-      <div class="stat">
-        <strong>4+</strong>
-        <span>Learning Areas</span>
-      </div>
 
       <div class="stat">
-        <strong>Jijiga</strong>
-        <span>Based Institute</span>
+
+        <strong>
+          4+
+        </strong>
+
+        <span>
+          Learning Areas
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <strong>
+          Jijiga
+        </strong>
+
+        <span>
+          Based Institute
+        </span>
+
       </div>
 
     </div>
@@ -834,11 +1405,15 @@
 </div>
 
 
+
 <!-- =========================
      ABOUT
 ========================= -->
 
-<section class="about" id="about">
+<section
+  class="about"
+  id="about"
+>
 
   <div class="container">
 
@@ -848,9 +1423,11 @@
         About Us
       </div>
 
+
       <h2 class="section-title">
         Welcome to HAGE Institute
       </h2>
+
 
       <p class="section-lead">
         A dedicated online learning home for students
@@ -872,21 +1449,31 @@
           environment.
         </p>
 
+
         <p>
           Our aim is to encourage regular study and help
           learners build confidence in their Qur'an journey
           through structured learning.
         </p>
 
+
         <ul class="check-list">
 
-          <li>Qur'an reading and recitation</li>
+          <li>
+            Qur'an reading and recitation
+          </li>
 
-          <li>Tajweed learning</li>
+          <li>
+            Tajweed learning
+          </li>
 
-          <li>Memorization support</li>
+          <li>
+            Memorization support
+          </li>
 
-          <li>Foundational Islamic learning</li>
+          <li>
+            Foundational Islamic learning
+          </li>
 
         </ul>
 
@@ -898,6 +1485,7 @@
         <h3>
           Our Learning Philosophy
         </h3>
+
 
         <p>
           Learning the Qur'an is a journey that requires
@@ -915,11 +1503,15 @@
 </section>
 
 
+
 <!-- =========================
      PROGRAMS
 ========================= -->
 
-<section class="programs" id="programs">
+<section
+  class="programs"
+  id="programs"
+>
 
   <div class="container">
 
@@ -929,9 +1521,11 @@
         Our Learning Areas
       </div>
 
+
       <h2 class="section-title">
         Build Your Qur'an Journey
       </h2>
+
 
       <p class="section-lead">
         Explore the core areas supported through
@@ -943,15 +1537,18 @@
 
     <div class="cards">
 
+
       <article class="card">
 
         <div class="card-icon">
           📖
         </div>
 
+
         <h3>
           Qur'an Reading
         </h3>
+
 
         <p>
           Develop confidence and consistency in reading
@@ -967,9 +1564,11 @@
           ✦
         </div>
 
+
         <h3>
           Tajweed
         </h3>
+
 
         <p>
           Learn the principles of correct pronunciation
@@ -985,9 +1584,11 @@
           🌙
         </div>
 
+
         <h3>
           Memorization
         </h3>
+
 
         <p>
           Follow a structured approach to memorizing
@@ -1003,9 +1604,11 @@
           ☪
         </div>
 
+
         <h3>
           Islamic Learning
         </h3>
+
 
         <p>
           Complement Qur'an study with foundational
@@ -1014,6 +1617,7 @@
 
       </article>
 
+
     </div>
 
   </div>
@@ -1021,11 +1625,15 @@
 </section>
 
 
+
 <!-- =========================
      WHY HAGE
 ========================= -->
 
-<section class="why" id="why">
+<section
+  class="why"
+  id="why"
+>
 
   <div class="container">
 
@@ -1035,9 +1643,11 @@
         Why HAGE
       </div>
 
+
       <h2 class="section-title">
         Learning With Purpose
       </h2>
+
 
       <p class="section-lead">
         A simple approach focused on consistent
@@ -1049,15 +1659,18 @@
 
     <div class="why-grid">
 
+
       <div class="why-card">
 
         <div class="why-number">
           01
         </div>
 
+
         <h3>
           Accessible Learning
         </h3>
+
 
         <p>
           Online learning makes it easier for students
@@ -1074,9 +1687,11 @@
           02
         </div>
 
+
         <h3>
           Structured Study
         </h3>
+
 
         <p>
           Clear learning areas help students approach
@@ -1092,9 +1707,11 @@
           03
         </div>
 
+
         <h3>
           Consistency
         </h3>
+
 
         <p>
           Regular practice and commitment are encouraged
@@ -1103,6 +1720,7 @@
 
       </div>
 
+
     </div>
 
   </div>
@@ -1110,11 +1728,242 @@
 </section>
 
 
+
+<!-- =========================
+     STUDENT REGISTRATION
+========================= -->
+
+<section
+  class="register-section"
+  id="register"
+>
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <div class="section-label">
+        Student Registration
+      </div>
+
+
+      <h2 class="section-title">
+        Register to Study at HAGE
+      </h2>
+
+
+      <p class="section-lead">
+        Complete the form below and our team will contact
+        you about your selected Qur'an learning program.
+      </p>
+
+    </div>
+
+
+    <div class="registration-box">
+
+
+      <div class="registration-title">
+
+        <h2>
+          Student Registration Form
+        </h2>
+
+        <p>
+          Please provide accurate information.
+        </p>
+
+      </div>
+
+
+      <form
+        id="registrationForm"
+        class="registration-form"
+      >
+
+
+        <!-- NAME -->
+
+        <div class="form-group">
+
+          <label for="studentName">
+            Full Name
+            <span class="required">*</span>
+          </label>
+
+          <input
+            id="studentName"
+            type="text"
+            placeholder="Enter your full name"
+            required
+          >
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="form-group">
+
+          <label for="studentPhone">
+            Phone / WhatsApp
+            <span class="required">*</span>
+          </label>
+
+          <input
+            id="studentPhone"
+            type="tel"
+            placeholder="+251 9XX XXX XXX"
+            required
+          >
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+          <label for="studentEmail">
+            Email
+          </label>
+
+          <input
+            id="studentEmail"
+            type="email"
+            placeholder="example@email.com"
+          >
+
+        </div>
+
+
+        <!-- AGE -->
+
+        <div class="form-group">
+
+          <label for="studentAge">
+            Age
+          </label>
+
+          <input
+            id="studentAge"
+            type="number"
+            min="4"
+            max="100"
+            placeholder="Your age"
+          >
+
+        </div>
+
+
+        <!-- COURSE -->
+
+        <div class="form-group full">
+
+          <label for="studentCourse">
+            Select Learning Program
+            <span class="required">*</span>
+          </label>
+
+          <select
+            id="studentCourse"
+            required
+          >
+
+            <option value="">
+              Select a program
+            </option>
+
+            <option value="Quran Reading">
+              Qur'an Reading
+            </option>
+
+            <option value="Tajweed">
+              Tajweed
+            </option>
+
+            <option value="Quran Memorization">
+              Qur'an Memorization
+            </option>
+
+            <option value="Islamic Learning">
+              Islamic Learning
+            </option>
+
+            <option value="Quran Reading & Tajweed">
+              Qur'an Reading & Tajweed
+            </option>
+
+            <option value="Other">
+              Other
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="form-group full">
+
+          <label for="studentMessage">
+            Additional Information
+          </label>
+
+          <textarea
+            id="studentMessage"
+            placeholder="Tell us anything we should know..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div
+          id="registrationMessage"
+          class="registration-message"
+        ></div>
+
+
+        <!-- SUBMIT -->
+
+        <button
+          id="registerButton"
+          type="submit"
+          class="register-submit"
+        >
+          Submit Registration
+        </button>
+
+
+        <div class="registration-note">
+
+          Your registration will be reviewed by
+          HAGE Institute administration.
+
+        </div>
+
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
 <!-- =========================
      CONTACT
 ========================= -->
 
-<section class="contact" id="contact">
+<section
+  class="contact"
+  id="contact"
+>
 
   <div class="container">
 
@@ -1124,9 +1973,11 @@
         Contact HAGE
       </div>
 
+
       <h2 class="section-title">
         Start Your Qur'an Learning Journey
       </h2>
+
 
       <p class="section-lead">
         Contact HAGE Institute for enrollment information,
@@ -1138,14 +1989,19 @@
 
     <div class="contact-grid">
 
+
       <div class="contact-item">
 
         <strong>
-          Phone
+          WhatsApp / Phone
         </strong>
 
-        <a href="tel:+251915252254">
-          +251 915 252 254
+        <a
+          href="https://wa.me/251915252254"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          💬 +251 915 252 254
         </a>
 
       </div>
@@ -1157,7 +2013,9 @@
           Phone
         </strong>
 
-        <a href="tel:+25177771807">
+        <a
+          href="tel:+25177771807"
+        >
           +251 777 718 07
         </a>
 
@@ -1170,11 +2028,14 @@
           Email
         </strong>
 
-        <a href="mailto:zekeriaabdiresakhassen@gmail.com">
+        <a
+          href="mailto:zekeriaabdiresakhassen@gmail.com"
+        >
           zekeriaabdiresakhassen@gmail.com
         </a>
 
       </div>
+
 
     </div>
 
@@ -1182,10 +2043,10 @@
     <div class="contact-button">
 
       <a
-        href="mailto:zekeriaabdiresakhassen@gmail.com"
+        href="#register"
         class="btn"
       >
-        ✉ Email HAGE Institute
+        📝 Register as a Student
       </a>
 
     </div>
@@ -1195,6 +2056,7 @@
 </section>
 
 </main>
+
 
 
 <!-- =========================
@@ -1209,19 +2071,41 @@
       HAGE Institute for Qur'an Al-Karim
     </div>
 
+
     <div class="footer-links">
 
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#programs">Learning</a>
-      <a href="#contact">Contact</a>
-      <a href="admin.html">Admin</a>
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+
+      <a href="#programs">
+        Learning
+      </a>
+
+      <a href="#register">
+        Register
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+      <a href="admin.html">
+        Admin
+      </a>
 
     </div>
 
+
     <div class="copyright">
+
       Online Qur'an Learning • Based in Jijiga
       • © 2026 HAGE Institute
+
     </div>
 
   </div>
@@ -1229,16 +2113,27 @@
 </footer>
 
 
+
 <!-- =========================
-     MOBILE MENU SCRIPT
+     JAVASCRIPT
 ========================= -->
 
 <script>
 
-  const menuBtn = document.getElementById("menuBtn");
-  const navMenu = document.getElementById("navMenu");
+/* ==========================================
+   MOBILE MENU
+========================================== */
 
-  menuBtn.addEventListener("click", function () {
+const menuBtn =
+  document.getElementById("menuBtn");
+
+const navMenu =
+  document.getElementById("navMenu");
+
+
+menuBtn.addEventListener(
+  "click",
+  function(){
 
     navMenu.classList.toggle("active");
 
@@ -1253,15 +2148,17 @@
     menuBtn.textContent =
       opened ? "✕" : "☰";
 
-  });
+  }
+);
 
 
-  // Close mobile menu after clicking a link
+document
+  .querySelectorAll("#navMenu a")
+  .forEach(function(link){
 
-  document.querySelectorAll("#navMenu a")
-    .forEach(function(link) {
-
-      link.addEventListener("click", function() {
+    link.addEventListener(
+      "click",
+      function(){
 
         navMenu.classList.remove("active");
 
@@ -1272,9 +2169,245 @@
 
         menuBtn.textContent = "☰";
 
-      });
+      }
+    );
 
-    });
+  });
+
+
+
+/* ==========================================
+   SUPABASE
+========================================== */
+
+const SUPABASE_URL =
+  "https://yzewhtjosyfrbgqhbzbu.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_LvvJKJwC4z5p8DX7IkJeqA_M_-8LdEO";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+
+/* ==========================================
+   STUDENT REGISTRATION
+========================================== */
+
+const registrationForm =
+  document.getElementById(
+    "registrationForm"
+  );
+
+
+const registrationMessage =
+  document.getElementById(
+    "registrationMessage"
+  );
+
+
+const registerButton =
+  document.getElementById(
+    "registerButton"
+  );
+
+
+function showRegistrationMessage(
+  message,
+  type
+){
+
+  registrationMessage.textContent =
+    message;
+
+  registrationMessage.className =
+    "registration-message " + type;
+
+}
+
+
+
+registrationForm.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+
+    const name =
+      document
+        .getElementById("studentName")
+        .value
+        .trim();
+
+
+    const phone =
+      document
+        .getElementById("studentPhone")
+        .value
+        .trim();
+
+
+    const email =
+      document
+        .getElementById("studentEmail")
+        .value
+        .trim();
+
+
+    const age =
+      document
+        .getElementById("studentAge")
+        .value
+        .trim();
+
+
+    const course =
+      document
+        .getElementById("studentCourse")
+        .value;
+
+
+    const additionalMessage =
+      document
+        .getElementById("studentMessage")
+        .value
+        .trim();
+
+
+    if(!name || !phone || !course){
+
+      showRegistrationMessage(
+        "Please complete all required fields.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    registerButton.disabled = true;
+
+    registerButton.textContent =
+      "Submitting Registration...";
+
+
+    showRegistrationMessage(
+      "",
+      ""
+    );
+
+
+    /*
+      Your existing admin database uses:
+
+      name
+      course
+      contact
+      status
+
+      We keep that structure so registrations
+      appear in the existing Admin → Enrollments
+      section.
+    */
+
+    let contact = phone;
+
+
+    if(email){
+
+      contact +=
+        " | Email: " +
+        email;
+
+    }
+
+
+    if(age){
+
+      contact +=
+        " | Age: " +
+        age;
+
+    }
+
+
+    if(additionalMessage){
+
+      contact +=
+        " | Message: " +
+        additionalMessage;
+
+    }
+
+
+    try{
+
+      const result =
+        await supabaseClient
+          .from("enrollments")
+          .insert({
+
+            name: name,
+
+            course: course,
+
+            contact: contact,
+
+            status: "Pending"
+
+          });
+
+
+      if(result.error){
+
+        throw result.error;
+
+      }
+
+
+      showRegistrationMessage(
+        "Registration submitted successfully! HAGE Institute will contact you soon.",
+        "success"
+      );
+
+
+      registrationForm.reset();
+
+
+      registerButton.textContent =
+        "Registration Submitted ✓";
+
+
+    }catch(error){
+
+      console.error(
+        "Registration error:",
+        error
+      );
+
+
+      showRegistrationMessage(
+        "Registration could not be submitted. Please try again or contact HAGE Institute by WhatsApp.",
+        "error"
+      );
+
+
+      registerButton.disabled = false;
+
+      registerButton.textContent =
+        "Submit Registration";
+
+    }
+
+  }
+);
 
 </script>
 
