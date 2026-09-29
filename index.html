@@ -41,7 +41,7 @@
     .navbar {
       width: 100%;
       padding: 1.25rem 1.5rem;
-      background: rgba(10, 47, 29, 0.8);
+      background: rgba(10, 47, 29, 0.85);
       backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
@@ -63,6 +63,13 @@
       gap: 0.75rem;
     }
 
+    .logo {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
     .brand-title {
       font-size: 0.85rem;
       font-weight: 700;
@@ -78,7 +85,7 @@
 
     .nav-links {
       display: flex;
-      gap: 1.75rem;
+      gap: 1.5rem;
     }
 
     .nav-links a {
@@ -258,10 +265,12 @@
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Navigation Bar -->
   <header class="navbar">
     <div class="nav-container">
       <div class="brand">
+        <!-- Logo Image File -->
+        <img src="logo.png" alt="HAGE Institute Logo" class="logo" onerror="this.style.display='none'">
         <span class="brand-title">HAGE INSTITUTE<br><small>FOR QUR'AN AL-KARIM</small></span>
       </div>
       <nav class="nav-links">
@@ -276,7 +285,7 @@
   <section class="hero">
     <div class="hero-container">
       
-      <!-- Arabic Ayah Header -->
+      <!-- Arabic Calligraphy -->
       <div class="quran-ayah" dir="rtl">
         وَقُلْ رَبِّ زِدْنِي عِلْمًا
       </div>
@@ -286,7 +295,7 @@
         <span class="dot"></span> ONLINE QUR'AN LEARNING • JIJIGA
       </div>
 
-      <!-- Main Headline -->
+      <!-- Main Title -->
       <h1 class="hero-title">
         Learn the Qur'an with <br>
         <span class="highlight">purpose</span> and <span class="highlight">consistency</span>.
@@ -298,13 +307,14 @@
         created to make Qur'an learning accessible and organized for learners everywhere.
       </p>
 
-      <!-- Primary & Secondary CTA Buttons -->
-      <div class="cta-group">
-        <a href="#explore" class="btn btn-primary">Explore Learning</a>
-        <a href="#contact" class="btn btn-secondary">Contact the Institute</a>
+      <!-- Action / Contact Buttons -->
+      <div class="cta-group" id="contact">
+        <!-- Update the href attributes below with your actual links or phone/whatsapp numbers -->
+        <a href="https://wa.me/" class="btn btn-primary">Contact the Institute</a>
+        <a href="#learning" class="btn btn-secondary">Explore Learning</a>
       </div>
 
-      <!-- Trust Bar / Feature Highlights -->
+      <!-- Features / Trust Highlights -->
       <div class="trust-bar">
         <div class="trust-item">
           <span class="trust-icon">✓</span>
