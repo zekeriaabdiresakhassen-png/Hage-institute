@@ -8,17 +8,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* --- CSS Variables & Reset --- */
+    /* --- CSS Variables & Reset (Option 2: Midnight Navy & Sapphire Gold) --- */
     :root {
-      --bg-dark: #0a2f1d;
-      --bg-gradient: radial-gradient(circle at 50% 20%, #0e3d27 0%, #061c11 100%);
-      --accent-gold: #e2b13c;
-      --accent-gold-hover: #f3c24d;
+      --bg-dark: #060e1a;
+      --bg-gradient: radial-gradient(circle at 50% 20%, #0a192f 0%, #030810 100%);
+      --accent-gold: #d4af37;
+      --accent-gold-hover: #e5c158;
       --accent-green: #25d366;
-      --text-light: #f3f4f6;
-      --text-muted: #9ca3af;
-      --border-gold: rgba(226, 177, 60, 0.4);
-      --card-bg: rgba(255, 255, 255, 0.03);
+      --text-light: #ffffff;
+      --text-muted: #94a3b8;
+      --border-gold: rgba(212, 175, 55, 0.4);
+      --card-bg: rgba(10, 25, 47, 0.7);
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
       --font-arabic: 'Amiri', serif;
     }
@@ -47,12 +47,12 @@
     .navbar {
       width: 100%;
       padding: 0.85rem 1.25rem;
-      background: rgba(10, 47, 29, 0.95);
+      background: rgba(6, 14, 26, 0.95);
       backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
     }
 
     .nav-container {
@@ -77,7 +77,7 @@
       height: 64px;
       max-width: 160px;
       object-fit: contain;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
     }
 
     .brand-title {
@@ -166,7 +166,7 @@
       max-width: 280px;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.5));
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.6));
     }
 
     .quran-ayah {
@@ -174,21 +174,21 @@
       font-size: 2.25rem;
       color: var(--accent-gold);
       margin-bottom: 1.25rem;
-      text-shadow: 0 2px 10px rgba(226, 177, 60, 0.2);
+      text-shadow: 0 2px 10px rgba(212, 175, 55, 0.25);
     }
 
     .pill-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(10, 25, 47, 0.8);
       border: 1px solid var(--border-gold);
       padding: 0.4rem 1.1rem;
       border-radius: 50px;
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 1px;
-      color: #e5e7eb;
+      color: #e2e8f0;
       margin-bottom: 1.75rem;
     }
 
@@ -214,7 +214,7 @@
 
     .hero-description {
       font-size: 1.05rem;
-      color: #d1d5db;
+      color: #cbd5e1;
       max-width: 620px;
       margin-bottom: 2rem;
     }
@@ -242,8 +242,8 @@
 
     .btn-primary {
       background-color: var(--accent-gold);
-      color: #061c11;
-      box-shadow: 0 4px 15px rgba(226, 177, 60, 0.25);
+      color: #030810;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
     }
 
     .btn-primary:hover {
@@ -258,7 +258,7 @@
     }
 
     .btn-secondary:hover {
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(212, 175, 55, 0.1);
       border-color: var(--accent-gold);
     }
 
@@ -271,7 +271,7 @@
 
     .feature-item {
       background: var(--card-bg);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.15);
       padding: 1.5rem;
       border-radius: 12px;
       text-align: center;
@@ -303,7 +303,7 @@
 
     .course-card {
       background: var(--card-bg);
-      border: 1px solid rgba(226, 177, 60, 0.2);
+      border: 1px solid rgba(212, 175, 55, 0.25);
       border-radius: 16px;
       padding: 1.75rem;
       transition: all 0.3s ease;
@@ -314,7 +314,7 @@
     .course-card:hover {
       border-color: var(--accent-gold);
       transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     }
 
     .course-icon {
@@ -352,14 +352,14 @@
 
     .testimonial-card {
       background: var(--card-bg);
-      border: 1px solid rgba(226, 177, 60, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.2);
       border-radius: 14px;
       padding: 1.5rem;
     }
 
     .testimonial-text {
       font-style: italic;
-      color: #d1d5db;
+      color: #cbd5e1;
       font-size: 0.95rem;
       margin-bottom: 1rem;
     }
@@ -385,7 +385,7 @@
 
     .contact-card {
       background: var(--card-bg);
-      border: 1px solid rgba(226, 177, 60, 0.2);
+      border: 1px solid rgba(212, 175, 55, 0.25);
       border-radius: 12px;
       padding: 1.25rem 1.5rem;
       display: flex;
@@ -397,7 +397,7 @@
     }
 
     .contact-card:hover {
-      background: rgba(226, 177, 60, 0.08);
+      background: rgba(212, 175, 55, 0.1);
       border-color: var(--accent-gold);
     }
 
@@ -422,7 +422,7 @@
     /* Quick Registration Form */
     .enroll-form {
       background: var(--card-bg);
-      border: 1px solid rgba(226, 177, 60, 0.3);
+      border: 1px solid rgba(212, 175, 55, 0.35);
       padding: 2rem;
       border-radius: 16px;
     }
@@ -435,15 +435,15 @@
       display: block;
       font-size: 0.85rem;
       font-weight: 600;
-      color: #d1d5db;
+      color: #cbd5e1;
       margin-bottom: 0.4rem;
     }
 
     .form-control {
       width: 100%;
       padding: 0.8rem 1rem;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(3, 8, 16, 0.6);
+      border: 1px solid rgba(212, 175, 55, 0.25);
       border-radius: 8px;
       color: #ffffff;
       font-size: 0.95rem;
@@ -483,7 +483,7 @@
     footer {
       text-align: center;
       padding: 2rem 1.25rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
       font-size: 0.85rem;
       color: var(--text-muted);
     }
