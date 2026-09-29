@@ -4,11 +4,257 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HAGE Institute for Qur'an Al-Karim</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Google Fonts for typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- CSS Variables & Reset --- */
+    :root {
+      --bg-dark: #0a2f1d;
+      --bg-gradient: radial-gradient(circle at 50% 20%, #0e3d27 0%, #061c11 100%);
+      --accent-gold: #e2b13c;
+      --accent-gold-hover: #f3c24d;
+      --text-light: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-gold: rgba(226, 177, 60, 0.4);
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-arabic: 'Amiri', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-dark);
+      background-image: var(--bg-gradient);
+      color: var(--text-light);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- Navigation --- */
+    .navbar {
+      width: 100%;
+      padding: 1.25rem 1.5rem;
+      background: rgba(10, 47, 29, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .brand-title small {
+      font-size: 0.65rem;
+      color: var(--accent-gold);
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-gold);
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      padding: 4rem 1.5rem 5rem;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-container {
+      max-width: 760px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Arabic Ayah Calligraphy */
+    .quran-ayah {
+      font-family: var(--font-arabic);
+      font-size: 2.25rem;
+      color: var(--accent-gold);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 10px rgba(226, 177, 60, 0.2);
+    }
+
+    /* Pill Badge */
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-gold);
+      padding: 0.4rem 1.1rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #e5e7eb;
+      margin-bottom: 2rem;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--accent-gold);
+      border-radius: 50%;
+    }
+
+    /* Headline */
+    .hero-title {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+    }
+
+    .hero-title .highlight {
+      color: var(--accent-gold);
+    }
+
+    /* Description */
+    .hero-description {
+      font-size: 1.1rem;
+      color: #d1d5db;
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+
+    /* Buttons */
+    .cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 420px;
+      margin-bottom: 3.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 1.75rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-gold);
+      color: #061c11;
+      box-shadow: 0 4px 15px rgba(226, 177, 60, 0.25);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-gold-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #ffffff;
+      border: 1.5px solid var(--border-gold);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-gold);
+    }
+
+    /* Trust Bar */
+    .trust-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      width: 100%;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .trust-icon {
+      color: var(--accent-gold);
+      font-weight: bold;
+    }
+
+    /* Desktop Responsiveness */
+    @media (min-width: 640px) {
+      .hero {
+        padding-top: 6rem;
+      }
+
+      .quran-ayah {
+        font-size: 2.75rem;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+      }
+
+      .cta-group {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .btn {
+        flex: 1;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -16,8 +262,6 @@
   <header class="navbar">
     <div class="nav-container">
       <div class="brand">
-        <!-- Replace src with your actual logo path -->
-        <img src="logo.png" alt="HAGE Institute Logo" class="logo">
         <span class="brand-title">HAGE INSTITUTE<br><small>FOR QUR'AN AL-KARIM</small></span>
       </div>
       <nav class="nav-links">
