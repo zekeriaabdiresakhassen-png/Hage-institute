@@ -262,36 +262,54 @@
       border-color: var(--accent-gold);
     }
 
-    /* --- Features Grid --- */
-    .features-grid {
+    /* --- Features Menu Grid --- */
+    .feature-menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: 1fr;
       gap: 1.5rem;
     }
 
-    .feature-item {
+    .feature-card {
       background: var(--card-bg);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-      padding: 1.5rem;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 14px;
+      padding: 1.75rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature-icon-badge {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid var(--border-gold);
+      min-width: 52px;
+      height: 52px;
       border-radius: 12px;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
     }
 
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-
-    .feature-item h4 {
-      font-size: 1.1rem;
+    .feature-content h4 {
+      font-size: 1.15rem;
       color: #ffffff;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.35rem;
+      font-weight: 700;
     }
 
-    .feature-item p {
-      font-size: 0.875rem;
+    .feature-content p {
+      font-size: 0.9rem;
       color: var(--text-muted);
+      line-height: 1.5;
     }
 
     /* --- Course Programs --- */
@@ -495,6 +513,7 @@
       .hero-title { font-size: 3.5rem; }
       .cta-group { flex-direction: row; justify-content: center; }
       .btn { flex: 1; }
+      .feature-menu-grid { grid-template-columns: repeat(2, 1fr); }
       .courses-grid { grid-template-columns: repeat(3, 1fr); }
       .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
       .contact-grid { grid-template-columns: 1fr 1fr; }
@@ -503,17 +522,16 @@
 </head>
 <body id="home">
 
-  <!-- Navigation Bar with Menu Options -->
+  <!-- Navigation Bar -->
   <header class="navbar">
     <div class="nav-container">
       <a href="#home" class="brand">
-        <!-- Expanded/Wider Logo in Top Bar -->
         <img src="logo.png" alt="HAGE Institute Logo" class="logo-img-nav" onerror="this.style.display='none'">
         <span class="brand-title">HAGE INSTITUTE<br><small>FOR QUR'AN AL-KARIM • EST. 2026</small></span>
       </a>
       <nav class="nav-links">
         <a href="#home">Home</a>
-        <a href="#about">About</a>
+        <a href="#features">Features</a>
         <a href="#courses">Courses</a>
         <a href="#enroll">Enroll</a>
       </nav>
@@ -551,28 +569,66 @@
     </div>
   </section>
 
-  <!-- Features Highlight -->
-  <section class="section-container">
-    <div class="features-grid">
-      <div class="feature-item">
-        <span class="feature-icon">👤</span>
-        <h4>1-on-1 Classes</h4>
-        <p>Personalized sessions tailored to your exact learning pace.</p>
+  <!-- Features Menu Section -->
+  <section class="section-container" id="features">
+    <div class="section-header">
+      <span class="section-subtitle">Why Choose HAGE Institute</span>
+      <h2 class="section-title">Key Features & Student Benefits</h2>
+    </div>
+
+    <div class="feature-menu-grid">
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">👤</div>
+        <div class="feature-content">
+          <h4>1-on-1 Personalized Classes</h4>
+          <p>Dedicated attention from qualified instructors tailored specifically to your speed and skill level.</p>
+        </div>
       </div>
-      <div class="feature-item">
-        <span class="feature-icon">⏰</span>
-        <h4>Flexible Timing</h4>
-        <p>Schedule your live sessions at times that fit your routine.</p>
+
+      <!-- Feature 2 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">⏰</div>
+        <div class="feature-content">
+          <h4>Flexible Scheduling</h4>
+          <p>Choose class timings that seamlessly fit around your work, school, or personal commitments.</p>
+        </div>
       </div>
-      <div class="feature-item">
-        <span class="feature-icon">📜</span>
-        <h4>Structured Programs</h4>
-        <p>Step-by-step curriculum from basic alphabet to Tajweed mastery.</p>
+
+      <!-- Feature 3 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">📜</div>
+        <div class="feature-content">
+          <h4>Structured Tajweed Curriculum</h4>
+          <p>Step-by-step guidance covering Makharij (pronunciation points) and rules of recitation.</p>
+        </div>
       </div>
-      <div class="feature-item">
-        <span class="feature-icon">🌍</span>
-        <h4>Learn Anywhere</h4>
-        <p>High-quality online sessions accessible on mobile or computer.</p>
+
+      <!-- Feature 4 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">📈</div>
+        <div class="feature-content">
+          <h4>Progress Tracking & Feedback</h4>
+          <p>Regular evaluations and constructive feedback to ensure continuous improvement in memorization.</p>
+        </div>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">🌍</div>
+        <div class="feature-content">
+          <h4>Learn Anywhere Online</h4>
+          <p>Access high-definition live video lessons on smartphone, tablet, or desktop from anywhere.</p>
+        </div>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="feature-card">
+        <div class="feature-icon-badge">🎓</div>
+        <div class="feature-content">
+          <h4>Programs for All Ages</h4>
+          <p>Specialized teaching methodologies suited for young children, teenagers, and adult learners.</p>
+        </div>
       </div>
     </div>
   </section>
