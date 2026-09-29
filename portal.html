@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HAGE Institute — Portal</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{font-family:Arial,sans-serif;background:#071426;color:#fff;margin:0;padding:20px}
+.wrap{max-width:950px;margin:auto}.card{background:#10223b;padding:24px;border-radius:14px;margin:20px 0}
+h1,h2{color:#d7ad55}input,button{width:100%;padding:13px;margin:7px 0;border-radius:8px;box-sizing:border-box}
+input{border:1px solid #52657f}button{background:#d7ad55;border:0;font-weight:bold;cursor:pointer}
+.hidden{display:none}.error{background:#5b2020;padding:12px;border-radius:8px;white-space:pre-wrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.item{background:#172d49;padding:16px;border-radius:10px}
+.small{color:#b9c4d3;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section id="login" class="card">
+<h1>HAGE Institute Portal</h1>
+<p class="small">Students, teachers and parents sign in with the username provided by the institute.</p>
+<input id="username" placeholder="Username" autocomplete="username">
+<input id="password" type="password" placeholder="Password" autocomplete="current-password">
+<button id="loginBtn">Sign in</button>
+<div id="msg"></div>
+</section>
+
+<section id="app" class="hidden">
+<div class="card">
+<h1 id="welcome">Welcome</h1>
+<div id="role" class="small"></div>
+<button id="logout">Log out</button>
+</div>
+<div id="content"></div>
+</section>
+</div>
+<script>
+const URL="https://yzewhtjosyfrbgqhbzbu.supabase.co";
+const KEY="sb_publishable_LvvJKJwC4z5p8DX7IkJeqA_M_-8LdEO";
+const db=window.supabase.createClient(URL,KEY);
+const $=id=>document.getElementById(id);
+function err(s){$("msg").className="error";$("msg").textContent=s}
+
+async function loadPortal(user){
+  const {data:p,error}=await db.from("user_profiles")
+    .select("username,role,display_name,student_id,teacher_id,active")
+    .eq("user_id",user.id).maybeSingle();
+  if(error) throw error;
+  if(!p || !p.active) throw new Error("Your account is inactive or not registered.");
+  $("login").classList.add("hidden");$("app").classList.remove("hidden");
+  $("welcome").textContent="Welcome, "+p.display_name;
+  $("role").textContent="Role: "+p.role;
+  const c=$("content"); c.innerHTML="";
+  if(p.role==="student") await studentView(p,c);
+  if(p.role==="teacher") await teacherView(p,c);
+  if(p.role==="parent") await parentView(c);
+}
+function box(title,body){return `<div class="card"><h2>${title}</h2>${body}</div>`}
+async function studentView(p,c){
+ const [s,pr,co,sc]=await Promise.all([
+   db.from("students").select("name,course,status").eq("id",p.student_id).maybeSingle(),
+   db.from("progress").select("course,progress_percent,last_updated").eq("student_id",p.student_id),
+   db.from("courses").select("name,type,status").eq("status","Active"),
+   db.from("schedules").select("course,day,time_text,mode").order("day")
+ ]);
+ if(s.error||pr.error||co.error||sc.error) throw new Error((s.error||pr.error||co.error||sc.error).message);
+ c.innerHTML+=box("My Profile",`<div class="item">Name: ${s.data?.name||p.display_name}<br>Course: ${s.data?.course||"—"}<br>Status: ${s.data?.status||"—"}</div>`);
+ c.innerHTML+=box("My Progress",`<div class="grid">${pr.data?.map(x=>`<div class="item"><b>${x.course}</b><br>${x.progress_percent}%</div>`).join("")||"<div class='item'>No progress recorded yet.</div>"}</div>`);
+ c.innerHTML+=box("Schedules",`<div class="grid">${sc.data?.map(x=>`<div class="item"><b>${x.course}</b><br>${x.day} ${x.time_text||""}<br>${x.mode}</div>`).join("")||"<div class='item'>No schedules yet.</div>"}</div>`);
+}
+async function teacherView(p,c){
+ const {data:pr,error}=await db.from("progress").select("student_id,course,progress_percent,last_updated");
+ if(error) throw error;
+ c.innerHTML+=box("Student Progress",`<div class="grid">${pr?.map(x=>`<div class="item"><b>Student #${x.student_id}</b><br>${x.course}<br>${x.progress_percent}%</div>`).join("")||"<div class='item'>No student progress recorded yet.</div>"}</div>`);
+}
+async function parentView(c){
+ const {data:links,error}=await db.from("parent_students").select("student_id");
+ if(error) throw error;
+ const ids=(links||[]).map(x=>x.student_id);
+ if(!ids.length){c.innerHTML=box("My Children","<div class='item'>No children linked to this account.</div>");return}
+ const {data:s,error:e}=await db.from("students").select("id,name,course,status").in("id",ids);
+ if(e) throw e;
+ const {data:p,error:pe}=await db.from("progress").select("student_id,course,progress_percent").in("student_id",ids);
+ if(pe) throw pe;
+ c.innerHTML+=box("My Children",`<div class="grid">${s.map(x=>`<div class="item"><b>${x.name}</b><br>Course: ${x.course}<br>Status: ${x.status}<hr>${(p.filter(y=>y.student_id===x.id).map(y=>`${y.course}: ${y.progress_percent}%`).join("<br>")||"No progress recorded.")}</div>`).join("")}</div>`);
+}
+$("loginBtn").onclick=async()=>{
+ $("msg").className="";$("msg").textContent="";
+ const u=$("username").value.trim().toLowerCase(),pw=$("password").value;
+ if(!u||!pw){err("Enter your username and password.");return}
+ try{
+   const r=await db.auth.signInWithPassword({email:`${u}@accounts.hage.local`,password:pw});
+   if(r.error) throw r.error;
+   await loadPortal(r.data.user);
+ }catch(e){await db.auth.signOut();err(e.message||String(e))}
+};
+$("logout").onclick=async()=>{await db.auth.signOut();location.reload()};
+</script>
+</body>
+</html>
