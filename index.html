@@ -40,7 +40,7 @@
     /* --- Navigation --- */
     .navbar {
       width: 100%;
-      padding: 1.25rem 1.5rem;
+      padding: 1rem 1.5rem;
       background: rgba(10, 47, 29, 0.85);
       backdrop-filter: blur(10px);
       position: sticky;
@@ -63,11 +63,12 @@
       gap: 0.75rem;
     }
 
-    .logo {
-      width: 45px;
-      height: 45px;
+    .logo-img {
+      width: 48px;
+      height: 48px;
       object-fit: contain;
       border-radius: 50%;
+      box-shadow: 0 0 10px rgba(226, 177, 60, 0.3);
     }
 
     .brand-title {
@@ -102,7 +103,7 @@
 
     /* --- Hero Section --- */
     .hero {
-      padding: 4rem 1.5rem 5rem;
+      padding: 3rem 1.5rem 2rem;
       display: flex;
       justify-content: center;
       text-align: center;
@@ -116,12 +117,20 @@
       align-items: center;
     }
 
+    .hero-logo {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.4));
+    }
+
     /* Arabic Ayah Calligraphy */
     .quran-ayah {
       font-family: var(--font-arabic);
       font-size: 2.25rem;
       color: var(--accent-gold);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       text-shadow: 0 2px 10px rgba(226, 177, 60, 0.2);
     }
 
@@ -138,7 +147,7 @@
       font-weight: 600;
       letter-spacing: 1px;
       color: #e5e7eb;
-      margin-bottom: 2rem;
+      margin-bottom: 1.75rem;
     }
 
     .dot {
@@ -150,11 +159,11 @@
 
     /* Headline */
     .hero-title {
-      font-size: 2.75rem;
+      font-size: 2.5rem;
       font-weight: 800;
       line-height: 1.2;
       letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       color: #ffffff;
     }
 
@@ -164,10 +173,10 @@
 
     /* Description */
     .hero-description {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #d1d5db;
       max-width: 620px;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       font-weight: 400;
     }
 
@@ -178,7 +187,7 @@
       gap: 1rem;
       width: 100%;
       max-width: 420px;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2.5rem;
     }
 
     .btn {
@@ -214,6 +223,58 @@
       border-color: var(--accent-gold);
     }
 
+    /* --- Contact Cards Section --- */
+    .contact-section {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(226, 177, 60, 0.2);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--text-light);
+      transition: all 0.2s ease;
+    }
+
+    .contact-card:hover {
+      background: rgba(226, 177, 60, 0.08);
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--accent-gold);
+    }
+
+    .contact-info strong {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-info span {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
     /* Trust Bar */
     .trust-bar {
       display: flex;
@@ -223,6 +284,7 @@
       padding-top: 2rem;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       width: 100%;
+      margin-top: 2rem;
     }
 
     .trust-item {
@@ -241,7 +303,7 @@
     /* Desktop Responsiveness */
     @media (min-width: 640px) {
       .hero {
-        padding-top: 6rem;
+        padding-top: 4rem;
       }
 
       .quran-ayah {
@@ -260,6 +322,10 @@
       .btn {
         flex: 1;
       }
+
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
@@ -269,20 +335,19 @@
   <header class="navbar">
     <div class="nav-container">
       <div class="brand">
-        <!-- Logo Image File -->
-        <img src="logo.png" alt="HAGE Institute Logo" class="logo" onerror="this.style.display='none'">
-        <span class="brand-title">HAGE INSTITUTE<br><small>FOR QUR'AN AL-KARIM</small></span>
+        <!-- Main Logo image file (searches for logo.png in your repository) -->
+        <img src="logo.png" alt="HAGE Institute Logo" class="logo-img" onerror="this.style.display='none'">
+        <span class="brand-title">HAGE INSTITUTE<br><small>FOR QUR'AN AL-KARIM • EST. 2026</small></span>
       </div>
       <nav class="nav-links">
         <a href="#about">About</a>
-        <a href="#learning">Learning</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="about">
     <div class="hero-container">
       
       <!-- Arabic Calligraphy -->
@@ -307,29 +372,59 @@
         created to make Qur'an learning accessible and organized for learners everywhere.
       </p>
 
-      <!-- Action / Contact Buttons -->
-      <div class="cta-group" id="contact">
-        <!-- Update the href attributes below with your actual links or phone/whatsapp numbers -->
-        <a href="https://wa.me/" class="btn btn-primary">Contact the Institute</a>
-        <a href="#learning" class="btn btn-secondary">Explore Learning</a>
+      <!-- Primary Action Buttons -->
+      <div class="cta-group">
+        <a href="https://wa.me/251915252254" class="btn btn-primary" target="_blank">WhatsApp Us</a>
+        <a href="tel:+251915252254" class="btn btn-secondary">Call Institute</a>
       </div>
 
-      <!-- Features / Trust Highlights -->
-      <div class="trust-bar">
-        <div class="trust-item">
-          <span class="trust-icon">✓</span>
-          <span>Structured Curriculum</span>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">✓</span>
-          <span>Flexible Scheduling</span>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">✓</span>
-          <span>One-on-One Sessions</span>
-        </div>
-      </div>
+    </div>
+  </section>
 
+  <!-- Direct Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="contact-grid">
+      
+      <a href="tel:+251915252254" class="contact-card">
+        <span class="contact-icon">📞</span>
+        <div class="contact-info">
+          <strong>Primary Phone</strong>
+          <span>+251 91 525 2254</span>
+        </div>
+      </a>
+
+      <a href="tel:+251777718071" class="contact-card">
+        <span class="contact-icon">📱</span>
+        <div class="contact-info">
+          <strong>Secondary Phone</strong>
+          <span>+251 77 771 8071</span>
+        </div>
+      </a>
+
+      <a href="mailto:zekeriaabdiresakhassen@gmail.com" class="contact-card" style="grid-column: 1 / -1;">
+        <span class="contact-icon">✉️</span>
+        <div class="contact-info">
+          <strong>Email Address</strong>
+          <span>zekeriaabdiresakhassen@gmail.com</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Features / Highlights -->
+    <div class="trust-bar">
+      <div class="trust-item">
+        <span class="trust-icon">✓</span>
+        <span>Structured Curriculum</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">✓</span>
+        <span>Flexible Scheduling</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">✓</span>
+        <span>One-on-One Sessions</span>
+      </div>
     </div>
   </section>
 
