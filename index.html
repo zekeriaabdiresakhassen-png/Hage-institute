@@ -3,1023 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HAGE Institute for Qur'an Al-Karim — online Qur'an learning institute based in Jijiga.">
   <title>HAGE Institute for Qur'an Al-Karim</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* --- CSS Variables & Reset --- */
-    :root {
-      --bg-dark: #060e1a;
-      --bg-gradient: radial-gradient(circle at 50% 20%, #0a192f 0%, #030810 100%);
-      --accent-gold: #d4af37;
-      --accent-gold-hover: #e5c158;
-      --accent-green: #25d366;
-      --text-light: #ffffff;
-      --text-muted: #94a3b8;
-      --border-gold: rgba(212, 175, 55, 0.4);
-      --card-bg: rgba(10, 25, 47, 0.7);
-      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-      --font-arabic: 'Amiri', serif;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: var(--font-sans);
-      background: var(--bg-dark);
-      background-image: var(--bg-gradient);
-      color: var(--text-light);
-      min-height: 100vh;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* --- Navigation Bar --- */
-    .navbar {
-      width: 100%;
-      padding: 0.85rem 1.25rem;
-      background: rgba(6, 14, 26, 0.95);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-    }
-
-    .nav-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .logo-img-nav {
-      width: auto;
-      height: 52px;
-      max-width: 150px;
-      object-fit: contain;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
-    }
-
-    .brand-title {
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      line-height: 1.25;
-    }
-
-    .brand-title small {
-      font-size: 0.65rem;
-      color: var(--accent-gold);
-      font-weight: 500;
-      display: block;
-    }
-
-    .desktop-nav {
-      display: none;
-      gap: 1.25rem;
-      align-items: center;
-    }
-
-    .desktop-nav a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-
-    .desktop-nav a:hover {
-      color: var(--accent-gold);
-    }
-
-    .nav-btn {
-      background: var(--accent-gold);
-      color: #030810 !important;
-      padding: 0.45rem 1rem;
-      border-radius: 6px;
-      font-weight: 700 !important;
-    }
-
-    .menu-toggle-btn {
-      background: transparent;
-      border: 1px solid var(--border-gold);
-      color: var(--accent-gold);
-      font-size: 1.5rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 6px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* --- Slide-out Mobile Drawer Menu --- */
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(4px);
-      z-index: 998;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .mobile-menu-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .mobile-sidebar {
-      position: fixed;
-      top: 0;
-      left: -300px;
-      width: 280px;
-      height: 100%;
-      background: #060e1a;
-      border-right: 1px solid var(--border-gold);
-      z-index: 999;
-      padding: 1.5rem 1.25rem;
-      display: flex;
-      flex-direction: column;
-      transition: left 0.3s ease;
-      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8);
-    }
-
-    .mobile-sidebar.active {
-      left: 0;
-    }
-
-    .sidebar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-      margin-bottom: 1.5rem;
-    }
-
-    .sidebar-header h3 {
-      font-size: 1rem;
-      color: var(--accent-gold);
-    }
-
-    .close-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .sidebar-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .sidebar-links a {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      padding: 0.85rem 1rem;
-      color: #e2e8f0;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 500;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-    }
-
-    .sidebar-links a:hover, .sidebar-links a.active {
-      background: rgba(212, 175, 55, 0.12);
-      color: var(--accent-gold);
-    }
-
-    .sidebar-links a .icon {
-      font-size: 1.2rem;
-    }
-
-    /* --- Section Helper --- */
-    .section-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3.5rem 1.25rem;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .section-subtitle {
-      color: var(--accent-gold);
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #ffffff;
-    }
-
-    /* --- Hero Section --- */
-    .hero {
-      padding: 3rem 1.25rem 2.5rem;
-      display: flex;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .hero-container {
-      max-width: 760px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hero-logo-wrapper {
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-logo {
-      width: 100%;
-      max-width: 280px;
-      height: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.6));
-    }
-
-    .quran-ayah {
-      font-family: var(--font-arabic);
-      font-size: 2.25rem;
-      color: var(--accent-gold);
-      margin-bottom: 1.25rem;
-      text-shadow: 0 2px 10px rgba(212, 175, 55, 0.25);
-    }
-
-    .pill-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(10, 25, 47, 0.8);
-      border: 1px solid var(--border-gold);
-      padding: 0.4rem 1.1rem;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: #e2e8f0;
-      margin-bottom: 1.75rem;
-    }
-
-    .dot {
-      width: 6px;
-      height: 6px;
-      background-color: var(--accent-gold);
-      border-radius: 50%;
-    }
-
-    .hero-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.25rem;
-      color: #ffffff;
-    }
-
-    .hero-title .highlight {
-      color: var(--accent-gold);
-    }
-
-    .hero-description {
-      font-size: 1.05rem;
-      color: #cbd5e1;
-      max-width: 620px;
-      margin-bottom: 2rem;
-    }
-
-    .cta-group {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      width: 100%;
-      max-width: 420px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.9rem 1.75rem;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      text-align: center;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background-color: var(--accent-gold);
-      color: #030810;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-    }
-
-    .btn-primary:hover {
-      background-color: var(--accent-gold-hover);
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background-color: transparent;
-      color: #ffffff;
-      border: 1.5px solid var(--border-gold);
-    }
-
-    .btn-secondary:hover {
-      background-color: rgba(212, 175, 55, 0.1);
-      border-color: var(--accent-gold);
-    }
-
-    /* --- Features Grid --- */
-    .feature-menu-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .feature-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 14px;
-      padding: 1.75rem;
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-      border-color: var(--accent-gold);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .feature-icon-badge {
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid var(--border-gold);
-      min-width: 52px;
-      height: 52px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      flex-shrink: 0;
-    }
-
-    .feature-content h4 {
-      font-size: 1.15rem;
-      color: #ffffff;
-      margin-bottom: 0.35rem;
-      font-weight: 700;
-    }
-
-    .feature-content p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* --- Course Programs --- */
-    .courses-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .course-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 16px;
-      padding: 1.75rem;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .course-card:hover {
-      border-color: var(--accent-gold);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    }
-
-    .course-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .course-card h3 {
-      font-size: 1.25rem;
-      color: #ffffff;
-      margin-bottom: 0.25rem;
-    }
-
-    .course-arabic-title {
-      font-family: var(--font-arabic);
-      color: var(--accent-gold);
-      font-size: 1.2rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .course-card p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 1.25rem;
-      flex-grow: 1;
-    }
-
-    .course-tag {
-      font-size: 0.75rem;
-      color: var(--accent-gold);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* --- Teachers Section --- */
-    .teachers-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-
-    .teacher-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 16px;
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      max-width: 500px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .teacher-card:hover {
-      border-color: var(--accent-gold);
-      transform: translateY(-4px);
-    }
-
-    .teacher-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: rgba(212, 175, 55, 0.15);
-      border: 2px solid var(--accent-gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      margin: 0 auto 1.25rem;
-    }
-
-    .teacher-card h3 {
-      font-size: 1.3rem;
-      color: #ffffff;
-      margin-bottom: 0.25rem;
-    }
-
-    .teacher-title {
-      color: var(--accent-gold);
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 1rem;
-    }
-
-    /* --- About Section --- */
-    .about-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 16px;
-      padding: 2rem;
-      line-height: 1.8;
-      color: #cbd5e1;
-    }
-
-    .about-card p {
-      margin-bottom: 1rem;
-    }
-
-    /* --- Testimonials --- */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .testimonial-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      border-radius: 14px;
-      padding: 1.5rem;
-    }
-
-    .testimonial-text {
-      font-style: italic;
-      color: #cbd5e1;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-
-    .testimonial-author {
-      font-weight: 700;
-      color: var(--accent-gold);
-      font-size: 0.85rem;
-    }
-
-    /* --- Contact & Enrollment --- */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .contact-cards-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .contact-card {
-      background: var(--card-bg);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-      color: var(--text-light);
-      transition: all 0.2s ease;
-    }
-
-    .contact-card:hover {
-      background: rgba(212, 175, 55, 0.1);
-      border-color: var(--accent-gold);
-    }
-
-    .contact-icon {
-      font-size: 1.5rem;
-      color: var(--accent-gold);
-    }
-
-    .contact-info strong {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-
-    .contact-info span {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .enroll-form {
-      background: var(--card-bg);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      padding: 2rem;
-      border-radius: 16px;
-    }
-
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #cbd5e1;
-      margin-bottom: 0.4rem;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      background: rgba(3, 8, 16, 0.6);
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 8px;
-      color: #ffffff;
-      font-size: 0.95rem;
-      font-family: var(--font-sans);
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--accent-gold);
-    }
-
-    /* Floating WhatsApp Button */
-    .floating-wa {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 58px;
-      height: 58px;
-      background-color: var(--accent-green);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-      z-index: 997;
-      text-decoration: none;
-      font-size: 1.8rem;
-      transition: transform 0.2s ease;
-    }
-
-    .floating-wa:hover {
-      transform: scale(1.1);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem 1.25rem;
-      border-top: 1px solid rgba(212, 175, 55, 0.15);
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    /* Responsive adjustments */
-    @media (min-width: 768px) {
-      .desktop-nav { display: flex; }
-      .menu-toggle-btn { display: none; }
-      .hero { padding-top: 4rem; }
-      .quran-ayah { font-size: 2.75rem; }
-      .hero-title { font-size: 3.5rem; }
-      .cta-group { flex-direction: row; justify-content: center; }
-      .btn { flex: 1; }
-      .feature-menu-grid { grid-template-columns: repeat(2, 1fr); }
-      .courses-grid { grid-template-columns: repeat(3, 1fr); }
-      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-      .contact-grid { grid-template-columns: 1fr 1fr; }
-    }
+    :root{--green:#07563f;--green2:#0b7253;--gold:#d5ad3b;--cream:#faf8f0;--dark:#16352c;--white:#fff;--muted:#63756e}
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--dark);background:var(--cream);line-height:1.65}
+    a{color:inherit}
+    .container{width:min(1120px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:10;background:rgba(7,86,63,.97);color:white;border-bottom:1px solid rgba(255,255,255,.12)}
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;letter-spacing:.3px}
+    .brand img{width:52px;height:52px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid var(--gold)}
+    .brand span{max-width:280px;line-height:1.15}
+    nav{display:flex;gap:24px}nav a{text-decoration:none;font-weight:600;font-size:15px}nav a:hover{color:var(--gold)}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--green),#063c2e);color:white;padding:96px 0 88px}
+    .hero:before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(213,173,59,.2);border-radius:50%;right:-160px;top:-170px}
+    .hero-content{position:relative;max-width:800px;text-align:center;margin:auto}
+    .arabic{font-family:serif;font-size:30px;color:#f0d77c;margin-bottom:14px}
+    .eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.25);padding:5px 13px;border-radius:99px;font-size:13px;margin-bottom:16px}
+    h1{font-size:clamp(38px,7vw,68px);line-height:1.08;margin:0 0 18px;letter-spacing:-1.5px}
+    .hero p{font-size:19px;max-width:700px;margin:0 auto 26px;color:#e8f1ed}
+    .btn{display:inline-block;text-decoration:none;background:var(--gold);color:#17352c;padding:12px 20px;border-radius:8px;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.16)}
+    .btn.secondary{background:transparent;color:white;border:1px solid rgba(255,255,255,.4);margin-left:8px}
+    section{padding:76px 0}.section-title{text-align:center;margin:0 0 12px;font-size:34px}.section-lead{text-align:center;color:var(--muted);max-width:720px;margin:0 auto 38px}
+    .about{background:white}.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}.about-box{background:var(--cream);border-left:4px solid var(--gold);padding:25px;border-radius:10px}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{background:white;border-radius:14px;padding:24px;box-shadow:0 8px 28px rgba(20,50,42,.08);border:1px solid #edf0eb}.icon{font-size:28px;color:var(--gold)}.card h3{margin:8px 0;color:var(--green)}.card p{color:var(--muted);margin:0}
+    .cta{background:linear-gradient(135deg,#0a654a,#06402f);color:white;text-align:center}.cta .section-lead{color:#dce9e4}.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}.contact-item{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:22px;border-radius:12px}.contact-item strong{display:block;color:#f0d77c;margin-bottom:5px}.contact-item a{text-decoration:none;word-break:break-word}
+    footer{background:#042f24;color:#cddbd6;text-align:center;padding:24px;font-size:14px}.footer-brand{color:white;font-weight:700;margin-bottom:4px}
+    @media(max-width:850px){.cards{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:620px){.nav{min-height:68px}.brand span{font-size:14px}.brand img{width:44px;height:44px}nav{gap:10px}nav a{font-size:13px}.hero{padding:70px 0}.arabic{font-size:25px}.hero p{font-size:17px}.btn.secondary{margin:10px 0 0 0}.cards,.contact-grid{grid-template-columns:1fr}section{padding:58px 0}.section-title{font-size:29px}}
   </style>
 </head>
-<body id="home">
-
-  <!-- Main Navigation Bar -->
-  <header class="navbar">
-    <div class="nav-container">
-      <a href="#home" class="brand">
-        <img src="logo.png" alt="HAGE Institute Logo" class="logo-img-nav" onerror="this.style.display='none'">
-        <span class="brand-title">HAGE INSTITUTE<br><small>FOR QUR'AN AL-KARIM • EST. 2026</small></span>
-      </a>
-
-      <!-- Menu Button (Mobile) -->
-      <button class="menu-toggle-btn" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">☰</button>
-
-      <!-- Desktop Links -->
-      <nav class="desktop-nav">
-        <a href="#home">Home</a>
-        <a href="#features">Features</a>
-        <a href="#courses">Courses</a>
-        <a href="#teachers">Teachers</a>
-        <a href="#about">About</a>
-        <a href="#enroll" class="nav-btn">Enroll</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Slide-out Sidebar Drawer Menu -->
-  <div class="mobile-menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
-  <aside class="mobile-sidebar" id="mobileSidebar">
-    <div class="sidebar-header">
-      <h3>Navigation Menu</h3>
-      <button class="close-btn" onclick="toggleMenu()">✕</button>
-    </div>
-    <nav class="sidebar-links">
-      <a href="#home" onclick="toggleMenu()"><span class="icon">🏠</span> Home</a>
-      <a href="#features" onclick="toggleMenu()"><span class="icon">✨</span> Features</a>
-      <a href="#courses" onclick="toggleMenu()"><span class="icon">📖</span> Courses</a>
-      <a href="#teachers" onclick="toggleMenu()"><span class="icon">👨‍🏫</span> Teachers</a>
-      <a href="#about" onclick="toggleMenu()"><span class="icon">ℹ️</span> About</a>
-      <a href="#enroll" onclick="toggleMenu()"><span class="icon">📝</span> Enroll Now</a>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="HAGE Institute home">
+      <img src="logo.jpg" alt="HAGE Institute for Qur'an Al-Karim logo">
+      <span>HAGE INSTITUTE FOR QUR'AN AL-KARIM</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#programs">Learning</a>
+      <a href="#contact">Contact</a>
+      <a href="admin.html">Admin</a>
     </nav>
-  </aside>
+  </div>
+</header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-container">
-      
-      <!-- Full Logo Showcase -->
-      <div class="hero-logo-wrapper">
-        <img src="logo.png" alt="HAGE Institute Emblem" class="hero-logo" onerror="this.style.display='none'">
-      </div>
-
-      <div class="quran-ayah" dir="rtl">وَقُلْ رَبِّ زِدْنِي عِلْمًا</div>
-      
-      <div class="pill-badge">
-        <span class="dot"></span> ONLINE QUR'AN LEARNING • JIJIGA
-      </div>
-
-      <h1 class="hero-title">
-        Learn the Qur'an with <br>
-        <span class="highlight">purpose</span> and <span class="highlight">consistency</span>.
-      </h1>
-
-      <p class="hero-description">
-        HAGE Institute for Qur'an Al-Karim makes Qur'an learning structured, accessible, and personalized for learners worldwide.
-      </p>
-
-      <div class="cta-group">
-        <a href="#enroll" class="btn btn-primary">Enroll Now</a>
-        <a href="https://wa.me/251915252254" class="btn btn-secondary" target="_blank">WhatsApp Us</a>
-      </div>
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <div class="arabic" dir="rtl">وَقُلْ رَبِّ زِدْنِي عِلْمًا</div>
+      <span class="eyebrow">ONLINE QUR'AN LEARNING • JIJIGA</span>
+      <h1>Learn the Qur'an with purpose and consistency.</h1>
+      <p>HAGE Institute for Qur'an Al-Karim is an online Qur'an learning institute based in Jijiga, created to make Qur'an learning accessible and organized for learners.</p>
+      <a class="btn" href="#contact">Contact the Institute</a>
+      <a class="btn secondary" href="#programs">Explore Learning</a>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="section-container" id="features">
-    <div class="section-header">
-      <span class="section-subtitle">Why Choose HAGE Institute</span>
-      <h2 class="section-title">Key Features & Student Benefits</h2>
-    </div>
-
-    <div class="feature-menu-grid">
-      <div class="feature-card">
-        <div class="feature-icon-badge">👤</div>
-        <div class="feature-content">
-          <h4>1-on-1 Personalized Classes</h4>
-          <p>Dedicated attention from qualified instructors tailored specifically to your speed and skill level.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon-badge">⏰</div>
-        <div class="feature-content">
-          <h4>Flexible Scheduling</h4>
-          <p>Choose class timings that seamlessly fit around your work, school, or personal commitments.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon-badge">📜</div>
-        <div class="feature-content">
-          <h4>Structured Tajweed Curriculum</h4>
-          <p>Step-by-step guidance covering Makharij (pronunciation points) and rules of recitation.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon-badge">📈</div>
-        <div class="feature-content">
-          <h4>Progress Tracking & Feedback</h4>
-          <p>Regular evaluations and constructive feedback to ensure continuous improvement in memorization.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon-badge">🌍</div>
-        <div class="feature-content">
-          <h4>Learn Anywhere Online</h4>
-          <p>Access high-definition live video lessons on smartphone, tablet, or desktop from anywhere.</p>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon-badge">🎓</div>
-        <div class="feature-content">
-          <h4>Programs for All Ages</h4>
-          <p>Specialized teaching methodologies suited for young children, teenagers, and adult learners.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Courses Section -->
-  <section class="section-container" id="courses">
-    <div class="section-header">
-      <span class="section-subtitle">Our Curriculum</span>
-      <h2 class="section-title">Programs We Offer</h2>
-    </div>
-
-    <div class="courses-grid">
-      <div class="course-card">
-        <div class="course-icon">🔤</div>
-        <span class="course-tag">Beginners</span>
-        <h3>Arabic Reading (Hingad)</h3>
-        <div class="course-arabic-title">القراءة</div>
-        <p>Master letter recognition, phonics, sound combinations, and foundational reading skills from step one.</p>
-        <a href="#enroll" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.6rem;">Register Interest</a>
-      </div>
-
-      <div class="course-card">
-        <div class="course-icon">✍️</div>
-        <span class="course-tag">All Levels</span>
-        <h3>Arabic Writing</h3>
-        <div class="course-arabic-title">الكتابة</div>
-        <p>Learn script formation, connecting letters, spelling rules, and practical Arabic handwriting.</p>
-        <a href="#enroll" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.6rem;">Register Interest</a>
-      </div>
-
-      <div class="course-card">
-        <div class="course-icon">🧠</div>
-        <span class="course-tag">Structured Pace</span>
-        <h3>Qur'an Memorization</h3>
-        <div class="course-arabic-title">حفظ القرآن الكريم</div>
-        <p>Personalized daily or weekly Hifz programs with systematic revision and retention techniques.</p>
-        <a href="#enroll" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.6rem;">Register Interest</a>
-      </div>
-
-      <div class="course-card">
-        <div class="course-icon">📖</div>
-        <span class="course-tag">Essential Rules</span>
-        <h3>Tajweed</h3>
-        <div class="course-arabic-title">التجويد</div>
-        <p>Learn proper Makharij (pronunciation points), rules of recitation, and melodic reading accuracy.</p>
-        <a href="#enroll" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.6rem;">Register Interest</a>
-      </div>
-
-      <div class="course-card">
-        <div class="course-icon">🕌</div>
-        <span class="course-tag">Kids & Adults</span>
-        <h3>Basic Islamic Teachings</h3>
-        <div class="course-arabic-title">التربية الإسلامية</div>
-        <p>Comprehensive foundation in Aqeedah, essential Duas, daily Adhkar, Fiqh of worship, and Islamic manners.</p>
-        <a href="#enroll" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.6rem;">Register Interest</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Teachers Section -->
-  <section class="section-container" id="teachers">
-    <div class="section-header">
-      <span class="section-subtitle">Our Qualified Instructors</span>
-      <h2 class="section-title">Meet Our Teachers</h2>
-    </div>
-
-    <div class="teachers-grid">
-      <div class="teacher-card">
-        <div class="teacher-avatar">👨‍🏫</div>
-        <h3>Zakaria Abdiresak Hassen</h3>
-        <div class="teacher-title">Lead Instructor • Qur'an & Islamic Studies</div>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">Dedicated teacher focused on patient, structured guidance in Qur'an recitation, Tajweed, Arabic language literacy, and Islamic education.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="section-container" id="about">
-    <div class="section-header">
-      <span class="section-subtitle">Who We Are</span>
+  <section class="about" id="about">
+    <div class="container">
       <h2 class="section-title">About HAGE Institute</h2>
-    </div>
-    <div class="about-card">
-      <p>Based in Jijiga, <strong>HAGE Institute for Qur'an Al-Karim</strong> was established to bridge the gap between traditional Islamic education and modern virtual learning convenience.</p>
-      <p>Our mission is to empower Muslims worldwide with precise Qur'an recitation, thorough Tajweed mastery, and systematic memorization plans—all through patient, certified teachers and flexible online scheduling.</p>
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="section-container">
-    <div class="section-header">
-      <span class="section-subtitle">Student Feedback</span>
-      <h2 class="section-title">What Our Learners Say</h2>
-    </div>
-
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <p class="testimonial-text">"The structured lessons and patient teachers at HAGE Institute helped me greatly improve my Tajweed in just a few months."</p>
-        <p class="testimonial-author">— Student</p>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-text">"Flexible scheduling made it possible for my children to maintain consistent Qur'an memorization alongside school."</p>
-        <p class="testimonial-author">— Parent</p>
+      <p class="section-lead">A simple online learning home for people who want to learn, read, recite and understand the Qur'an.</p>
+      <div class="about-grid">
+        <div>
+          <p>HAGE Institute for Qur'an Al-Karim is based in <strong>Jijiga</strong> and provides Qur'an learning online. The institute is focused on a respectful learning environment and clear, consistent study.</p>
+          <p>Whether you are beginning your Qur'an journey or strengthening your recitation, the institute is designed to support regular learning.</p>
+        </div>
+        <div class="about-box">
+          <strong>Our focus</strong>
+          <p>Qur'an learning, recitation, Tajweed, memorization and foundational Islamic learning.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Registration & Contact Section -->
-  <section class="section-container" id="enroll">
-    <div class="section-header">
-      <span class="section-subtitle">Get Started</span>
-      <h2 class="section-title">Quick Enrollment & Contact</h2>
-    </div>
-
-    <div class="contact-grid">
-      <div class="contact-cards-wrapper">
-        <a href="https://wa.me/251915252254" class="contact-card" target="_blank">
-          <span class="contact-icon">💬</span>
-          <div class="contact-info">
-            <strong>Primary WhatsApp</strong>
-            <span>+251 91 525 2254</span>
-          </div>
-        </a>
-
-        <a href="tel:+251777718071" class="contact-card">
-          <span class="contact-icon">📱</span>
-          <div class="contact-info">
-            <strong>Secondary Phone</strong>
-            <span>+251 77 771 8071</span>
-          </div>
-        </a>
-
-        <a href="mailto:zekeriaabdiresakhassen@gmail.com" class="contact-card">
-          <span class="contact-icon">✉️</span>
-          <div class="contact-info">
-            <strong>Email Address</strong>
-            <span>zekeriaabdiresakhassen@gmail.com</span>
-          </div>
-        </a>
-      </div>
-
-      <!-- Registration Form -->
-      <div class="enroll-form">
-        <form onsubmit="sendToWhatsApp(event)">
-          <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" class="form-control" placeholder="Your Name" required>
-          </div>
-          <div class="form-group">
-            <label for="courseSelect">Preferred Program</label>
-            <select id="courseSelect" class="form-control" required>
-              <option value="Arabic Reading - Hingad (القراءة)">Arabic Reading - Hingad (القراءة)</option>
-              <option value="Arabic Writing (الكتابة)">Arabic Writing (الكتابة)</option>
-              <option value="Qur'an Memorization">Qur'an Memorization</option>
-              <option value="Tajweed">Tajweed</option>
-              <option value="Basic Islamic Teachings (التربية الإسلامية)">Basic Islamic Teachings (التربية الإسلامية)</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width: 100%;">Submit via WhatsApp</button>
-        </form>
+  <section id="programs">
+    <div class="container">
+      <h2 class="section-title">Learning Areas</h2>
+      <p class="section-lead">Core areas that can be presented and organized through the institute's online learning program.</p>
+      <div class="cards">
+        <article class="card"><div class="icon">📖</div><h3>Qur'an Reading</h3><p>Build confidence and consistency in Qur'an reading through guided practice.</p></article>
+        <article class="card"><div class="icon">✦</div><h3>Tajweed</h3><p>Study the principles of correct Qur'an pronunciation and recitation.</p></article>
+        <article class="card"><div class="icon">🌙</div><h3>Memorization</h3><p>Develop a structured approach to memorizing selected surahs and passages.</p></article>
+        <article class="card"><div class="icon">☪</div><h3>Islamic Learning</h3><p>Support Qur'an study with foundational Islamic knowledge.</p></article>
       </div>
     </div>
   </section>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/251915252254" class="floating-wa" target="_blank" aria-label="Contact on WhatsApp">💬</a>
+  <section class="cta" id="contact">
+    <div class="container">
+      <h2 class="section-title">Start Your Qur'an Learning Journey</h2>
+      <p class="section-lead">For enrollment information, class details or general inquiries, contact HAGE Institute directly.</p>
+      <div class="contact-grid">
+        <div class="contact-item"><strong>Phone</strong><a href="tel:+251915252254">+251 915 252 254</a></div>
+        <div class="contact-item"><strong>Phone</strong><a href="tel:+25177771807">+251 777 718 07</a></div>
+        <div class="contact-item"><strong>Email</strong><a href="mailto:zekeriaabdiresakhassen@gmail.com">zekeriaabdiresakhassen@gmail.com</a></div>
+      </div>
+      <div style="margin-top:30px"><a class="btn" href="mailto:zekeriaabdiresakhassen@gmail.com">Email HAGE Institute</a></div>
+    </div>
+  </section>
+</main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 HAGE Institute for Qur'an Al-Karim • Jijiga. All rights reserved.</p>
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById('mobileSidebar');
-      const overlay = document.getElementById('menuOverlay');
-      sidebar.classList.toggle('active');
-      overlay.classList.toggle('active');
-    }
-
-    function sendToWhatsApp(event) {
-      event.preventDefault();
-      const name = document.getElementById('fullName').value;
-      const course = document.getElementById('courseSelect').value;
-      const text = `Assalamu Alaikum! My name is ${name}. I am interested in registering for the "${course}" program at HAGE Institute.`;
-      const url = `https://wa.me/251915252254?text=${encodeURIComponent(text)}`;
-      window.open(url, '_blank');
-    }
-  </script>
+<footer>
+  <div class="footer-brand">HAGE Institute for Qur'an Al-Karim</div>
+  <div>Online Qur'an learning • Based in Jijiga • © 2026</div>
+</footer>
 </body>
 </html>
