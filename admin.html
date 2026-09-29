@@ -3,245 +3,401 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HAGE Institute — Admin</title>
+
+<title>HAGE Institute — Admin Dashboard</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-*{box-sizing:border-box}body{margin:0;padding:12px;font-family:Arial,sans-serif;background:#071426;color:#fff}
-.wrap{max-width:1100px;margin:auto}.card{background:#10223b;border-radius:14px;padding:18px;margin:12px 0}
-h1,h2{color:#d7ad55}.muted{color:#b9c4d3}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
-.stat{background:#172d49;padding:16px;border-radius:10px;font-size:16px}.stat b{font-size:25px}
-input,select,button,textarea{font:inherit;width:100%;padding:11px;margin:5px 0;border-radius:8px;border:1px solid #52657f}
-input,select,textarea{background:#fff;color:#111}button{background:#d7ad55;color:#111;border:0;font-weight:bold;cursor:pointer}
-button:disabled{opacity:.6}.nav{display:flex;gap:6px;overflow:auto}.nav button{width:auto;white-space:nowrap}
-.panel{display:none}.panel.active{display:block}.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:7px}
-.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;margin-top:10px}th,td{padding:9px;border-bottom:1px solid #29415f;text-align:left;vertical-align:top}th{color:#d7ad55}
-.smallbtn{width:auto;padding:7px 10px}.danger{background:#9d3c3c;color:#fff}.ok{background:#174b31;padding:10px;border-radius:8px;margin-top:8px}.error{background:#5b2020;padding:10px;border-radius:8px;margin-top:8px;white-space:pre-wrap}
-.hidden{display:none}@media(max-width:600px){.card{padding:14px}th,td{font-size:13px}}
-</style>
-</head>
-<body>
-<div class="wrap">
-
-<div id="loginCard" class="card">
-<h1>HAGE Institute Admin</h1>
-<p class="muted">Administrator sign in</p>
-<form id="loginForm">
-<input id="loginEmail" type="email" placeholder="Admin email" autocomplete="username" required>
-<input id="loginPassword" type="password" placeholder="Password" autocomplete="current-password" required>
-<button id="loginButton" type="submit">Sign in</button>
-</form>
-<div id="loginMessage"></div>
-</div>
-
-<div id="dashboard" class="hidden">
-<div class="card">
-<h1>Admin Dashboard</h1>
-<div id="signedInEmail" class="muted"></div>
-<button id="logoutButton">Log out</button>
-<div id="message"></div>
-</div>
-
-<div class="grid">
-<div class="stat">Students<br><b id="studentsCount">0</b></div>
-<div class="stat">Courses<br><b id="coursesCount">0</b></div>
-<div class="stat">Teachers<br><b id="teachersCount">0</b></div>
-<div class="stat">Enrollments<br><b id="enrollmentsCount">0</b></div>
-</div>
-
-<div class="card">
-<div class="nav">
-<button data-panel="students">Students</button>
-<button data-panel="courses">Courses</button>
-<button data-panel="teachers">Teachers</button>
-<button data-panel="enrollments">Enrollments</button>
-<button data-panel="schedules">Schedules</button>
-<button data-panel="progress">Progress</button>
-<button data-panel="messages">Messages</button>
-</div>
-</div>
-
-<section id="studentsPanel" class="card panel"><h2>Students</h2>
-<form id="studentForm"><div class="row">
-<input id="studentName" placeholder="Student name" required>
-<input id="studentCourse" placeholder="Course" required>
-<select id="studentStatus"><option>Active</option><option>Inactive</option></select>
-</div><button>Add Student</button></form>
-<div class="scroll"><table><thead><tr><th>Name</th><th>Course</th><th>Status</th><th>Action</th></tr></thead><tbody id="studentsBody"></tbody></table></div>
-</section>
-
-<section id="coursesPanel" class="card panel"><h2>Courses</h2>
-<form id="courseForm"><div class="row">
-<input id="courseName" placeholder="Course name" required>
-<input id="courseType" placeholder="Type" required>
-<select id="courseStatus"><option>Active</option><option>Inactive</option></select>
-</div><button>Add Course</button></form>
-<div class="scroll"><table><thead><tr><th>Name</th><th>Type</th><th>Status</th><th>Action</th></tr></thead><tbody id="coursesBody"></tbody></table></div>
-</section>
-
-<section id="teachersPanel" class="card panel"><h2>Teachers</h2>
-<form id="teacherForm"><div class="row">
-<input id="teacherName" placeholder="Teacher name" required>
-<input id="teacherSpecialization" placeholder="Specialization">
-<select id="teacherStatus"><option>Active</option><option>Inactive</option></select>
-</div><button>Add Teacher</button></form>
-<div class="scroll"><table><thead><tr><th>Name</th><th>Specialization</th><th>Status</th><th>Action</th></tr></thead><tbody id="teachersBody"></tbody></table></div>
-</section>
-
-<section id="enrollmentsPanel" class="card panel"><h2>Enrollments</h2>
-<form id="enrollmentForm"><div class="row">
-<input id="enrollmentName" placeholder="Applicant name" required>
-<input id="enrollmentCourse" placeholder="Course" required>
-<input id="enrollmentContact" placeholder="Phone / WhatsApp">
-<select id="enrollmentStatus"><option>Pending</option><option>Approved</option><option>Rejected</option></select>
-</div><button>Add Enrollment</button></form>
-<div class="scroll"><table><thead><tr><th>Name</th><th>Course</th><th>Contact</th><th>Status</th><th>Action</th></tr></thead><tbody id="enrollmentsBody"></tbody></table></div>
-</section>
-
-<section id="schedulesPanel" class="card panel"><h2>Schedules</h2>
-<form id="scheduleForm"><div class="row">
-<input id="scheduleCourse" placeholder="Course" required>
-<input id="scheduleDay" placeholder="Day" required>
-<input id="scheduleTime" placeholder="Time">
-<select id="scheduleMode"><option>Online</option><option>In person</option></select>
-</div><button>Add Schedule</button></form>
-<div class="scroll"><table><thead><tr><th>Course</th><th>Day</th><th>Time</th><th>Mode</th><th>Action</th></tr></thead><tbody id="schedulesBody"></tbody></table></div>
-</section>
-
-<section id="progressPanel" class="card panel"><h2>Student Progress</h2>
-<form id="progressForm"><div class="row">
-<select id="progressStudent" required><option value="">Select student</option></select>
-<input id="progressCourse" placeholder="Course" required>
-<input id="progressPercent" type="number" min="0" max="100" placeholder="Progress %" required>
-</div><button>Save Progress</button></form>
-<div class="scroll"><table><thead><tr><th>Student</th><th>Course</th><th>Progress</th><th>Action</th></tr></thead><tbody id="progressBody"></tbody></table></div>
-</section>
-
-<section id="messagesPanel" class="card panel"><h2>Messages</h2>
-<div class="scroll"><table><thead><tr><th>Name</th><th>Contact</th><th>Message</th><th>Status</th><th>Action</th></tr></thead><tbody id="messagesBody"></tbody></table></div>
-</section>
-</div>
-
-<script>
-const SUPABASE_URL="https://yzewhtjosyfrbgqhbzbu.supabase.co";
-const SUPABASE_KEY="sb_publishable_LvvJKJwC4z5p8DX7IkJeqA_M_-8LdEO";
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-
-const $=id=>document.getElementById(id);
-const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
-const cfg={
-students:{fields:["name","course","status"],body:"studentsBody"},
-courses:{fields:["name","type","status"],body:"coursesBody"},
-teachers:{fields:["name","specialization","status"],body:"teachersBody"},
-enrollments:{fields:["name","course","contact","status"],body:"enrollmentsBody"},
-schedules:{fields:["course","day","time_text","mode"],body:"schedulesBody"},
-messages:{fields:["name","contact","message","status"],body:"messagesBody"}
-};
-
-function setLoginError(t){$("loginMessage").className="error";$("loginMessage").textContent=t}
-function setMessage(t,bad=false){$("message").className=bad?"error":"ok";$("message").textContent=t}
-
-async function verifyAdmin(user){
- const r=await supabaseClient.rpc("is_hage_admin");
- if(r.error) throw new Error("Admin permission check failed: "+r.error.message);
- if(r.data!==true) throw new Error("This account is authenticated but is not registered as a HAGE administrator.");
+:root{
+  --navy:#0B1F3A;
+  --navy-dark:#071528;
+  --navy-light:#123E6A;
+  --blue:#1D5A91;
+  --gold:#D4AF37;
+  --gold-light:#F0D77C;
+  --white:#FFFFFF;
+  --bg:#F5F7FA;
+  --border:#DCE3EC;
+  --text:#172033;
+  --muted:#6B778C;
+  --success:#18794E;
+  --success-bg:#E8F6EF;
+  --danger:#B42318;
+  --danger-bg:#FDECEC;
+  --shadow:0 8px 25px rgba(7,21,40,.08);
 }
 
-async function refreshCounts(){
- for(const n of ["students","courses","teachers","enrollments"]){
-   const r=await supabaseClient.from(n).select("id",{count:"exact",head:true});
-   if(r.error) throw new Error(n+" permission error: "+r.error.message);
-   $(n+"Count").textContent=r.count??0;
- }
+*{
+  box-sizing:border-box;
 }
 
-async function loadTable(name){
- const c=cfg[name];
- const r=await supabaseClient.from(name).select("*").order("id",{ascending:false});
- if(r.error){setMessage("Could not load "+name+": "+r.error.message,true);return}
- $(c.body).innerHTML=r.data.map(row=>"<tr>"+
- c.fields.map(f=>"<td>"+esc(row[f])+"</td>").join("")+
- "<td><button class='smallbtn danger' onclick='deleteRow(\""+name+"\","+row.id+")'>Delete</button></td></tr>").join("");
+html{
+  scroll-behavior:smooth;
 }
 
-async function deleteRow(name,id){
- if(!confirm("Delete this record?")) return;
- const r=await supabaseClient.from(name).delete().eq("id",id);
- if(r.error){setMessage("Delete failed: "+r.error.message,true);return}
- setMessage("Deleted successfully."); await loadTable(name); await refreshCounts();
+body{
+  margin:0;
+  font-family:
+    Inter,
+    Arial,
+    Helvetica,
+    sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
-async function insertRow(name,row,form){
- const r=await supabaseClient.from(name).insert(row);
- if(r.error){setMessage("Save failed: "+r.error.message,true);return}
- form.reset();setMessage("Saved successfully.");await loadTable(name);await refreshCounts();await loadStudents();
+/* =========================
+   LOGIN
+========================= */
+
+.login-page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:
+    radial-gradient(circle at top right, rgba(212,175,55,.15), transparent 30%),
+    linear-gradient(135deg,var(--navy-dark),var(--navy));
 }
 
-async function loadStudents(){
- const r=await supabaseClient.from("students").select("id,name").order("name");
- if(r.error)return;
- $("progressStudent").innerHTML='<option value="">Select student</option>'+
- (r.data||[]).map(s=>'<option value="'+s.id+'">'+esc(s.name)+'</option>').join("");
+.login-box{
+  width:100%;
+  max-width:430px;
+  background:var(--white);
+  border-radius:20px;
+  padding:36px;
+  box-shadow:0 25px 70px rgba(0,0,0,.25);
 }
 
-async function loadProgress(){
- const r=await supabaseClient.from("progress").select("id,course,progress_percent,students(name)").order("id",{ascending:false});
- if(r.error){setMessage("Progress error: "+r.error.message,true);return}
- $("progressBody").innerHTML=(r.data||[]).map(x=>"<tr><td>"+esc(x.students?.name||"Unknown")+
- "</td><td>"+esc(x.course)+"</td><td>"+x.progress_percent+"%</td><td><button class='smallbtn danger' onclick='deleteRow(\"progress\","+x.id+")'>Delete</button></td></tr>").join("");
+.logo-area{
+  text-align:center;
+  margin-bottom:28px;
 }
 
-async function showPanel(name){
- document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
- $(name+"Panel").classList.add("active");
- if(name==="progress")await loadProgress();
- else await loadTable(name);
+.logo-circle{
+  width:72px;
+  height:72px;
+  margin:0 auto 16px;
+  border-radius:50%;
+  background:var(--navy);
+  border:4px solid var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--gold);
+  font-size:25px;
+  font-weight:800;
 }
 
-document.querySelectorAll("[data-panel]").forEach(b=>b.addEventListener("click",()=>showPanel(b.dataset.panel)));
+.logo-area h1{
+  margin:0;
+  color:var(--navy);
+  font-size:25px;
+}
 
-$("loginForm").addEventListener("submit",async e=>{
- e.preventDefault();
- const email=$("loginEmail").value.trim(),password=$("loginPassword").value;
- $("loginMessage").textContent="";$("loginMessage").className="";
- const b=$("loginButton");b.disabled=true;b.textContent="Signing in...";
- try{
-   const r=await supabaseClient.auth.signInWithPassword({email,password});
-   if(r.error)throw r.error;
-   await verifyAdmin(r.data.user);
-   $("loginCard").classList.add("hidden");$("dashboard").classList.remove("hidden");
-   $("signedInEmail").textContent=r.data.user.email||"";
-   await refreshCounts();await loadStudents();await showPanel("students");
-   setMessage("Signed in successfully.");
- }catch(err){
-   await supabaseClient.auth.signOut();
-   setLoginError(err.message||String(err));
- }finally{b.disabled=false;b.textContent="Sign in"}
-});
+.logo-area p{
+  margin:7px 0 0;
+  color:var(--muted);
+  font-size:14px;
+}
 
-$("logoutButton").addEventListener("click",async()=>{await supabaseClient.auth.signOut();location.reload()});
+.form-group{
+  margin-bottom:15px;
+}
 
-$("studentForm").addEventListener("submit",e=>{e.preventDefault();insertRow("students",{name:$("studentName").value.trim(),course:$("studentCourse").value.trim(),status:$("studentStatus").value},e.target)});
-$("courseForm").addEventListener("submit",e=>{e.preventDefault();insertRow("courses",{name:$("courseName").value.trim(),type:$("courseType").value.trim(),status:$("courseStatus").value},e.target)});
-$("teacherForm").addEventListener("submit",e=>{e.preventDefault();insertRow("teachers",{name:$("teacherName").value.trim(),specialization:$("teacherSpecialization").value.trim(),status:$("teacherStatus").value},e.target)});
-$("enrollmentForm").addEventListener("submit",e=>{e.preventDefault();insertRow("enrollments",{name:$("enrollmentName").value.trim(),course:$("enrollmentCourse").value.trim(),contact:$("enrollmentContact").value.trim(),status:$("enrollmentStatus").value},e.target)});
-$("scheduleForm").addEventListener("submit",e=>{e.preventDefault();insertRow("schedules",{course:$("scheduleCourse").value.trim(),day:$("scheduleDay").value.trim(),time_text:$("scheduleTime").value.trim(),mode:$("scheduleMode").value},e.target)});
-$("progressForm").addEventListener("submit",async e=>{
- e.preventDefault();
- const r=await supabaseClient.from("progress").insert({student_id:Number($("progressStudent").value),course:$("progressCourse").value.trim(),progress_percent:Number($("progressPercent").value)});
- if(r.error)setMessage("Save failed: "+r.error.message,true);else{e.target.reset();setMessage("Progress saved.");await loadProgress()}
-});
+label{
+  display:block;
+  margin-bottom:7px;
+  font-size:13px;
+  font-weight:700;
+  color:var(--navy);
+}
 
-(async()=>{
- try{
-  const r=await supabaseClient.auth.getSession();
-  if(r.data.session){
-   await verifyAdmin(r.data.session.user);
-   $("loginCard").classList.add("hidden");$("dashboard").classList.remove("hidden");
-   $("signedInEmail").textContent=r.data.session.user.email||"";
-   await refreshCounts();await loadStudents();await showPanel("students");
-  }
- }catch(err){await supabaseClient.auth.signOut();setLoginError(err.message||String(err))}
-})();
-</script>
-</body>
-</html>
+input,
+select,
+textarea{
+  width:100%;
+  padding:12px 13px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:#fff;
+  color:var(--text);
+  font:inherit;
+  outline:none;
+  transition:.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(212,175,55,.12);
+}
+
+button{
+  font:inherit;
+  cursor:pointer;
+  border:0;
+}
+
+.login-button{
+  width:100%;
+  padding:13px;
+  border-radius:9px;
+  background:var(--navy);
+  color:#fff;
+  font-weight:700;
+  margin-top:5px;
+  transition:.2s;
+}
+
+.login-button:hover{
+  background:var(--navy-light);
+  transform:translateY(-1px);
+}
+
+.login-button:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+  transform:none;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+.hidden{
+  display:none !important;
+}
+
+.wrap{
+  width:min(1250px,calc(100% - 30px));
+  margin:auto;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.card{
+  background:#fff;
+  border-radius:15px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(220,227,236,.8);
+}
+
+.error,
+.ok{
+  padding:11px 13px;
+  border-radius:9px;
+  margin-top:12px;
+  font-size:14px;
+}
+
+.error{
+  background:var(--danger-bg);
+  color:var(--danger);
+  border:1px solid #f5c2c0;
+}
+
+.ok{
+  background:var(--success-bg);
+  color:var(--success);
+  border:1px solid #b9e3ce;
+}
+
+/* =========================
+   TOP HEADER
+========================= */
+
+.dashboard-header{
+  background:var(--navy);
+  color:#fff;
+  box-shadow:0 5px 20px rgba(7,21,40,.18);
+}
+
+.header-inner{
+  width:min(1250px,calc(100% - 30px));
+  margin:auto;
+  min-height:82px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-mark{
+  width:46px;
+  height:46px;
+  border:2px solid var(--gold);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--gold);
+  font-weight:800;
+  font-size:16px;
+}
+
+.brand-text strong{
+  display:block;
+  font-size:17px;
+}
+
+.brand-text span{
+  display:block;
+  margin-top:2px;
+  color:#B9C7D9;
+  font-size:12px;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.admin-email{
+  color:#D7E0EC;
+  font-size:13px;
+}
+
+.logout-button{
+  padding:9px 15px;
+  border-radius:8px;
+  background:var(--gold);
+  color:#111;
+  font-weight:700;
+}
+
+.logout-button:hover{
+  background:var(--gold-light);
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+  padding:28px 0 50px;
+}
+
+.page-title{
+  margin-bottom:22px;
+}
+
+.page-title h1{
+  margin:0;
+  color:var(--navy);
+  font-size:28px;
+}
+
+.page-title p{
+  margin:6px 0 0;
+  color:var(--muted);
+}
+
+/* =========================
+   STATISTICS
+========================= */
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+  gap:15px;
+  margin-bottom:22px;
+}
+
+.stat-card{
+  background:#fff;
+  border-radius:14px;
+  padding:20px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.stat-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:4px;
+  background:var(--gold);
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+}
+
+.stat-number{
+  color:var(--navy);
+  font-size:30px;
+  font-weight:800;
+  margin-top:8px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navigation{
+  padding:10px;
+  margin-bottom:22px;
+}
+
+.nav{
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  scrollbar-width:thin;
+}
+
+.nav button{
+  flex:0 0 auto;
+  padding:11px 15px;
+  border-radius:9px;
+  background:transparent;
+  color:var(--navy);
+  font-weight:700;
+  white-space:nowrap;
+  transition:.2s;
+}
+
+.nav button:hover{
+  background:#EEF2F7;
+}
+
+.nav button.active{
+  background:var(--navy);
+  color:#fff;
+  box-shadow:0 3px 8px rgba(11,31,58,.2);
+}
+
+/* =========================
+   PANELS
+========================= */
+
+.panel{
+  display:none;
+  padding:22px;
+}
+
+.panel.active{
+  display:block;
+}
+
+.panel
