@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HAGE Institute for Qur'an Al-Karim — online Qur'an learning institute based in Jijiga.">
+  <title>HAGE Institute for Qur'an Al-Karim</title>
+  <style>
+    :root{--green:#07563f;--green2:#0b7253;--gold:#d5ad3b;--cream:#faf8f0;--dark:#16352c;--white:#fff;--muted:#63756e}
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--dark);background:var(--cream);line-height:1.65}
+    a{color:inherit}
+    .container{width:min(1120px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:10;background:rgba(7,86,63,.97);color:white;border-bottom:1px solid rgba(255,255,255,.12)}
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;letter-spacing:.3px}
+    .brand img{width:52px;height:52px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid var(--gold)}
+    .brand span{max-width:280px;line-height:1.15}
+    nav{display:flex;gap:24px}nav a{text-decoration:none;font-weight:600;font-size:15px}nav a:hover{color:var(--gold)}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--green),#063c2e);color:white;padding:96px 0 88px}
+    .hero:before{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(213,173,59,.2);border-radius:50%;right:-160px;top:-170px}
+    .hero-content{position:relative;max-width:800px;text-align:center;margin:auto}
+    .arabic{font-family:serif;font-size:30px;color:#f0d77c;margin-bottom:14px}
+    .eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.25);padding:5px 13px;border-radius:99px;font-size:13px;margin-bottom:16px}
+    h1{font-size:clamp(38px,7vw,68px);line-height:1.08;margin:0 0 18px;letter-spacing:-1.5px}
+    .hero p{font-size:19px;max-width:700px;margin:0 auto 26px;color:#e8f1ed}
+    .btn{display:inline-block;text-decoration:none;background:var(--gold);color:#17352c;padding:12px 20px;border-radius:8px;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.16)}
+    .btn.secondary{background:transparent;color:white;border:1px solid rgba(255,255,255,.4);margin-left:8px}
+    section{padding:76px 0}.section-title{text-align:center;margin:0 0 12px;font-size:34px}.section-lead{text-align:center;color:var(--muted);max-width:720px;margin:0 auto 38px}
+    .about{background:white}.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:35px;align-items:center}.about-box{background:var(--cream);border-left:4px solid var(--gold);padding:25px;border-radius:10px}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{background:white;border-radius:14px;padding:24px;box-shadow:0 8px 28px rgba(20,50,42,.08);border:1px solid #edf0eb}.icon{font-size:28px;color:var(--gold)}.card h3{margin:8px 0;color:var(--green)}.card p{color:var(--muted);margin:0}
+    .cta{background:linear-gradient(135deg,#0a654a,#06402f);color:white;text-align:center}.cta .section-lead{color:#dce9e4}.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}.contact-item{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:22px;border-radius:12px}.contact-item strong{display:block;color:#f0d77c;margin-bottom:5px}.contact-item a{text-decoration:none;word-break:break-word}
+    footer{background:#042f24;color:#cddbd6;text-align:center;padding:24px;font-size:14px}.footer-brand{color:white;font-weight:700;margin-bottom:4px}
+    @media(max-width:850px){.cards{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:620px){.nav{min-height:68px}.brand span{font-size:14px}.brand img{width:44px;height:44px}nav{gap:10px}nav a{font-size:13px}.hero{padding:70px 0}.arabic{font-size:25px}.hero p{font-size:17px}.btn.secondary{margin:10px 0 0 0}.cards,.contact-grid{grid-template-columns:1fr}section{padding:58px 0}.section-title{font-size:29px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="HAGE Institute home">
+      <img src="logo.jpg" alt="HAGE Institute for Qur'an Al-Karim logo">
+      <span>HAGE INSTITUTE FOR QUR'AN AL-KARIM</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#programs">Learning</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <div class="arabic" dir="rtl">وَقُلْ رَبِّ زِدْنِي عِلْمًا</div>
+      <span class="eyebrow">ONLINE QUR'AN LEARNING • JIJIGA</span>
+      <h1>Learn the Qur'an with purpose and consistency.</h1>
+      <p>HAGE Institute for Qur'an Al-Karim is an online Qur'an learning institute based in Jijiga, created to make Qur'an learning accessible and organized for learners.</p>
+      <a class="btn" href="#contact">Contact the Institute</a>
+      <a class="btn secondary" href="#programs">Explore Learning</a>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">About HAGE Institute</h2>
+      <p class="section-lead">A simple online learning home for people who want to learn, read, recite and understand the Qur'an.</p>
+      <div class="about-grid">
+        <div>
+          <p>HAGE Institute for Qur'an Al-Karim is based in <strong>Jijiga</strong> and provides Qur'an learning online. The institute is focused on a respectful learning environment and clear, consistent study.</p>
+          <p>Whether you are beginning your Qur'an journey or strengthening your recitation, the institute is designed to support regular learning.</p>
+        </div>
+        <div class="about-box">
+          <strong>Our focus</strong>
+          <p>Qur'an learning, recitation, Tajweed, memorization and foundational Islamic learning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="programs">
+    <div class="container">
+      <h2 class="section-title">Learning Areas</h2>
+      <p class="section-lead">Core areas that can be presented and organized through the institute's online learning program.</p>
+      <div class="cards">
+        <article class="card"><div class="icon">📖</div><h3>Qur'an Reading</h3><p>Build confidence and consistency in Qur'an reading through guided practice.</p></article>
+        <article class="card"><div class="icon">✦</div><h3>Tajweed</h3><p>Study the principles of correct Qur'an pronunciation and recitation.</p></article>
+        <article class="card"><div class="icon">🌙</div><h3>Memorization</h3><p>Develop a structured approach to memorizing selected surahs and passages.</p></article>
+        <article class="card"><div class="icon">☪</div><h3>Islamic Learning</h3><p>Support Qur'an study with foundational Islamic knowledge.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="container">
+      <h2 class="section-title">Start Your Qur'an Learning Journey</h2>
+      <p class="section-lead">For enrollment information, class details or general inquiries, contact HAGE Institute directly.</p>
+      <div class="contact-grid">
+        <div class="contact-item"><strong>Phone</strong><a href="tel:+251915252254">+251 915 252 254</a></div>
+        <div class="contact-item"><strong>Phone</strong><a href="tel:+25177771807">+251 777 718 07</a></div>
+        <div class="contact-item"><strong>Email</strong><a href="mailto:zekeriaabdiresakhassen@gmail.com">zekeriaabdiresakhassen@gmail.com</a></div>
+      </div>
+      <div style="margin-top:30px"><a class="btn" href="mailto:zekeriaabdiresakhassen@gmail.com">Email HAGE Institute</a></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand">HAGE Institute for Qur'an Al-Karim</div>
+  <div>Online Qur'an learning • Based in Jijiga • © 2026</div>
+</footer>
+</body>
+</html>
