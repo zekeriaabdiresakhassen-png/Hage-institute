@@ -1546,13 +1546,33 @@
 
 
         <h3>
-          Qur'an Reading
+          Arabic Reading and Writing
         </h3>
 
 
         <p>
-          Develop confidence and consistency in reading
-          the Qur'an through guided practice.
+          Develop your ability to read and write Arabic
+          letters and words with guided practice.
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="card-icon">
+          🌙
+        </div>
+
+
+        <h3>
+          Qur'an Memorization
+        </h3>
+
+
+        <p>
+          Follow a structured approach to memorizing
+          selected surahs and Qur'anic passages.
         </p>
 
       </article>
@@ -1581,38 +1601,18 @@
       <article class="card">
 
         <div class="card-icon">
-          🌙
-        </div>
-
-
-        <h3>
-          Memorization
-        </h3>
-
-
-        <p>
-          Follow a structured approach to memorizing
-          selected surahs and Qur'anic passages.
-        </p>
-
-      </article>
-
-
-      <article class="card">
-
-        <div class="card-icon">
           ☪
         </div>
 
 
         <h3>
-          Islamic Learning
+          Basic Islamic Teachings
         </h3>
 
 
         <p>
-          Complement Qur'an study with foundational
-          Islamic knowledge.
+          Learn foundational Islamic teachings
+          (التربية الإسلامية) alongside Qur'an study.
         </p>
 
       </article>
@@ -1782,7 +1782,7 @@
       >
 
 
-        <!-- NAME -->
+        <!-- FULL NAME -->
 
         <div class="form-group">
 
@@ -1795,13 +1795,14 @@
             id="studentName"
             type="text"
             placeholder="Enter your full name"
+            autocomplete="name"
             required
           >
 
         </div>
 
 
-        <!-- PHONE -->
+        <!-- PHONE / WHATSAPP -->
 
         <div class="form-group">
 
@@ -1814,6 +1815,7 @@
             id="studentPhone"
             type="tel"
             placeholder="+251 9XX XXX XXX"
+            autocomplete="tel"
             required
           >
 
@@ -1832,6 +1834,7 @@
             id="studentEmail"
             type="email"
             placeholder="example@email.com"
+            autocomplete="email"
           >
 
         </div>
@@ -1851,14 +1854,142 @@
             min="4"
             max="100"
             placeholder="Your age"
+            inputmode="numeric"
           >
 
         </div>
 
 
-        <!-- COURSE -->
+        <!-- SEX -->
 
-        <div class="form-group full">
+        <div class="form-group">
+
+          <label for="studentSex">
+            Sex
+            <span class="required">*</span>
+          </label>
+
+          <select
+            id="studentSex"
+            required
+          >
+
+            <option value="">
+              Select sex
+            </option>
+
+            <option value="Male">
+              Male
+            </option>
+
+            <option value="Female">
+              Female
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- CITY / AREA -->
+
+        <div class="form-group">
+
+          <label for="studentCity">
+            City / Area
+          </label>
+
+          <input
+            id="studentCity"
+            type="text"
+            placeholder="e.g. Jijiga"
+            autocomplete="address-level2"
+          >
+
+        </div>
+
+
+        <!-- GUARDIAN / PARENT NAME -->
+
+        <div class="form-group">
+
+          <label for="guardianName">
+            Guardian / Parent Name
+          </label>
+
+          <input
+            id="guardianName"
+            type="text"
+            placeholder="Parent or guardian full name"
+          >
+
+        </div>
+
+
+        <!-- GUARDIAN / PARENT PHONE -->
+
+        <div class="form-group">
+
+          <label for="guardianPhone">
+            Guardian / Parent Phone / WhatsApp
+          </label>
+
+          <input
+            id="guardianPhone"
+            type="tel"
+            placeholder="+251 9XX XXX XXX"
+            autocomplete="tel"
+          >
+
+        </div>
+
+
+        <!-- CURRENT QUR'AN LEVEL -->
+
+        <div class="form-group">
+
+          <label for="quranLevel">
+            Current Qur'an Level
+            <span class="required">*</span>
+          </label>
+
+          <select
+            id="quranLevel"
+            required
+          >
+
+            <option value="">
+              Select your current level
+            </option>
+
+            <option value="Beginner">
+              Beginner
+            </option>
+
+            <option value="Basic">
+              Basic
+            </option>
+
+            <option value="Intermediate">
+              Intermediate
+            </option>
+
+            <option value="Advanced">
+              Advanced
+            </option>
+
+            <option value="Hifz / Memorization">
+              Hifz / Memorization
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- LEARNING PROGRAM -->
+
+        <div class="form-group">
 
           <label for="studentCourse">
             Select Learning Program
@@ -1874,28 +2005,20 @@
               Select a program
             </option>
 
-            <option value="Quran Reading">
-              Qur'an Reading
-            </option>
-
-            <option value="Tajweed">
-              Tajweed
+            <option value="Arabic Reading and Writing">
+              Arabic Reading and Writing
             </option>
 
             <option value="Quran Memorization">
               Qur'an Memorization
             </option>
 
-            <option value="Islamic Learning">
-              Islamic Learning
+            <option value="Tajweed">
+              Tajweed
             </option>
 
-            <option value="Quran Reading & Tajweed">
-              Qur'an Reading & Tajweed
-            </option>
-
-            <option value="Other">
-              Other
+            <option value="Basic Islamic Teachings">
+              Basic Islamic Teachings (التربية الإسلامية)
             </option>
 
           </select>
@@ -1903,7 +2026,44 @@
         </div>
 
 
-        <!-- MESSAGE -->
+        <!-- PREFERRED CLASS TIME -->
+
+        <div class="form-group">
+
+          <label for="preferredTime">
+            Preferred Class Time
+          </label>
+
+          <select
+            id="preferredTime"
+          >
+
+            <option value="">
+              Select preferred time
+            </option>
+
+            <option value="Morning">
+              Morning
+            </option>
+
+            <option value="Afternoon">
+              Afternoon
+            </option>
+
+            <option value="Evening">
+              Evening
+            </option>
+
+            <option value="Flexible">
+              Flexible
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- ADDITIONAL INFORMATION -->
 
         <div class="form-group full">
 
@@ -1919,7 +2079,7 @@
         </div>
 
 
-        <!-- MESSAGE -->
+        <!-- REGISTRATION MESSAGE -->
 
         <div
           id="registrationMessage"
@@ -2239,6 +2399,10 @@ registrationForm.addEventListener(
     event.preventDefault();
 
 
+    /* =========================
+       GET FORM VALUES
+    ========================= */
+
     const name =
       document
         .getElementById("studentName")
@@ -2267,9 +2431,48 @@ registrationForm.addEventListener(
         .trim();
 
 
+    const sex =
+      document
+        .getElementById("studentSex")
+        .value;
+
+
+    const city =
+      document
+        .getElementById("studentCity")
+        .value
+        .trim();
+
+
+    const guardianName =
+      document
+        .getElementById("guardianName")
+        .value
+        .trim();
+
+
+    const guardianPhone =
+      document
+        .getElementById("guardianPhone")
+        .value
+        .trim();
+
+
+    const quranLevel =
+      document
+        .getElementById("quranLevel")
+        .value;
+
+
     const course =
       document
         .getElementById("studentCourse")
+        .value;
+
+
+    const preferredTime =
+      document
+        .getElementById("preferredTime")
         .value;
 
 
@@ -2280,7 +2483,18 @@ registrationForm.addEventListener(
         .trim();
 
 
-    if(!name || !phone || !course){
+
+    /* =========================
+       VALIDATION
+    ========================= */
+
+    if (
+      !name ||
+      !phone ||
+      !sex ||
+      !quranLevel ||
+      !course
+    ){
 
       showRegistrationMessage(
         "Please complete all required fields.",
@@ -2291,6 +2505,11 @@ registrationForm.addEventListener(
 
     }
 
+
+
+    /* =========================
+       DISABLE BUTTON
+    ========================= */
 
     registerButton.disabled = true;
 
@@ -2304,20 +2523,14 @@ registrationForm.addEventListener(
     );
 
 
-    /*
-      Your existing admin database uses:
 
-      name
-      course
-      contact
-      status
+    /* =========================
+       BUILD CONTACT DETAILS
+    ========================= */
 
-      We keep that structure so registrations
-      appear in the existing Admin → Enrollments
-      section.
-    */
-
-    let contact = phone;
+    let contact =
+      "Phone / WhatsApp: " +
+      phone;
 
 
     if(email){
@@ -2338,14 +2551,65 @@ registrationForm.addEventListener(
     }
 
 
+    contact +=
+      " | Sex: " +
+      sex;
+
+
+    if(city){
+
+      contact +=
+        " | City / Area: " +
+        city;
+
+    }
+
+
+    if(guardianName){
+
+      contact +=
+        " | Guardian / Parent Name: " +
+        guardianName;
+
+    }
+
+
+    if(guardianPhone){
+
+      contact +=
+        " | Guardian / Parent Phone / WhatsApp: " +
+        guardianPhone;
+
+    }
+
+
+    contact +=
+      " | Current Qur'an Level: " +
+      quranLevel;
+
+
+    if(preferredTime){
+
+      contact +=
+        " | Preferred Class Time: " +
+        preferredTime;
+
+    }
+
+
     if(additionalMessage){
 
       contact +=
-        " | Message: " +
+        " | Additional Information: " +
         additionalMessage;
 
     }
 
+
+
+    /* =========================
+       SUBMIT TO SUPABASE
+    ========================= */
 
     try{
 
@@ -2371,6 +2635,11 @@ registrationForm.addEventListener(
 
       }
 
+
+
+      /* =========================
+         SUCCESS
+      ========================= */
 
       showRegistrationMessage(
         "Registration submitted successfully! HAGE Institute will contact you soon.",
@@ -2412,4 +2681,4 @@ registrationForm.addEventListener(
 </script>
 
 </body>
-</html>
+      </html>
