@@ -3,99 +3,1562 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>HAGE Institute — Portal</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-body{font-family:Arial,sans-serif;background:#071426;color:#fff;margin:0;padding:20px}
-.wrap{max-width:950px;margin:auto}.card{background:#10223b;padding:24px;border-radius:14px;margin:20px 0}
-h1,h2{color:#d7ad55}input,button{width:100%;padding:13px;margin:7px 0;border-radius:8px;box-sizing:border-box}
-input{border:1px solid #52657f}button{background:#d7ad55;border:0;font-weight:bold;cursor:pointer}
-.hidden{display:none}.error{background:#5b2020;padding:12px;border-radius:8px;white-space:pre-wrap}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.item{background:#172d49;padding:16px;border-radius:10px}
-.small{color:#b9c4d3;font-size:13px}
+*{
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#071426;
+  color:#fff;
+  margin:0;
+  padding:14px;
+}
+
+.wrap{
+  max-width:1100px;
+  margin:auto;
+}
+
+.card{
+  background:#10223b;
+  padding:20px;
+  border-radius:14px;
+  margin:14px 0;
+  box-shadow:0 4px 18px rgba(0,0,0,.15);
+}
+
+h1,h2,h3{
+  color:#d7ad55;
+  margin-top:0;
+}
+
+h1{
+  font-size:28px;
+}
+
+h2{
+  font-size:21px;
+}
+
+p{
+  line-height:1.5;
+}
+
+.small{
+  color:#b9c4d3;
+  font-size:13px;
+}
+
+.muted{
+  color:#b9c4d3;
+}
+
+.hidden{
+  display:none!important;
+}
+
+input,
+button,
+select,
+textarea{
+  width:100%;
+  padding:12px;
+  margin:6px 0;
+  border-radius:8px;
+  box-sizing:border-box;
+  font:inherit;
+}
+
+input,
+select,
+textarea{
+  border:1px solid #52657f;
+  background:#fff;
+  color:#111;
+}
+
+button{
+  background:#d7ad55;
+  color:#111;
+  border:0;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:.92;
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.login-card{
+  max-width:480px;
+  margin:70px auto 20px;
+}
+
+.error{
+  background:#5b2020;
+  padding:12px;
+  border-radius:8px;
+  margin-top:10px;
+  white-space:pre-wrap;
+}
+
+.ok{
+  background:#174b31;
+  padding:12px;
+  border-radius:8px;
+  margin-top:10px;
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.topbar button{
+  width:auto;
+  min-width:110px;
+}
+
+.role-badge{
+  display:inline-block;
+  background:#172d49;
+  border:1px solid #29415f;
+  padding:7px 11px;
+  border-radius:20px;
+  color:#d7ad55;
+  font-size:13px;
+  margin-top:8px;
+}
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+}
+
+.stat{
+  background:#172d49;
+  padding:17px;
+  border-radius:11px;
+}
+
+.stat-value{
+  font-size:28px;
+  font-weight:bold;
+  color:#d7ad55;
+  margin-top:6px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+
+.item{
+  background:#172d49;
+  padding:15px;
+  border-radius:10px;
+  border:1px solid #29415f;
+}
+
+.item b{
+  color:#fff;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:15px;
+  background:#29415f;
+  color:#fff;
+  font-size:12px;
+}
+
+.progress-wrap{
+  margin-top:10px;
+  background:#071426;
+  border-radius:20px;
+  overflow:hidden;
+  height:12px;
+}
+
+.progress-bar{
+  height:100%;
+  background:#d7ad55;
+  width:0%;
+}
+
+.progress-number{
+  color:#d7ad55;
+  font-weight:bold;
+  margin-top:7px;
+}
+
+.empty{
+  background:#172d49;
+  border:1px dashed #52657f;
+  padding:18px;
+  border-radius:10px;
+  color:#b9c4d3;
+}
+
+.loading{
+  color:#b9c4d3;
+  padding:10px 0;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th,
+td{
+  padding:10px;
+  border-bottom:1px solid #29415f;
+  text-align:left;
+  vertical-align:top;
+}
+
+th{
+  color:#d7ad55;
+}
+
+.info-list{
+  display:grid;
+  gap:9px;
+}
+
+.info-row{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:9px 0;
+  border-bottom:1px solid #29415f;
+}
+
+.info-row:last-child{
+  border-bottom:0;
+}
+
+.info-label{
+  color:#b9c4d3;
+}
+
+.notice{
+  background:#172d49;
+  border-left:4px solid #d7ad55;
+  padding:14px;
+  border-radius:7px;
+}
+
+hr{
+  border:0;
+  border-top:1px solid #29415f;
+  margin:15px 0;
+}
+
+@media(max-width:650px){
+
+  body{
+    padding:8px;
+  }
+
+  .card{
+    padding:15px;
+    margin:10px 0;
+  }
+
+  h1{
+    font-size:24px;
+  }
+
+  .topbar{
+    align-items:flex-start;
+  }
+
+  .topbar button{
+    width:100%;
+  }
+
+  .info-row{
+    display:block;
+  }
+
+  .info-label{
+    display:block;
+    margin-bottom:3px;
+  }
+
+  th,
+  td{
+    font-size:13px;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div class="wrap">
-<section id="login" class="card">
+
+<!-- ===================================================== -->
+<!-- LOGIN -->
+<!-- ===================================================== -->
+
+<section id="login" class="card login-card">
+
 <h1>HAGE Institute Portal</h1>
-<p class="small">Students, teachers and parents sign in with the username provided by the institute.</p>
-<input id="username" placeholder="Username" autocomplete="username">
-<input id="password" type="password" placeholder="Password" autocomplete="current-password">
-<button id="loginBtn">Sign in</button>
+
+<p class="small">
+Students, teachers and parents sign in with the username
+provided by the institute.
+</p>
+
+<label for="username">Username</label>
+<input
+  id="username"
+  placeholder="Username"
+  autocomplete="username"
+>
+
+<label for="password">Password</label>
+<input
+  id="password"
+  type="password"
+  placeholder="Password"
+  autocomplete="current-password"
+>
+
+<button id="loginBtn">
+Sign in
+</button>
+
 <div id="msg"></div>
+
 </section>
+
+
+<!-- ===================================================== -->
+<!-- APPLICATION -->
+<!-- ===================================================== -->
 
 <section id="app" class="hidden">
+
+
+<!-- HEADER -->
+
 <div class="card">
+
+<div class="topbar">
+
+<div>
 <h1 id="welcome">Welcome</h1>
 <div id="role" class="small"></div>
-<button id="logout">Log out</button>
+<div id="roleBadge" class="role-badge"></div>
 </div>
+
+<button id="logout">
+Log out
+</button>
+
+</div>
+
+</div>
+
+
+<!-- DASHBOARD SUMMARY -->
+
+<div id="summary"></div>
+
+
+<!-- ROLE CONTENT -->
+
 <div id="content"></div>
+
+
 </section>
+
 </div>
+
+
 <script>
+
+/* ===================================================== */
+/* SUPABASE */
+/* ===================================================== */
+
 const URL="https://yzewhtjosyfrbgqhbzbu.supabase.co";
+
 const KEY="sb_publishable_LvvJKJwC4z5p8DX7IkJeqA_M_-8LdEO";
+
 const db=window.supabase.createClient(URL,KEY);
+
 const $=id=>document.getElementById(id);
-function err(s){$("msg").className="error";$("msg").textContent=s}
+
+
+/* ===================================================== */
+/* HELPERS */
+/* ===================================================== */
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/[&<>"']/g,char=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[char]));
+
+}
+
+
+function showError(message){
+
+  $("msg").className="error";
+  $("msg").textContent=message;
+
+}
+
+
+function clearMessage(){
+
+  $("msg").className="";
+  $("msg").textContent="";
+
+}
+
+
+function showPortalError(message){
+
+  $("content").innerHTML=
+    `<div class="card error">
+      ${escapeHTML(message)}
+    </div>`;
+
+}
+
+
+function box(title,body){
+
+  return `
+    <div class="card">
+      <div class="section-title">
+        <h2>${escapeHTML(title)}</h2>
+      </div>
+      ${body}
+    </div>
+  `;
+
+}
+
+
+function empty(message){
+
+  return `
+    <div class="empty">
+      ${escapeHTML(message)}
+    </div>
+  `;
+
+}
+
+
+function progressCard(course,percent){
+
+  const safePercent=Math.max(
+    0,
+    Math.min(100,Number(percent)||0)
+  );
+
+  return `
+    <div class="item">
+
+      <b>${escapeHTML(course || "Course")}</b>
+
+      <div class="progress-wrap">
+        <div
+          class="progress-bar"
+          style="width:${safePercent}%"
+        ></div>
+      </div>
+
+      <div class="progress-number">
+        ${safePercent}%
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+/* ===================================================== */
+/* LOAD PORTAL */
+/* ===================================================== */
 
 async function loadPortal(user){
-  const {data:p,error}=await db.from("user_profiles")
-    .select("username,role,display_name,student_id,teacher_id,active")
-    .eq("user_id",user.id).maybeSingle();
-  if(error) throw error;
-  if(!p || !p.active) throw new Error("Your account is inactive or not registered.");
-  $("login").classList.add("hidden");$("app").classList.remove("hidden");
-  $("welcome").textContent="Welcome, "+p.display_name;
-  $("role").textContent="Role: "+p.role;
-  const c=$("content"); c.innerHTML="";
-  if(p.role==="student") await studentView(p,c);
-  if(p.role==="teacher") await teacherView(p,c);
-  if(p.role==="parent") await parentView(c);
+
+  const {data:p,error}=await db
+    .from("user_profiles")
+    .select(
+      "username,role,display_name,student_id,teacher_id,active"
+    )
+    .eq("user_id",user.id)
+    .maybeSingle();
+
+  if(error)
+    throw error;
+
+  if(!p || !p.active)
+    throw new Error(
+      "Your account is inactive or not registered."
+    );
+
+
+  $("login").classList.add("hidden");
+  $("app").classList.remove("hidden");
+
+  $("welcome").textContent=
+    "Welcome, "+(p.display_name || p.username);
+
+  $("role").textContent=
+    "Signed in as "+p.role;
+
+  $("roleBadge").textContent=
+    String(p.role).toUpperCase();
+
+
+  $("summary").innerHTML="";
+  $("content").innerHTML="";
+
+
+  if(p.role==="student"){
+
+    await studentView(p);
+
+    return;
+
+  }
+
+
+  if(p.role==="teacher"){
+
+    await teacherView(p);
+
+    return;
+
+  }
+
+
+  if(p.role==="parent"){
+
+    await parentView(p);
+
+    return;
+
+  }
+
+
+  throw new Error(
+    "This account has an unsupported portal role."
+  );
+
 }
-function box(title,body){return `<div class="card"><h2>${title}</h2>${body}</div>`}
-async function studentView(p,c){
- const [s,pr,co,sc]=await Promise.all([
-   db.from("students").select("name,course,status").eq("id",p.student_id).maybeSingle(),
-   db.from("progress").select("course,progress_percent,last_updated").eq("student_id",p.student_id),
-   db.from("courses").select("name,type,status").eq("status","Active"),
-   db.from("schedules").select("course,day,time_text,mode").order("day")
- ]);
- if(s.error||pr.error||co.error||sc.error) throw new Error((s.error||pr.error||co.error||sc.error).message);
- c.innerHTML+=box("My Profile",`<div class="item">Name: ${s.data?.name||p.display_name}<br>Course: ${s.data?.course||"—"}<br>Status: ${s.data?.status||"—"}</div>`);
- c.innerHTML+=box("My Progress",`<div class="grid">${pr.data?.map(x=>`<div class="item"><b>${x.course}</b><br>${x.progress_percent}%</div>`).join("")||"<div class='item'>No progress recorded yet.</div>"}</div>`);
- c.innerHTML+=box("Schedules",`<div class="grid">${sc.data?.map(x=>`<div class="item"><b>${x.course}</b><br>${x.day} ${x.time_text||""}<br>${x.mode}</div>`).join("")||"<div class='item'>No schedules yet.</div>"}</div>`);
+
+
+/* ===================================================== */
+/* STUDENT */
+/* ===================================================== */
+
+async function studentView(p){
+
+  if(!p.student_id){
+
+    throw new Error(
+      "This student account is not linked to a student record."
+    );
+
+  }
+
+
+  const [
+    studentResult,
+    progressResult,
+    coursesResult,
+    schedulesResult
+  ]=await Promise.all([
+
+    db
+      .from("students")
+      .select("id,name,course,status")
+      .eq("id",p.student_id)
+      .maybeSingle(),
+
+    db
+      .from("progress")
+      .select(
+        "course,progress_percent,last_updated"
+      )
+      .eq("student_id",p.student_id)
+      .order("last_updated",{ascending:false}),
+
+    db
+      .from("courses")
+      .select("name,type,status")
+      .eq("status","Active")
+      .order("name"),
+
+    db
+      .from("schedules")
+      .select(
+        "course,day,time_text,mode"
+      )
+      .order("day")
+
+  ]);
+
+
+  if(
+    studentResult.error ||
+    progressResult.error ||
+    coursesResult.error ||
+    schedulesResult.error
+  ){
+
+    throw new Error(
+      (
+        studentResult.error ||
+        progressResult.error ||
+        coursesResult.error ||
+        schedulesResult.error
+      ).message
+    );
+
+  }
+
+
+  const student=studentResult.data;
+  const progress=progressResult.data || [];
+  const courses=coursesResult.data || [];
+  const schedules=schedulesResult.data || [];
+
+
+  /* SUMMARY */
+
+  const average=progress.length
+    ? Math.round(
+        progress.reduce(
+          (sum,x)=>sum+(Number(x.progress_percent)||0),
+          0
+        ) / progress.length
+      )
+    : 0;
+
+
+  $("summary").innerHTML=`
+
+    <div class="dashboard-grid">
+
+      <div class="stat">
+        <div class="small">Program</div>
+        <div class="stat-value" style="font-size:20px">
+          ${escapeHTML(student?.course || "—")}
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="small">Progress Records</div>
+        <div class="stat-value">
+          ${progress.length}
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="small">Average Progress</div>
+        <div class="stat-value">
+          ${average}%
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="small">Status</div>
+        <div class="stat-value" style="font-size:20px">
+          ${escapeHTML(student?.status || "—")}
+        </div>
+      </div>
+
+    </div>
+  `;
+
+
+  /* PROFILE */
+
+  $("content").innerHTML += box(
+    "My Profile",
+    `
+      <div class="info-list">
+
+        <div class="info-row">
+          <span class="info-label">Name</span>
+          <strong>
+            ${escapeHTML(student?.name || p.display_name)}
+          </strong>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Username</span>
+          <strong>
+            ${escapeHTML(p.username)}
+          </strong>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Program</span>
+          <strong>
+            ${escapeHTML(student?.course || "—")}
+          </strong>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Status</span>
+          <strong>
+            ${escapeHTML(student?.status || "—")}
+          </strong>
+        </div>
+
+      </div>
+    `
+  );
+
+
+  /* PROGRESS */
+
+  $("content").innerHTML += box(
+    "My Progress",
+    progress.length
+      ? `<div class="grid">
+          ${progress.map(x=>
+            progressCard(
+              x.course,
+              x.progress_percent
+            )
+          ).join("")}
+         </div>`
+      : empty("No progress has been recorded yet.")
+  );
+
+
+  /* SCHEDULES */
+
+  $("content").innerHTML += box(
+    "Class Schedules",
+    schedules.length
+      ? `<div class="grid">
+          ${schedules.map(x=>`
+
+            <div class="item">
+
+              <b>${escapeHTML(x.course)}</b>
+
+              <hr>
+
+              <div>
+                <span class="small">Day</span><br>
+                ${escapeHTML(x.day)}
+              </div>
+
+              <br>
+
+              <div>
+                <span class="small">Time</span><br>
+                ${escapeHTML(x.time_text || "—")}
+              </div>
+
+              <br>
+
+              <div>
+                <span class="small">Mode</span><br>
+                ${escapeHTML(x.mode || "—")}
+              </div>
+
+            </div>
+
+          `).join("")}
+        </div>`
+      : empty("No class schedules have been published yet.")
+  );
+
+
+  /* AVAILABLE COURSES */
+
+  $("content").innerHTML += box(
+    "Available Learning Areas",
+    courses.length
+      ? `<div class="grid">
+          ${courses.map(x=>`
+
+            <div class="item">
+
+              <b>${escapeHTML(x.name)}</b>
+
+              <p class="small">
+                ${escapeHTML(x.type || "Learning program")}
+              </p>
+
+              <span class="badge">
+                ${escapeHTML(x.status)}
+              </span>
+
+            </div>
+
+          `).join("")}
+        </div>`
+      : empty("No active courses are currently listed.")
+  );
+
+
+  /* ATTENDANCE NOTICE */
+
+  $("content").innerHTML += box(
+    "Attendance",
+    `
+      <div class="notice">
+        Attendance is not connected yet because the current
+        database structure provided to the portal does not
+        contain an attendance table.
+      </div>
+    `
+  );
+
+
+  /* ANNOUNCEMENTS NOTICE */
+
+  $("content").innerHTML += box(
+    "Announcements",
+    `
+      <div class="notice">
+        Announcements are not connected yet because the current
+        database structure provided to the portal does not
+        contain a dedicated announcements table.
+      </div>
+    `
+  );
+
 }
-async function teacherView(p,c){
- const {data:pr,error}=await db.from("progress").select("student_id,course,progress_percent,last_updated");
- if(error) throw error;
- c.innerHTML+=box("Student Progress",`<div class="grid">${pr?.map(x=>`<div class="item"><b>Student #${x.student_id}</b><br>${x.course}<br>${x.progress_percent}%</div>`).join("")||"<div class='item'>No student progress recorded yet.</div>"}</div>`);
+
+
+/* ===================================================== */
+/* TEACHER */
+/* ===================================================== */
+
+async function teacherView(p){
+
+  if(!p.teacher_id){
+
+    throw new Error(
+      "This teacher account is not linked to a teacher record."
+    );
+
+  }
+
+
+  const [
+    teacherResult,
+    progressResult,
+    coursesResult,
+    schedulesResult
+  ]=await Promise.all([
+
+    db
+      .from("teachers")
+      .select(
+        "id,name,specialization,status"
+      )
+      .eq("id",p.teacher_id)
+      .maybeSingle(),
+
+    db
+      .from("progress")
+      .select(
+        "id,student_id,course,progress_percent,last_updated"
+      )
+      .order("last_updated",{ascending:false}),
+
+    db
+      .from("courses")
+      .select("name,type,status")
+      .eq("status","Active")
+      .order("name"),
+
+    db
+      .from("schedules")
+      .select(
+        "course,day,time_text,mode"
+      )
+      .order("day")
+
+  ]);
+
+
+  if(
+    teacherResult.error ||
+    progressResult.error ||
+    coursesResult.error ||
+    schedulesResult.error
+  ){
+
+    throw new Error(
+      (
+        teacherResult.error ||
+        progressResult.error ||
+        coursesResult.error ||
+        schedulesResult.error
+      ).message
+    );
+
+  }
+
+
+  const teacher=teacherResult.data;
+  const progress=progressResult.data || [];
+  const courses=coursesResult.data || [];
+  const schedules=schedulesResult.data || [];
+
+
+  /* IMPORTANT SECURITY NOTE:
+     We intentionally do NOT display the progress records
+     below as a student roster.
+
+     The current schema supplied to this portal does not
+     establish which students belong to this teacher.
+
+     Therefore showing all student progress here would expose
+     information across teacher accounts.
+  */
+
+
+  $("summary").innerHTML=`
+
+    <div class="dashboard-grid">
+
+      <div class="stat">
+        <div class="small">Teacher</div>
+        <div class="stat-value" style="font-size:20px">
+          ${escapeHTML(teacher?.name || p.display_name)}
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="small">Specialization</div>
+        <div class="stat-value" style="font-size:18px">
+          ${escapeHTML(teacher?.specialization || "—")}
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="small">Status</div>
+        <div class="stat-value" style="font-size:20px">
+          ${escapeHTML(teacher?.status || "—")}
+        </div>
+      </div>
+
+    </div>
+  `;
+
+
+  /* TEACHER PROFILE */
+
+  $("content").innerHTML += box(
+    "My Teacher Profile",
+    `
+      <div class="info-list">
+
+        <div class="info-row">
+          <span class="info-label">Name</span>
+          <strong>
+            ${escapeHTML(teacher?.name || p.display_name)}
+          </strong>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Username</span>
+          <strong>
+            ${escapeHTML(p.username)}
+          </strong>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Specialization</span>
+          <strong>
+            ${escapeHTML(teacher?.specialization || "—")}
+          </strong>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Status</span>
+          <strong>
+            ${escapeHTML(teacher?.status || "—")}
+          </strong>
+        </div>
+
+      </div>
+    `
+  );
+
+
+  /* ASSIGNED STUDENTS */
+
+  $("content").innerHTML += box(
+    "My Students",
+    `
+      <div class="notice">
+        Student assignment is not connected yet.
+
+        <br><br>
+
+        The current database structure available to this portal
+        does not provide a teacher-to-student assignment
+        relationship. I have intentionally not displayed all
+        students or all progress records here because doing so
+        could expose another teacher's students.
+      </div>
+    `
+  );
+
+
+  /* COURSES */
+
+  $("content").innerHTML += box(
+    "Active Learning Areas",
+    courses.length
+      ? `<div class="grid">
+          ${courses.map(x=>`
+
+            <div class="item">
+
+              <b>${escapeHTML(x.name)}</b>
+
+              <p class="small">
+                ${escapeHTML(x.type || "Learning program")}
+              </p>
+
+              <span class="badge">
+                ${escapeHTML(x.status)}
+              </span>
+
+            </div>
+
+          `).join("")}
+        </div>`
+      : empty("No active courses are currently listed.")
+  );
+
+
+  /* SCHEDULES */
+
+  $("content").innerHTML += box(
+    "Class Schedules",
+    schedules.length
+      ? `<div class="grid">
+          ${schedules.map(x=>`
+
+            <div class="item">
+
+              <b>${escapeHTML(x.course)}</b>
+
+              <hr>
+
+              <span class="small">Day</span><br>
+              ${escapeHTML(x.day)}
+
+              <br><br>
+
+              <span class="small">Time</span><br>
+              ${escapeHTML(x.time_text || "—")}
+
+              <br><br>
+
+              <span class="small">Mode</span><br>
+              ${escapeHTML(x.mode || "—")}
+
+            </div>
+
+          `).join("")}
+        </div>`
+      : empty("No class schedules have been published yet.")
+  );
+
+
+  /* PROGRESS MANAGEMENT NOTICE */
+
+  $("content").innerHTML += box(
+    "Student Progress",
+    `
+      <div class="notice">
+        Progress editing will be enabled after student-to-teacher
+        assignments are connected securely in the database.
+      </div>
+    `
+  );
+
+
+  /* ATTENDANCE */
+
+  $("content").innerHTML += box(
+    "Attendance",
+    `
+      <div class="notice">
+        Attendance management is not connected yet because the
+        current database structure does not contain an attendance
+        table.
+      </div>
+    `
+  );
+
+
+  /* ANNOUNCEMENTS */
+
+  $("content").innerHTML += box(
+    "Announcements",
+    `
+      <div class="notice">
+        Announcements are not connected yet because there is no
+        dedicated announcements table in the current structure.
+      </div>
+    `
+  );
+
 }
-async function parentView(c){
- const {data:links,error}=await db.from("parent_students").select("student_id");
- if(error) throw error;
- const ids=(links||[]).map(x=>x.student_id);
- if(!ids.length){c.innerHTML=box("My Children","<div class='item'>No children linked to this account.</div>");return}
- const {data:s,error:e}=await db.from("students").select("id,name,course,status").in("id",ids);
- if(e) throw e;
- const {data:p,error:pe}=await db.from("progress").select("student_id,course,progress_percent").in("student_id",ids);
- if(pe) throw pe;
- c.innerHTML+=box("My Children",`<div class="grid">${s.map(x=>`<div class="item"><b>${x.name}</b><br>Course: ${x.course}<br>Status: ${x.status}<hr>${(p.filter(y=>y.student_id===x.id).map(y=>`${y.course}: ${y.progress_percent}%`).join("<br>")||"No progress recorded.")}</div>`).join("")}</div>`);
+
+
+/* ===================================================== */
+/* PARENT */
+/* ===================================================== */
+
+async function parentView(p){
+
+  /*
+    parent_students is the relationship currently used by
+    the supplied portal/admin account system.
+  */
+
+  const linksResult=await db
+    .from("parent_students")
+    .select("student_id");
+
+
+  if(linksResult.error)
+    throw linksResult.error;
+
+
+  const ids=(linksResult.data || [])
+    .map(x=>x.student_id)
+    .filter(Boolean);
+
+
+  if(!ids.length){
+
+    $("summary").innerHTML=`
+
+      <div class="dashboard-grid">
+
+        <div class="stat">
+
+          <div class="small">Linked Children</div>
+
+          <div class="stat-value">
+            0
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+
+    $("content").innerHTML=
+      box(
+        "My Children",
+        empty(
+          "No children are currently linked to this parent account."
+        )
+      );
+
+    return;
+
+  }
+
+
+  const [
+    studentsResult,
+    progressResult
+  ]=await Promise.all([
+
+    db
+      .from("students")
+      .select(
+        "id,name,course,status"
+      )
+      .in("id",ids)
+      .order("name"),
+
+    db
+      .from("progress")
+      .select(
+        "student_id,course,progress_percent,last_updated"
+      )
+      .in("student_id",ids)
+      .order("last_updated",{ascending:false})
+
+  ]);
+
+
+  if(
+    studentsResult.error ||
+    progressResult.error
+  ){
+
+    throw new Error(
+      (
+        studentsResult.error ||
+        progressResult.error
+      ).message
+    );
+
+  }
+
+
+  const students=studentsResult.data || [];
+  const progress=progressResult.data || [];
+
+
+  $("summary").innerHTML=`
+
+    <div class="dashboard-grid">
+
+      <div class="stat">
+
+        <div class="small">
+          Linked Children
+        </div>
+
+        <div class="stat-value">
+          ${students.length}
+        </div>
+
+      </div>
+
+      <div class="stat">
+
+        <div class="small">
+          Progress Records
+        </div>
+
+        <div class="stat-value">
+          ${progress.length}
+        </div>
+
+      </div>
+
+    </div>
+  `;
+
+
+  $("content").innerHTML += box(
+    "My Children",
+    students.length
+      ? `<div class="grid">
+          ${students.map(student=>{
+
+            const childProgress=
+              progress.filter(
+                x=>x.student_id===student.id
+              );
+
+            const average=
+              childProgress.length
+              ? Math.round(
+                  childProgress.reduce(
+                    (sum,x)=>
+                      sum+(Number(x.progress_percent)||0),
+                    0
+                  ) /
+                  childProgress.length
+                )
+              : 0;
+
+            return `
+
+              <div class="item">
+
+                <h3>
+                  ${escapeHTML(student.name)}
+                </h3>
+
+                <div class="small">
+                  Program
+                </div>
+
+                <strong>
+                  ${escapeHTML(student.course || "—")}
+                </strong>
+
+                <br><br>
+
+                <div class="small">
+                  Status
+                </div>
+
+                <span class="badge">
+                  ${escapeHTML(student.status || "—")}
+                </span>
+
+                <hr>
+
+                <div class="small">
+                  Average Progress
+                </div>
+
+                <div class="progress-wrap">
+                  <div
+                    class="progress-bar"
+                    style="width:${Math.max(
+                      0,
+                      Math.min(100,average)
+                    )}%"
+                  ></div>
+                </div>
+
+                <div class="progress-number">
+                  ${average}%
+                </div>
+
+                <br>
+
+                ${
+                  childProgress.length
+                  ? childProgress.map(x=>
+                      progressCard(
+                        x.course,
+                        x.progress_percent
+                      )
+                    ).join("")
+                  : `<div class="small">
+                       No progress recorded yet.
+                     </div>`
+                }
+
+              </div>
+
+            `;
+
+          }).join("")}
+        </div>`
+      : empty("No children found.")
+  );
+
+
+  /* ATTENDANCE */
+
+  $("content").innerHTML += box(
+    "Attendance",
+    `
+      <div class="notice">
+        Attendance is not connected yet because the current
+        database structure does not contain an attendance table.
+      </div>
+    `
+  );
+
+
+  /* ANNOUNCEMENTS */
+
+  $("content").innerHTML += box(
+    "Announcements",
+    `
+      <div class="notice">
+        Announcements are not connected yet because the current
+        database structure does not contain a dedicated
+        announcements table.
+      </div>
+    `
+  );
+
 }
+
+
+/* ===================================================== */
+/* LOGIN */
+/* ===================================================== */
+
 $("loginBtn").onclick=async()=>{
- $("msg").className="";$("msg").textContent="";
- const u=$("username").value.trim().toLowerCase(),pw=$("password").value;
- if(!u||!pw){err("Enter your username and password.");return}
- try{
-   const r=await db.auth.signInWithPassword({email:`${u}@accounts.hage.local`,password:pw});
-   if(r.error) throw r.error;
-   await loadPortal(r.data.user);
- }catch(e){await db.auth.signOut();err(e.message||String(e))}
+
+  clearMessage();
+
+
+  const u=
+    $("username")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const pw=
+    $("password").value;
+
+
+  if(!u || !pw){
+
+    showError(
+      "Enter your username and password."
+    );
+
+    return;
+
+  }
+
+
+  const button=$("loginBtn");
+
+  button.disabled=true;
+  button.textContent="Signing in...";
+
+
+  try{
+
+    /*
+      Existing account convention:
+      username@accounts.hage.local
+    */
+
+    const r=
+      await db.auth.signInWithPassword({
+
+        email:
+          `${u}@accounts.hage.local`,
+
+        password:pw
+
+      });
+
+
+    if(r.error)
+      throw r.error;
+
+
+    await loadPortal(r.data.user);
+
+
+  }catch(e){
+
+    console.error(e);
+
+    await db.auth.signOut();
+
+    showError(
+      e.message ||
+      String(e)
+    );
+
+
+  }finally{
+
+    button.disabled=false;
+    button.textContent="Sign in";
+
+  }
+
 };
-$("logout").onclick=async()=>{await db.auth.signOut();location.reload()};
+
+
+/* ===================================================== */
+/* LOGOUT */
+/* ===================================================== */
+
+$("logout").onclick=async()=>{
+
+  $("logout").disabled=true;
+  $("logout").textContent="Logging out...";
+
+  await db.auth.signOut();
+
+  location.reload();
+
+};
+
+
+/* ===================================================== */
+/* RESTORE EXISTING SESSION */
+/* ===================================================== */
+
+(async()=>{
+
+  try{
+
+    const result=
+      await db.auth.getSession();
+
+    const session=
+      result.data.session;
+
+
+    if(session){
+
+      await loadPortal(
+        session.user
+      );
+
+    }
+
+  }catch(e){
+
+    console.error(e);
+
+    await db.auth.signOut();
+
+    $("login").classList.remove("hidden");
+    $("app").classList.add("hidden");
+
+    showError(
+      e.message ||
+      String(e)
+    );
+
+  }
+
+})();
+
 </script>
+
 </body>
 </html>
