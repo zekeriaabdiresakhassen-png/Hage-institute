@@ -17,10 +17,7 @@ body{
   color:#fff
 }
 
-.wrap{
-  max-width:1100px;
-  margin:auto
-}
+.wrap{max-width:1100px;margin:auto}
 
 .card{
   background:#10223b;
@@ -29,13 +26,8 @@ body{
   margin:12px 0
 }
 
-h1,h2{
-  color:#d7ad55
-}
-
-.muted{
-  color:#b9c4d3
-}
+h1,h2{color:#d7ad55}
+.muted{color:#b9c4d3}
 
 .grid{
   display:grid;
@@ -50,9 +42,7 @@ h1,h2{
   font-size:16px
 }
 
-.stat b{
-  font-size:25px
-}
+.stat b{font-size:25px}
 
 input,select,button,textarea{
   font:inherit;
@@ -76,9 +66,7 @@ button{
   cursor:pointer
 }
 
-button:disabled{
-  opacity:.6
-}
+button:disabled{opacity:.6}
 
 .nav{
   display:flex;
@@ -91,13 +79,8 @@ button:disabled{
   white-space:nowrap
 }
 
-.panel{
-  display:none
-}
-
-.panel.active{
-  display:block
-}
+.panel{display:none}
+.panel.active{display:block}
 
 .row{
   display:grid;
@@ -105,9 +88,7 @@ button:disabled{
   gap:7px
 }
 
-.scroll{
-  overflow-x:auto
-}
+.scroll{overflow-x:auto}
 
 table{
   width:100%;
@@ -122,9 +103,7 @@ th,td{
   vertical-align:top
 }
 
-th{
-  color:#d7ad55
-}
+th{color:#d7ad55}
 
 .smallbtn{
   width:auto;
@@ -151,11 +130,7 @@ th{
   white-space:pre-wrap
 }
 
-.hidden{
-  display:none
-}
-
-/* FILTERS */
+.hidden{display:none}
 
 .filterbar{
   display:grid;
@@ -175,8 +150,6 @@ th{
   color:#9fb0c5
 }
 
-/* ENROLLMENT REVIEW MODAL */
-
 .modal{
   position:fixed;
   inset:0;
@@ -188,9 +161,7 @@ th{
   z-index:9999
 }
 
-.modal.open{
-  display:flex
-}
+.modal.open{display:flex}
 
 .modal-card{
   background:#10223b;
@@ -248,8 +219,6 @@ th{
   color:#fff
 }
 
-/* ACCOUNT */
-
 .account-box{
   background:#172d49;
   padding:12px;
@@ -273,27 +242,51 @@ th{
   border-bottom:1px solid #ddd
 }
 
-.child-item:last-child{
-  border-bottom:0
-}
+.child-item:last-child{border-bottom:0}
 
 .child-item input{
   width:auto;
   margin-right:8px
 }
 
+/* SESSION WARNING */
+
+#sessionWarning{
+  position:fixed;
+  top:20px;
+  right:20px;
+  width:min(360px,calc(100% - 40px));
+  background:#0d213d;
+  color:#fff;
+  border:2px solid #d7ad55;
+  border-radius:12px;
+  padding:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.45);
+  z-index:100000;
+  display:none
+}
+
+#sessionWarning strong{
+  color:#e8c46a
+}
+
+#sessionCountdown{
+  color:#e8c46a;
+  font-size:20px
+}
+
+#stayLoggedIn{
+  background:#d7ad55;
+  color:#071426;
+  width:auto;
+  padding:9px 14px;
+  margin-top:8px
+}
+
 @media(max-width:600px){
-  .filterbar{
-    grid-template-columns:1fr
-  }
-
-  .card{
-    padding:14px
-  }
-
-  th,td{
-    font-size:13px
-  }
+  .filterbar{grid-template-columns:1fr}
+  .card{padding:14px}
+  th,td{font-size:13px}
 }
 </style>
 </head>
@@ -302,17 +295,11 @@ th{
 
 <div class="wrap">
 
-<!-- ================================================= -->
-<!-- LOGIN -->
-<!-- ================================================= -->
-
 <div id="loginCard" class="card">
 
 <h1>HAGE Institute Admin</h1>
 
-<p class="muted">
-Administrator sign in
-</p>
+<p class="muted">Administrator sign in</p>
 
 <form id="loginForm">
 
@@ -343,10 +330,6 @@ Sign in
 </div>
 
 
-<!-- ================================================= -->
-<!-- DASHBOARD -->
-<!-- ================================================= -->
-
 <div id="dashboard" class="hidden">
 
 <div class="card">
@@ -363,10 +346,6 @@ Log out
 
 </div>
 
-
-<!-- ================================================= -->
-<!-- STATS -->
-<!-- ================================================= -->
 
 <div class="grid">
 
@@ -397,54 +376,23 @@ Enrollments
 </div>
 
 
-<!-- ================================================= -->
-<!-- NAVIGATION -->
-<!-- ================================================= -->
-
 <div class="card">
 
 <div class="nav">
 
-<button data-panel="students">
-Students
-</button>
-
-<button data-panel="courses">
-Courses
-</button>
-
-<button data-panel="teachers">
-Teachers
-</button>
-
-<button data-panel="enrollments">
-Enrollments
-</button>
-
-<button data-panel="schedules">
-Schedules
-</button>
-
-<button data-panel="progress">
-Progress
-</button>
-
-<button data-panel="messages">
-Messages
-</button>
-
-<button data-panel="accounts">
-Accounts
-</button>
+<button data-panel="students">Students</button>
+<button data-panel="courses">Courses</button>
+<button data-panel="teachers">Teachers</button>
+<button data-panel="enrollments">Enrollments</button>
+<button data-panel="schedules">Schedules</button>
+<button data-panel="progress">Progress</button>
+<button data-panel="messages">Messages</button>
+<button data-panel="accounts">Accounts</button>
 
 </div>
 
 </div>
 
-
-<!-- ================================================= -->
-<!-- STUDENTS -->
-<!-- ================================================= -->
 
 <section id="studentsPanel" class="card panel">
 
@@ -454,91 +402,44 @@ Accounts
 
 <div class="row">
 
-<input
-id="studentName"
-placeholder="Student name"
-required
->
+<input id="studentName" placeholder="Student name" required>
 
-<input
-id="studentCourse"
-placeholder="Course"
-required
->
+<input id="studentCourse" placeholder="Course" required>
 
 <select id="studentStatus">
-
-<option>
-Active
-</option>
-
-<option>
-Inactive
-</option>
-
+<option>Active</option>
+<option>Inactive</option>
 </select>
 
 </div>
 
-<button>
-Add Student
-</button>
+<button>Add Student</button>
 
 </form>
 
-
 <div class="filterbar">
 
-<input
-id="studentsFilter"
-placeholder="Search students..."
->
+<input id="studentsFilter" placeholder="Search students...">
 
 <select id="studentsStatusFilter">
-
-<option value="">
-All statuses
-</option>
-
-<option>
-Active
-</option>
-
-<option>
-Inactive
-</option>
-
+<option value="">All statuses</option>
+<option>Active</option>
+<option>Inactive</option>
 </select>
 
 </div>
-
 
 <div class="scroll">
 
 <table>
 
 <thead>
-
 <tr>
-
-<th>
-Name
-</th>
-
-<th>
-Course
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Action
-</th>
-
+<th>Name</th>
+<th>Course</th>
+<th>Status</th>
+<th>Action</th>
 </tr>
-
 </thead>
 
 <tbody id="studentsBody"></tbody>
@@ -550,10 +451,6 @@ Action
 </section>
 
 
-<!-- ================================================= -->
-<!-- COURSES -->
-<!-- ================================================= -->
-
 <section id="coursesPanel" class="card panel">
 
 <h2>Courses</h2>
@@ -562,91 +459,44 @@ Action
 
 <div class="row">
 
-<input
-id="courseName"
-placeholder="Course name"
-required
->
+<input id="courseName" placeholder="Course name" required>
 
-<input
-id="courseType"
-placeholder="Type"
-required
->
+<input id="courseType" placeholder="Type" required>
 
 <select id="courseStatus">
-
-<option>
-Active
-</option>
-
-<option>
-Inactive
-</option>
-
+<option>Active</option>
+<option>Inactive</option>
 </select>
 
 </div>
 
-<button>
-Add Course
-</button>
+<button>Add Course</button>
 
 </form>
 
-
 <div class="filterbar">
 
-<input
-id="coursesFilter"
-placeholder="Search courses..."
->
+<input id="coursesFilter" placeholder="Search courses...">
 
 <select id="coursesStatusFilter">
-
-<option value="">
-All statuses
-</option>
-
-<option>
-Active
-</option>
-
-<option>
-Inactive
-</option>
-
+<option value="">All statuses</option>
+<option>Active</option>
+<option>Inactive</option>
 </select>
 
 </div>
-
 
 <div class="scroll">
 
 <table>
 
 <thead>
-
 <tr>
-
-<th>
-Name
-</th>
-
-<th>
-Type
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Action
-</th>
-
+<th>Name</th>
+<th>Type</th>
+<th>Status</th>
+<th>Action</th>
 </tr>
-
 </thead>
 
 <tbody id="coursesBody"></tbody>
@@ -658,10 +508,6 @@ Action
 </section>
 
 
-<!-- ================================================= -->
-<!-- TEACHERS -->
-<!-- ================================================= -->
-
 <section id="teachersPanel" class="card panel">
 
 <h2>Teachers</h2>
@@ -670,90 +516,44 @@ Action
 
 <div class="row">
 
-<input
-id="teacherName"
-placeholder="Teacher name"
-required
->
+<input id="teacherName" placeholder="Teacher name" required>
 
-<input
-id="teacherSpecialization"
-placeholder="Specialization"
->
+<input id="teacherSpecialization" placeholder="Specialization">
 
 <select id="teacherStatus">
-
-<option>
-Active
-</option>
-
-<option>
-Inactive
-</option>
-
+<option>Active</option>
+<option>Inactive</option>
 </select>
 
 </div>
 
-<button>
-Add Teacher
-</button>
+<button>Add Teacher</button>
 
 </form>
 
-
 <div class="filterbar">
 
-<input
-id="teachersFilter"
-placeholder="Search teachers..."
->
+<input id="teachersFilter" placeholder="Search teachers...">
 
 <select id="teachersStatusFilter">
-
-<option value="">
-All statuses
-</option>
-
-<option>
-Active
-</option>
-
-<option>
-Inactive
-</option>
-
+<option value="">All statuses</option>
+<option>Active</option>
+<option>Inactive</option>
 </select>
 
 </div>
-
 
 <div class="scroll">
 
 <table>
 
 <thead>
-
 <tr>
-
-<th>
-Name
-</th>
-
-<th>
-Specialization
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Action
-</th>
-
+<th>Name</th>
+<th>Specialization</th>
+<th>Status</th>
+<th>Action</th>
 </tr>
-
 </thead>
 
 <tbody id="teachersBody"></tbody>
@@ -765,68 +565,35 @@ Action
 </section>
 
 
-<!-- ================================================= -->
-<!-- ENROLLMENTS -->
-<!-- ================================================= -->
-
 <section id="enrollmentsPanel" class="card panel">
 
-<h2>
-Student Applications
-</h2>
+<h2>Student Applications</h2>
 
 <p class="muted">
 Review applications submitted from the public website.
 </p>
 
-
 <form id="enrollmentForm">
 
 <div class="row">
 
-<input
-id="enrollmentName"
-placeholder="Applicant name"
-required
->
+<input id="enrollmentName" placeholder="Applicant name" required>
 
-<input
-id="enrollmentCourse"
-placeholder="Course"
-required
->
+<input id="enrollmentCourse" placeholder="Course" required>
 
-<input
-id="enrollmentContact"
-placeholder="Phone / WhatsApp"
->
+<input id="enrollmentContact" placeholder="Phone / WhatsApp">
 
 <select id="enrollmentStatus">
-
-<option>
-Pending
-</option>
-
-<option>
-Approved
-</option>
-
-<option>
-Rejected
-</option>
-
+<option>Pending</option>
+<option>Approved</option>
+<option>Rejected</option>
 </select>
 
 </div>
 
-<button>
-Add Enrollment
-</button>
+<button>Add Enrollment</button>
 
 </form>
-
-
-<!-- ENROLLMENT FILTERS -->
 
 <div class="filterbar">
 
@@ -836,58 +603,26 @@ placeholder="Search name, course or contact..."
 >
 
 <select id="enrollmentsStatusFilter">
-
-<option value="">
-All statuses
-</option>
-
-<option>
-Pending
-</option>
-
-<option>
-Approved
-</option>
-
-<option>
-Rejected
-</option>
-
+<option value="">All statuses</option>
+<option>Pending</option>
+<option>Approved</option>
+<option>Rejected</option>
 </select>
 
 </div>
-
 
 <div class="scroll">
 
 <table>
 
 <thead>
-
 <tr>
-
-<th>
-Name
-</th>
-
-<th>
-Course
-</th>
-
-<th>
-Contact
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Action
-</th>
-
+<th>Name</th>
+<th>Course</th>
+<th>Contact</th>
+<th>Status</th>
+<th>Action</th>
 </tr>
-
 </thead>
 
 <tbody id="enrollmentsBody"></tbody>
@@ -899,44 +634,25 @@ Action
 </section>
 
 
-<!-- ================================================= -->
-<!-- ENROLLMENT REVIEW MODAL -->
-<!-- ================================================= -->
-
-<div
-id="enrollmentModal"
-class="modal"
-aria-hidden="true"
->
+<div id="enrollmentModal" class="modal" aria-hidden="true">
 
 <div class="modal-card">
 
-<h2>
-Review Application
-</h2>
+<h2>Review Application</h2>
 
 <div id="enrollmentDetails"></div>
 
-
 <div class="review-actions">
 
-<button
-id="approveEnrollmentButton"
-class="approve"
->
+<button id="approveEnrollmentButton" class="approve">
 Approve / Accept
 </button>
 
-<button
-id="rejectEnrollmentButton"
-class="reject"
->
+<button id="rejectEnrollmentButton" class="reject">
 Reject
 </button>
 
-<button
-id="closeEnrollmentButton"
->
+<button id="closeEnrollmentButton">
 Close
 </button>
 
@@ -949,57 +665,30 @@ Close
 </div>
 
 
-<!-- ================================================= -->
-<!-- SCHEDULES -->
-<!-- ================================================= -->
-
 <section id="schedulesPanel" class="card panel">
 
-<h2>
-Schedules
-</h2>
+<h2>Schedules</h2>
 
 <form id="scheduleForm">
 
 <div class="row">
 
-<input
-id="scheduleCourse"
-placeholder="Course"
-required
->
+<input id="scheduleCourse" placeholder="Course" required>
 
-<input
-id="scheduleDay"
-placeholder="Day"
-required
->
+<input id="scheduleDay" placeholder="Day" required>
 
-<input
-id="scheduleTime"
-placeholder="Time"
->
+<input id="scheduleTime" placeholder="Time">
 
 <select id="scheduleMode">
-
-<option>
-Online
-</option>
-
-<option>
-In person
-</option>
-
+<option>Online</option>
+<option>In person</option>
 </select>
 
 </div>
 
-<button>
-Add Schedule
-</button>
+<button>Add Schedule</button>
 
 </form>
-
 
 <div class="filterbar">
 
@@ -1009,54 +698,25 @@ placeholder="Search course, day or time..."
 >
 
 <select id="schedulesModeFilter">
-
-<option value="">
-All modes
-</option>
-
-<option>
-Online
-</option>
-
-<option>
-In person
-</option>
-
+<option value="">All modes</option>
+<option>Online</option>
+<option>In person</option>
 </select>
 
 </div>
-
 
 <div class="scroll">
 
 <table>
 
 <thead>
-
 <tr>
-
-<th>
-Course
-</th>
-
-<th>
-Day
-</th>
-
-<th>
-Time
-</th>
-
-<th>
-Mode
-</th>
-
-<th>
-Action
-</th>
-
+<th>Course</th>
+<th>Day</th>
+<th>Time</th>
+<th>Mode</th>
+<th>Action</th>
 </tr>
-
 </thead>
 
 <tbody id="schedulesBody"></tbody>
@@ -1068,33 +728,19 @@ Action
 </section>
 
 
-<!-- ================================================= -->
-<!-- PROGRESS -->
-<!-- ================================================= -->
-
 <section id="progressPanel" class="card panel">
 
-<h2>
-Student Progress
-</h2>
+<h2>Student Progress</h2>
 
 <form id="progressForm">
 
 <div class="row">
 
 <select id="progressStudent" required>
-
-<option value="">
-Select student
-</option>
-
+<option value="">Select student</option>
 </select>
 
-<input
-id="progressCourse"
-placeholder="Course"
-required
->
+<input id="progressCourse" placeholder="Course" required>
 
 <input
 id="progressPercent"
@@ -1107,39 +753,21 @@ required
 
 </div>
 
-<button>
-Save Progress
-</button>
+<button>Save Progress</button>
 
 </form>
-
 
 <div class="scroll">
 
 <table>
 
 <thead>
-
 <tr>
-
-<th>
-Student
-</th>
-
-<th>
-Course
-</th>
-
-<th>
-Progress
-</th>
-
-<th>
-Action
-</th>
-
+<th>Student</th>
+<th>Course</th>
+<th>Progress</th>
+<th>Action</th>
 </tr>
-
 </thead>
 
 <tbody id="progressBody"></tbody>
@@ -1151,16 +779,9 @@ Action
 </section>
 
 
-<!-- ================================================= -->
-<!-- MESSAGES -->
-<!-- ================================================= -->
-
 <section id="messagesPanel" class="card panel">
 
-<h2>
-Messages
-</h2>
-
+<h2>Messages</h2>
 
 <div class="filterbar">
 
@@ -1170,58 +791,26 @@ placeholder="Search name, contact or message..."
 >
 
 <select id="messagesStatusFilter">
-
-<option value="">
-All statuses
-</option>
-
-<option>
-New
-</option>
-
-<option>
-Read
-</option>
-
-<option>
-Replied
-</option>
-
+<option value="">All statuses</option>
+<option>New</option>
+<option>Read</option>
+<option>Replied</option>
 </select>
 
 </div>
-
 
 <div class="scroll">
 
 <table>
 
 <thead>
-
 <tr>
-
-<th>
-Name
-</th>
-
-<th>
-Contact
-</th>
-
-<th>
-Message
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Action
-</th>
-
+<th>Name</th>
+<th>Contact</th>
+<th>Message</th>
+<th>Status</th>
+<th>Action</th>
 </tr>
-
 </thead>
 
 <tbody id="messagesBody"></tbody>
@@ -1233,31 +822,21 @@ Action
 </section>
 
 
-<!-- ================================================= -->
-<!-- ACCOUNTS -->
-<!-- ================================================= -->
-
 <section id="accountsPanel" class="card panel">
 
-<h2>
-Student / Teacher / Parent Accounts
-</h2>
+<h2>Student / Teacher / Parent Accounts</h2>
 
 <p class="muted">
 Create login credentials for students, teachers and parents.
 </p>
 
-
 <form id="accountForm">
-
 
 <div class="row">
 
 <div>
 
-<label>
-Username
-</label>
+<label>Username</label>
 
 <input
 id="accountUsername"
@@ -1268,12 +847,9 @@ required
 
 </div>
 
-
 <div>
 
-<label>
-Password
-</label>
+<label>Password</label>
 
 <input
 id="accountPassword"
@@ -1288,42 +864,25 @@ required
 
 </div>
 
-
 <div class="row">
 
 <div>
 
-<label>
-Account role
-</label>
+<label>Account role</label>
 
-<select
-id="accountRole"
-required
->
+<select id="accountRole" required>
 
-<option value="student">
-Student
-</option>
-
-<option value="teacher">
-Teacher
-</option>
-
-<option value="parent">
-Parent
-</option>
+<option value="student">Student</option>
+<option value="teacher">Teacher</option>
+<option value="parent">Parent</option>
 
 </select>
 
 </div>
 
-
 <div>
 
-<label>
-Display name
-</label>
+<label>Display name</label>
 
 <input
 id="accountDisplayName"
@@ -1336,23 +895,12 @@ required
 </div>
 
 
-<!-- STUDENT ACCOUNT -->
+<div id="studentAccountBox" class="account-box">
 
-<div
-id="studentAccountBox"
-class="account-box"
->
-
-<label>
-Student record
-</label>
+<label>Student record</label>
 
 <select id="accountStudent">
-
-<option value="">
-Select student
-</option>
-
+<option value="">Select student</option>
 </select>
 
 <p class="muted">
@@ -1362,23 +910,12 @@ This connects the login account to the student's record.
 </div>
 
 
-<!-- TEACHER ACCOUNT -->
+<div id="teacherAccountBox" class="account-box hidden">
 
-<div
-id="teacherAccountBox"
-class="account-box hidden"
->
-
-<label>
-Teacher record
-</label>
+<label>Teacher record</label>
 
 <select id="accountTeacher">
-
-<option value="">
-Select teacher
-</option>
-
+<option value="">Select teacher</option>
 </select>
 
 <p class="muted">
@@ -1388,21 +925,11 @@ This connects the login account to the teacher's record.
 </div>
 
 
-<!-- PARENT ACCOUNT -->
+<div id="parentAccountBox" class="account-box hidden">
 
-<div
-id="parentAccountBox"
-class="account-box hidden"
->
+<label>Select child / children</label>
 
-<label>
-Select child / children
-</label>
-
-<div
-id="parentChildren"
-class="child-list"
->
+<div id="parentChildren" class="child-list">
 
 <span class="muted">
 Loading students...
@@ -1417,69 +944,35 @@ You can select one or more children for this parent.
 </div>
 
 
-<button
-id="createAccountButton"
-type="submit"
->
-
+<button id="createAccountButton" type="submit">
 Create Account
-
 </button>
 
 </form>
 
 
-<!-- EXISTING ACCOUNTS -->
-
-<h2>
-Existing Accounts
-</h2>
+<h2>Existing Accounts</h2>
 
 <div class="scroll">
 
 <table>
 
 <thead>
-
 <tr>
-
-<th>
-Username
-</th>
-
-<th>
-Name
-</th>
-
-<th>
-Role
-</th>
-
-<th>
-Status
-</th>
-
-<th>
-Created
-</th>
-
+<th>Username</th>
+<th>Name</th>
+<th>Role</th>
+<th>Status</th>
+<th>Created</th>
 </tr>
-
 </thead>
 
 <tbody id="accountsBody">
 
 <tr>
-
-<td
-colspan="5"
-class="muted"
->
-
+<td colspan="5" class="muted">
 Loading accounts...
-
 </td>
-
 </tr>
 
 </tbody>
@@ -1490,8 +983,25 @@ Loading accounts...
 
 </section>
 
-
 </div>
+</div>
+
+
+<!-- SESSION WARNING -->
+
+<div id="sessionWarning">
+
+<strong>Session Expiring</strong>
+
+<p>
+You have been inactive for 1 minute.
+You will be logged out in
+<strong id="sessionCountdown">1:00</strong>.
+</p>
+
+<button id="stayLoggedIn">
+Stay Logged In
+</button>
 
 </div>
 
@@ -1510,13 +1020,9 @@ SUPABASE_URL,
 SUPABASE_KEY
 );
 
+const $=id=>document.getElementById(id);
 
-const $=
-id=>document.getElementById(id);
-
-
-const esc=
-v=>
+const esc=v=>
 String(v??"").replace(
 /[&<>"']/g,
 c=>({
@@ -1530,65 +1036,206 @@ c=>({
 
 
 /* ================================================= */
+/* SESSION TIMEOUT */
+/* ================================================= */
+
+const INACTIVITY_LIMIT=
+2*60*1000;
+
+const WARNING_TIME=
+60*1000;
+
+let inactivityTimer=null;
+let warningTimer=null;
+let countdownTimer=null;
+
+let sessionActive=false;
+
+
+function clearSessionTimers(){
+
+if(inactivityTimer)
+clearTimeout(inactivityTimer);
+
+if(warningTimer)
+clearTimeout(warningTimer);
+
+if(countdownTimer)
+clearInterval(countdownTimer);
+
+inactivityTimer=null;
+warningTimer=null;
+countdownTimer=null;
+
+}
+
+
+function hideSessionWarning(){
+
+$("sessionWarning").style.display="none";
+
+if(countdownTimer){
+
+clearInterval(countdownTimer);
+
+countdownTimer=null;
+
+}
+
+}
+
+
+function showSessionWarning(){
+
+$("sessionWarning").style.display="block";
+
+let remaining=60;
+
+$("sessionCountdown").textContent="1:00";
+
+if(countdownTimer)
+clearInterval(countdownTimer);
+
+countdownTimer=setInterval(()=>{
+
+remaining--;
+
+const minutes=
+Math.floor(remaining/60);
+
+const seconds=
+remaining%60;
+
+$("sessionCountdown").textContent=
+minutes+
+":"+
+String(seconds).padStart(2,"0");
+
+if(remaining<=0){
+
+clearInterval(countdownTimer);
+
+countdownTimer=null;
+
+}
+
+},1000);
+
+}
+
+
+function resetInactivityTimer(){
+
+if(!sessionActive)
+return;
+
+clearSessionTimers();
+
+hideSessionWarning();
+
+
+warningTimer=setTimeout(()=>{
+
+if(sessionActive)
+showSessionWarning();
+
+},INACTIVITY_LIMIT-WARNING_TIME);
+
+
+inactivityTimer=setTimeout(async()=>{
+
+if(!sessionActive)
+return;
+
+sessionActive=false;
+
+clearSessionTimers();
+
+hideSessionWarning();
+
+alert(
+"Your admin session has expired because there was no activity for 2 minutes."
+);
+
+await supabaseClient.auth.signOut();
+
+window.location.href="index.html";
+
+},INACTIVITY_LIMIT);
+
+}
+
+
+/* USER ACTIVITY */
+
+[
+"click",
+"touchstart",
+"keydown",
+"scroll",
+"mousemove"
+].forEach(event=>{
+
+document.addEventListener(
+event,
+()=>{
+
+if(sessionActive)
+resetInactivityTimer();
+
+},
+{
+passive:true
+}
+);
+
+
+/* STAY LOGGED IN */
+
+$("stayLoggedIn").addEventListener(
+"click",
+()=>{
+
+if(sessionActive)
+resetInactivityTimer();
+
+}
+);
+
+
+/* ================================================= */
 /* TABLE CONFIG */
 /* ================================================= */
 
 const cfg={
 
 students:{
-fields:[
-"name",
-"course",
-"status"
-],
+fields:["name","course","status"],
 body:"studentsBody"
 },
 
 courses:{
-fields:[
-"name",
-"type",
-"status"
-],
+fields:["name","type","status"],
 body:"coursesBody"
 },
 
 teachers:{
-fields:[
-"name",
-"specialization",
-"status"
-],
+fields:["name","specialization","status"],
 body:"teachersBody"
 },
 
 enrollments:{
-fields:[
-"name",
-"course",
-"contact",
-"status"
-],
+fields:["name","course","contact","status"],
 body:"enrollmentsBody"
 },
 
 schedules:{
-fields:[
-"course",
-"day",
-"time_text",
-"mode"
-],
+fields:["course","day","time_text","mode"],
 body:"schedulesBody"
 },
 
 messages:{
-fields:[
-"name",
-"contact",
-"message",
-"status"
-],
+fields:["name","contact","message","status"],
 body:"messagesBody"
 }
 
@@ -1602,23 +1249,15 @@ body:"messagesBody"
 function setLoginError(t){
 
 $("loginMessage").className="error";
-
 $("loginMessage").textContent=t;
 
 }
 
 
-function setMessage(
-t,
-bad=false
-){
+function setMessage(t,bad=false){
 
 $("message").className=
-bad
-?
-"error"
-:
-"ok";
+bad?"error":"ok";
 
 $("message").textContent=t;
 
@@ -1659,7 +1298,8 @@ throw new Error(
 async function refreshCounts(){
 
 for(
-const n of [
+const n of
+[
 "students",
 "courses",
 "teachers",
@@ -1702,17 +1342,15 @@ const tableCache={};
 
 
 /* ================================================= */
-/* RENDER TABLES + FILTERS */
+/* RENDER TABLES */
 /* ================================================= */
 
 function renderTable(name){
 
-const c=
-cfg[name];
+const c=cfg[name];
 
 const rows=
 tableCache[name]||[];
-
 
 const search=
 (
@@ -1721,14 +1359,12 @@ const search=
 .trim()
 .toLowerCase();
 
-
 const status=
 (
 ($(name+"StatusFilter")?.value)||""
 )
 .trim()
 .toLowerCase();
-
 
 const mode=
 (
@@ -1737,20 +1373,16 @@ const mode=
 .trim()
 .toLowerCase();
 
-
 const filtered=
 rows.filter(row=>{
 
 const haystack=
 c.fields
 .map(
-f=>String(
-row[f]??""
-)
+f=>String(row[f]??"")
 )
 .join(" ")
 .toLowerCase();
-
 
 if(
 search &&
@@ -1758,59 +1390,39 @@ search &&
 )
 return false;
 
-
 if(
 status &&
-String(
-row.status??""
-)
-.toLowerCase()
-!==status
+String(row.status??"")
+.toLowerCase()!==status
 )
 return false;
-
 
 if(
 mode &&
-String(
-row.mode??""
-)
-.toLowerCase()
-!==mode
+String(row.mode??"")
+.toLowerCase()!==mode
 )
 return false;
-
 
 return true;
 
 });
 
 
-/* ================================================= */
-/* ENROLLMENTS HAVE REVIEW BUTTONS */
-/* ================================================= */
-
 if(name==="enrollments"){
 
 $(c.body).innerHTML=
 filtered.length
 ?
-
 filtered.map(row=>
 
 "<tr>"+
 
-"<td>"+
-esc(row.name)+
-"</td>"+
+"<td>"+esc(row.name)+"</td>"+
 
-"<td>"+
-esc(row.course)+
-"</td>"+
+"<td>"+esc(row.course)+"</td>"+
 
-"<td>"+
-esc(row.contact)+
-"</td>"+
+"<td>"+esc(row.contact)+"</td>"+
 
 "<td>"+
 "<span class='status-badge'>"+
@@ -1820,16 +1432,14 @@ esc(row.status)+
 
 "<td>"+
 
-"<button "+
-"class='smallbtn' "+
+"<button class='smallbtn' "+
 "onclick='reviewEnrollment("+
 row.id+
 ")'>"+
 "Review"+
 "</button> "+
 
-"<button "+
-"class='smallbtn danger' "+
+"<button class='smallbtn danger' "+
 "onclick='deleteRow(\"enrollments\","+
 row.id+
 ")'>"+
@@ -1853,31 +1463,23 @@ return;
 }
 
 
-/* ================================================= */
-/* NORMAL TABLES */
-/* ================================================= */
-
 $(c.body).innerHTML=
 filtered.length
 ?
-
 filtered.map(row=>
 
 "<tr>"+
 
-c.fields
-.map(
+c.fields.map(
 f=>
 "<td>"+
 esc(row[f])+
 "</td>"
-)
-.join("")+
+).join("")+
 
 "<td>"+
 
-"<button "+
-"class='smallbtn danger' "+
+"<button class='smallbtn danger' "+
 "onclick='deleteRow(\""+
 name+
 "\","+
@@ -1915,11 +1517,8 @@ await supabaseClient
 .select("*")
 .order(
 "id",
-{
-ascending:false
-}
+{ascending:false}
 );
-
 
 if(r.error){
 
@@ -1935,10 +1534,7 @@ return;
 
 }
 
-
-tableCache[name]=
-r.data||[];
-
+tableCache[name]=r.data||[];
 
 renderTable(name);
 
@@ -1946,7 +1542,7 @@ renderTable(name);
 
 
 /* ================================================= */
-/* FILTER SETUP */
+/* FILTERS */
 /* ================================================= */
 
 function setupFilters(){
@@ -1971,14 +1567,12 @@ $(name+"ModeFilter")
 
 el.addEventListener(
 "input",
-()=>
-renderTable(name)
+()=>renderTable(name)
 );
 
 el.addEventListener(
 "change",
-()=>
-renderTable(name)
+()=>renderTable(name)
 );
 
 });
@@ -1992,8 +1586,7 @@ renderTable(name)
 /* ENROLLMENT REVIEW */
 /* ================================================= */
 
-window.currentEnrollmentId=
-null;
+window.currentEnrollmentId=null;
 
 
 function openEnrollmentModal(){
@@ -2021,23 +1614,16 @@ $("enrollmentModal")
 "true"
 );
 
-window.currentEnrollmentId=
-null;
+window.currentEnrollmentId=null;
 
 }
 
 
-function parseEnrollmentContact(
-contact
-){
+function parseEnrollmentContact(contact){
 
-return String(
-contact||""
-)
+return String(contact||"")
 .split(" | ")
-.map(
-x=>x.trim()
-)
+.map(x=>x.trim())
 .filter(Boolean);
 
 }
@@ -2048,83 +1634,49 @@ function reviewEnrollment(id){
 const row=
 (tableCache.enrollments||[])
 .find(
-x=>
-Number(x.id)===
-Number(id)
+x=>Number(x.id)===Number(id)
 );
-
 
 if(!row)
 return;
 
-
-window.currentEnrollmentId=
-row.id;
-
+window.currentEnrollmentId=row.id;
 
 const parts=
-parseEnrollmentContact(
-row.contact
-);
-
+parseEnrollmentContact(row.contact);
 
 const details=
 parts.map(part=>{
 
-const i=
-part.indexOf(":");
-
+const i=part.indexOf(":");
 
 if(i>0){
 
 const label=
-part
-.slice(0,i)
-.trim();
-
+part.slice(0,i).trim();
 
 const value=
-part
-.slice(i+1)
-.trim();
+part.slice(i+1).trim();
 
-
-return (
-
+return(
 "<div class='detail'>"+
-
-"<b>"+
-esc(label)+
-"</b>"+
-
+"<b>"+esc(label)+"</b>"+
 esc(value)+
-
 "</div>"
-
 );
 
 }
 
-
-return (
-
+return(
 "<div class='detail'>"+
-
-"<b>"+
-"Additional information"+
-"</b>"+
-
+"<b>Additional information</b>"+
 esc(part)+
-
 "</div>"
-
 );
 
 }).join("");
 
-
-$("enrollmentDetails")
-.innerHTML=
+$("enrollmentDetails").innerHTML=
 
 "<div class='detail-grid'>"+
 
@@ -2147,13 +1699,8 @@ details+
 
 "</div>";
 
-
-$("enrollmentReviewMessage")
-.textContent="";
-
-$("enrollmentReviewMessage")
-.className="";
-
+$("enrollmentReviewMessage").textContent="";
+$("enrollmentReviewMessage").className="";
 
 openEnrollmentModal();
 
@@ -2161,20 +1708,16 @@ openEnrollmentModal();
 
 
 /* ================================================= */
-/* APPROVE / REJECT APPLICATION */
+/* APPROVE / REJECT */
 /* ================================================= */
 
-async function updateEnrollmentStatus(
-status
-){
+async function updateEnrollmentStatus(status){
 
 const id=
 window.currentEnrollmentId;
 
-
 if(!id)
 return;
-
 
 const button=
 status==="Approved"
@@ -2183,10 +1726,7 @@ $("approveEnrollmentButton")
 :
 $("rejectEnrollmentButton");
 
-
-button.disabled=
-true;
-
+button.disabled=true;
 
 button.textContent=
 status==="Approved"
@@ -2195,24 +1735,16 @@ status==="Approved"
 :
 "Rejecting...";
 
-
 try{
 
 const r=
 await supabaseClient
 .from("enrollments")
-.update({
-status:status
-})
-.eq(
-"id",
-id
-);
-
+.update({status:status})
+.eq("id",id);
 
 if(r.error)
 throw r.error;
-
 
 setMessage(
 "Application "+
@@ -2225,38 +1757,25 @@ status==="Approved"
 )
 );
 
-
 closeEnrollmentModal();
 
-
-await loadTable(
-"enrollments"
-);
-
+await loadTable("enrollments");
 
 await refreshCounts();
-
 
 }
 catch(err){
 
-$("enrollmentReviewMessage")
-.className=
-"error";
+$("enrollmentReviewMessage").className="error";
 
-$("enrollmentReviewMessage")
-.textContent=
+$("enrollmentReviewMessage").textContent=
 "Could not update application: "+
-(
-err.message||
-String(err)
-);
+(err.message||String(err));
 
 }
 finally{
 
-button.disabled=
-false;
+button.disabled=false;
 
 button.textContent=
 status==="Approved"
@@ -2274,28 +1793,16 @@ status==="Approved"
 /* DELETE */
 /* ================================================= */
 
-async function deleteRow(
-name,
-id
-){
+async function deleteRow(name,id){
 
-if(
-!confirm(
-"Delete this record?"
-)
-)
+if(!confirm("Delete this record?"))
 return;
-
 
 const r=
 await supabaseClient
 .from(name)
 .delete()
-.eq(
-"id",
-id
-);
-
+.eq("id",id);
 
 if(r.error){
 
@@ -2309,16 +1816,9 @@ return;
 
 }
 
+setMessage("Deleted successfully.");
 
-setMessage(
-"Deleted successfully."
-);
-
-
-await loadTable(
-name
-);
-
+await loadTable(name);
 
 await refreshCounts();
 
@@ -2329,17 +1829,12 @@ await refreshCounts();
 /* INSERT */
 /* ================================================= */
 
-async function insertRow(
-name,
-row,
-form
-){
+async function insertRow(name,row,form){
 
 const r=
 await supabaseClient
 .from(name)
 .insert(row);
-
 
 if(r.error){
 
@@ -2353,25 +1848,15 @@ return;
 
 }
 
-
 form.reset();
 
+setMessage("Saved successfully.");
 
-setMessage(
-"Saved successfully."
-);
-
-
-await loadTable(
-name
-);
-
+await loadTable(name);
 
 await refreshCounts();
 
-
 await loadStudents();
-
 
 await loadTeachersForAccounts();
 
@@ -2387,13 +1872,8 @@ async function loadStudents(){
 const r=
 await supabaseClient
 .from("students")
-.select(
-"id,name"
-)
-.order(
-"name"
-);
-
+.select("id,name")
+.order("name");
 
 if(r.error){
 
@@ -2403,87 +1883,59 @@ return;
 
 }
 
-
-const students=
-r.data||[];
+const students=r.data||[];
 
 
-/* PROGRESS DROPDOWN */
+/* PROGRESS */
 
-$("progressStudent")
-.innerHTML=
-
+$("progressStudent").innerHTML=
 '<option value="">Select student</option>'+
-
 students.map(
 s=>
-
 '<option value="'+
 s.id+
 '">'+
 esc(s.name)+
 '</option>'
-
 ).join("");
 
 
-/* STUDENT ACCOUNT DROPDOWN */
+/* STUDENT ACCOUNT */
 
-$("accountStudent")
-.innerHTML=
-
+$("accountStudent").innerHTML=
 '<option value="">Select student</option>'+
-
 students.map(
 s=>
-
 '<option value="'+
 s.id+
 '">'+
 esc(s.name)+
 '</option>'
-
 ).join("");
 
 
 /* PARENT CHILDREN */
 
-$("parentChildren")
-.innerHTML=
-
+$("parentChildren").innerHTML=
 students.length
-
 ?
-
 students.map(
 s=>
-
 '<label class="child-item">'+
-
-'<input '+
-'type="checkbox" '+
-'class="parentChild" '+
-'value="'+
+'<input type="checkbox" class="parentChild" value="'+
 s.id+
 '">'+
-
 esc(s.name)+
-
 '</label>'
-
 ).join("")
-
 :
-
-'<span class="muted">'+
-"No students found."+
-'</span>';
+'<span class="muted">No students found.</span>';
 
 }
 
 
 /* ================================================= */
-/* LOAD TEACHERS FOR ACCOUNTS */
+/* LOAD TEACHERS */
 /* ================================================= */
 
 async function loadTeachersForAccounts(){
@@ -2491,13 +1943,8 @@ async function loadTeachersForAccounts(){
 const r=
 await supabaseClient
 .from("teachers")
-.select(
-"id,name"
-)
-.order(
-"name"
-);
-
+.select("id,name")
+.order("name");
 
 if(r.error){
 
@@ -2507,29 +1954,23 @@ return;
 
 }
 
-
-$("accountTeacher")
-.innerHTML=
-
+$("accountTeacher").innerHTML=
 '<option value="">Select teacher</option>'+
-
 (r.data||[])
 .map(
 t=>
-
 '<option value="'+
 t.id+
 '">'+
 esc(t.name)+
 '</option>'
-
 ).join("");
 
 }
 
 
 /* ================================================= */
-/* LOAD EXISTING ACCOUNTS */
+/* LOAD ACCOUNTS */
 /* ================================================= */
 
 async function loadAccounts(){
@@ -2542,17 +1983,12 @@ await supabaseClient
 )
 .order(
 "created_at",
-{
-ascending:false
-}
+{ascending:false}
 );
-
 
 if(r.error){
 
-$("accountsBody")
-.innerHTML=
-
+$("accountsBody").innerHTML=
 '<tr><td colspan="5">'+
 esc(r.error.message)+
 '</td></tr>';
@@ -2561,16 +1997,11 @@ return;
 
 }
 
-
-const accounts=
-r.data||[];
-
+const accounts=r.data||[];
 
 if(!accounts.length){
 
-$("accountsBody")
-.innerHTML=
-
+$("accountsBody").innerHTML=
 '<tr><td colspan="5" class="muted">'+
 "No accounts created yet."+
 '</td></tr>';
@@ -2579,44 +2010,27 @@ return;
 
 }
 
-
-$("accountsBody")
-.innerHTML=
-
+$("accountsBody").innerHTML=
 accounts.map(
 a=>
 
 "<tr>"+
 
-"<td>"+
-esc(a.username)+
-"</td>"+
+"<td>"+esc(a.username)+"</td>"+
+
+"<td>"+esc(a.display_name)+"</td>"+
+
+"<td>"+esc(a.role)+"</td>"+
 
 "<td>"+
-esc(a.display_name)+
-"</td>"+
-
-"<td>"+
-esc(a.role)+
-"</td>"+
-
-"<td>"+
-(
-a.active
-?
-"Active"
-:
-"Inactive"
-)+
+(a.active?"Active":"Inactive")+
 "</td>"+
 
 "<td>"+
 esc(
 a.created_at
 ?
-new Date(
-a.created_at
-).toLocaleString()
+new Date(a.created_at).toLocaleString()
 :
 ""
 )+
@@ -2630,14 +2044,12 @@ a.created_at
 
 
 /* ================================================= */
-/* ACCOUNT ROLE FIELDS */
+/* ACCOUNT ROLE */
 /* ================================================= */
 
 function toggleAccountFields(){
 
-const role=
-$("accountRole").value;
-
+const role=$("accountRole").value;
 
 $("studentAccountBox")
 .classList.toggle(
@@ -2645,13 +2057,11 @@ $("studentAccountBox")
 role!=="student"
 );
 
-
 $("teacherAccountBox")
 .classList.toggle(
 "hidden",
 role!=="teacher"
 );
-
 
 $("parentAccountBox")
 .classList.toggle(
@@ -2670,28 +2080,22 @@ async function createAccount(e){
 
 e.preventDefault();
 
-
 const username=
 $("accountUsername")
 .value
 .trim()
 .toLowerCase();
 
-
 const password=
-$("accountPassword")
-.value;
-
+$("accountPassword").value;
 
 const role=
 $("accountRole").value;
-
 
 const displayName=
 $("accountDisplayName")
 .value
 .trim();
-
 
 if(!username){
 
@@ -2704,11 +2108,8 @@ return;
 
 }
 
-
 if(
-!/^[a-z0-9._-]+$/.test(
-username
-)
+!/^[a-z0-9._-]+$/.test(username)
 ){
 
 setMessage(
@@ -2720,10 +2121,7 @@ return;
 
 }
 
-
-if(
-password.length<8
-){
+if(password.length<8){
 
 setMessage(
 "Password must be at least 8 characters.",
@@ -2733,7 +2131,6 @@ true
 return;
 
 }
-
 
 if(!displayName){
 
@@ -2746,32 +2143,15 @@ return;
 
 }
 
-
-/* STUDENT */
-
-let studentId=
-null;
-
-
-/* TEACHER */
-
-let teacherId=
-null;
-
-
-/* PARENT CHILDREN */
-
-let childIds=
-[];
+let studentId=null;
+let teacherId=null;
+let childIds=[];
 
 
 if(role==="student"){
 
 studentId=
-Number(
-$("accountStudent").value
-);
-
+Number($("accountStudent").value);
 
 if(!studentId){
 
@@ -2790,10 +2170,7 @@ return;
 if(role==="teacher"){
 
 teacherId=
-Number(
-$("accountTeacher").value
-);
-
+Number($("accountTeacher").value);
 
 if(!teacherId){
 
@@ -2812,21 +2189,14 @@ return;
 if(role==="parent"){
 
 childIds=[
-
-...document
-.querySelectorAll(
+...document.querySelectorAll(
 ".parentChild:checked"
 )
-
 ].map(
-x=>
-Number(x.value)
+x=>Number(x.value)
 );
 
-
-if(
-childIds.length===0
-){
+if(childIds.length===0){
 
 setMessage(
 "Please select at least one child.",
@@ -2840,19 +2210,15 @@ return;
 }
 
 
-/* CURRENT ADMIN SESSION */
+/* CURRENT SESSION */
 
 const sessionResult=
 await supabaseClient
 .auth
 .getSession();
 
-
 const session=
-sessionResult
-.data
-.session;
-
+sessionResult.data.session;
 
 if(!session){
 
@@ -2865,20 +2231,12 @@ return;
 
 }
 
-
 const body={
 
-username:
-username,
-
-password:
-password,
-
-role:
-role,
-
-display_name:
-displayName,
+username:username,
+password:password,
+role:role,
+display_name:displayName,
 
 student_id:
 role==="student"
@@ -2903,88 +2261,58 @@ childIds
 
 };
 
-
 const button=
 $("createAccountButton");
 
-
-button.disabled=
-true;
-
+button.disabled=true;
 
 button.textContent=
 "Creating account...";
-
 
 try{
 
 const response=
 await fetch(
-
 SUPABASE_URL+
 "/functions/v1/create-user",
-
 {
-
-method:
-"POST",
+method:"POST",
 
 headers:{
-
 "Authorization":
 "Bearer "+
 session.access_token,
 
 "Content-Type":
 "application/json"
-
 },
 
 body:
 JSON.stringify(body)
-
 }
-
 );
 
-
-let result=
-null;
-
+let result=null;
 
 try{
-
-result=
-await response.json();
-
+result=await response.json();
 }
 catch(_){}
-
 
 if(!response.ok){
 
 throw new Error(
-
-result?.error
-||
-result?.message
-||
+result?.error||
+result?.message||
 "Could not create account. HTTP "+
 response.status
-
 );
 
 }
 
-
-/* SUCCESS */
-
-$("accountForm")
-.reset();
-
+$("accountForm").reset();
 
 toggleAccountFields();
-
 
 setMessage(
 "Account created successfully for "+
@@ -2992,15 +2320,12 @@ displayName+
 "."
 );
 
-
 await loadAccounts();
-
 
 }
 catch(err){
 
 console.error(err);
-
 
 setMessage(
 err.message||
@@ -3008,12 +2333,10 @@ err.message||
 true
 );
 
-
 }
 finally{
 
-button.disabled=
-false;
+button.disabled=false;
 
 button.textContent=
 "Create Account";
@@ -3037,11 +2360,8 @@ await supabaseClient
 )
 .order(
 "id",
-{
-ascending:false
-}
+{ascending:false}
 );
-
 
 if(r.error){
 
@@ -3055,10 +2375,7 @@ return;
 
 }
 
-
-$("progressBody")
-.innerHTML=
-
+$("progressBody").innerHTML=
 (r.data||[])
 .map(
 x=>
@@ -3066,10 +2383,7 @@ x=>
 "<tr>"+
 
 "<td>"+
-esc(
-x.students?.name||
-"Unknown"
-)+
+esc(x.students?.name||"Unknown")+
 "</td>"+
 
 "<td>"+
@@ -3082,8 +2396,7 @@ x.progress_percent+
 
 "<td>"+
 
-"<button "+
-"class='smallbtn danger' "+
+"<button class='smallbtn danger' "+
 "onclick='deleteRow(\"progress\","+
 x.id+
 ")'>"+
@@ -3103,37 +2416,23 @@ x.id+
 /* SHOW PANEL */
 /* ================================================= */
 
-async function showPanel(
-name
-){
+async function showPanel(name){
 
 document
-.querySelectorAll(
-".panel"
-)
+.querySelectorAll(".panel")
 .forEach(
-p=>
-p.classList.remove(
-"active"
-)
+p=>p.classList.remove("active")
 );
-
 
 $(name+"Panel")
-.classList.add(
-"active"
-);
-
+.classList.add("active");
 
 if(name==="progress"){
 
 await loadProgress();
 
 }
-
-else if(
-name==="accounts"
-){
+else if(name==="accounts"){
 
 await loadStudents();
 
@@ -3144,7 +2443,6 @@ await loadAccounts();
 toggleAccountFields();
 
 }
-
 else{
 
 await loadTable(name);
@@ -3159,49 +2457,35 @@ await loadTable(name);
 /* ================================================= */
 
 document
-.querySelectorAll(
-"[data-panel]"
-)
+.querySelectorAll("[data-panel]")
 .forEach(
-
 b=>
 b.addEventListener(
 "click",
-()=>
-showPanel(
-b.dataset.panel
+()=>showPanel(b.dataset.panel)
 )
-)
-
 );
-
 
 setupFilters();
 
 
 /* ================================================= */
-/* ENROLLMENT MODAL BUTTONS */
+/* ENROLLMENT MODAL */
 /* ================================================= */
 
 $("approveEnrollmentButton")
 .addEventListener(
 "click",
 ()=>
-updateEnrollmentStatus(
-"Approved"
-)
+updateEnrollmentStatus("Approved")
 );
-
 
 $("rejectEnrollmentButton")
 .addEventListener(
 "click",
 ()=>
-updateEnrollmentStatus(
-"Rejected"
-)
+updateEnrollmentStatus("Rejected")
 );
-
 
 $("closeEnrollmentButton")
 .addEventListener(
@@ -3209,21 +2493,12 @@ $("closeEnrollmentButton")
 closeEnrollmentModal
 );
 
-
 $("enrollmentModal")
 .addEventListener(
 "click",
 e=>{
-
-if(
-e.target===
-e.currentTarget
-){
-
+if(e.target===e.currentTarget)
 closeEnrollmentModal();
-
-}
-
 }
 );
 
@@ -3239,76 +2514,51 @@ async e=>{
 
 e.preventDefault();
 
-
 const email=
-$("loginEmail")
-.value
-.trim();
-
+$("loginEmail").value.trim();
 
 const password=
-$("loginPassword")
-.value;
+$("loginPassword").value;
 
+$("loginMessage").textContent="";
+$("loginMessage").className="";
 
-$("loginMessage")
-.textContent="";
+const b=$("loginButton");
 
-$("loginMessage")
-.className="";
-
-
-const b=
-$("loginButton");
-
-
-b.disabled=
-true;
-
-
-b.textContent=
-"Signing in...";
-
+b.disabled=true;
+b.textContent="Signing in...";
 
 try{
 
 const r=
 await supabaseClient
 .auth
-.signInWithPassword(
-{
+.signInWithPassword({
 email,
 password
-}
-);
-
+});
 
 if(r.error)
-
 throw r.error;
 
-
-await verifyAdmin(
-r.data.user
-);
-
+await verifyAdmin(r.data.user);
 
 $("loginCard")
-.classList.add(
-"hidden"
-);
-
+.classList.add("hidden");
 
 $("dashboard")
-.classList.remove(
-"hidden"
-);
-
+.classList.remove("hidden");
 
 $("signedInEmail")
 .textContent=
-r.data.user.email||
-"";
+r.data.user.email||"";
+
+
+/* START 2-MINUTE INACTIVITY TIMER */
+
+sessionActive=true;
+
+resetInactivityTimer();
 
 
 await refreshCounts();
@@ -3317,38 +2567,30 @@ await loadStudents();
 
 await loadTeachersForAccounts();
 
-await showPanel(
-"students"
-);
+await showPanel("students");
 
-
-setMessage(
-"Signed in successfully."
-);
-
+setMessage("Signed in successfully.");
 
 }
 catch(err){
+
+sessionActive=false;
+
+clearSessionTimers();
 
 await supabaseClient
 .auth
 .signOut();
 
-
 setLoginError(
-err.message||
-String(err)
+err.message||String(err)
 );
-
 
 }
 finally{
 
-b.disabled=
-false;
-
-b.textContent=
-"Sign in";
+b.disabled=false;
+b.textContent="Sign in";
 
 }
 
@@ -3365,11 +2607,17 @@ $("logoutButton")
 "click",
 async()=>{
 
+sessionActive=false;
+
+clearSessionTimers();
+
+hideSessionWarning();
+
 await supabaseClient
 .auth
 .signOut();
 
-location.reload();
+window.location.href="index.html";
 
 }
 );
@@ -3386,31 +2634,19 @@ e=>{
 
 e.preventDefault();
 
-
 insertRow(
-
 "students",
-
 {
-
 name:
-$("studentName")
-.value
-.trim(),
+$("studentName").value.trim(),
 
 course:
-$("studentCourse")
-.value
-.trim(),
+$("studentCourse").value.trim(),
 
 status:
-$("studentStatus")
-.value
-
+$("studentStatus").value
 },
-
 e.target
-
 );
 
 }
@@ -3428,31 +2664,19 @@ e=>{
 
 e.preventDefault();
 
-
 insertRow(
-
 "courses",
-
 {
-
 name:
-$("courseName")
-.value
-.trim(),
+$("courseName").value.trim(),
 
 type:
-$("courseType")
-.value
-.trim(),
+$("courseType").value.trim(),
 
 status:
-$("courseStatus")
-.value
-
+$("courseStatus").value
 },
-
 e.target
-
 );
 
 }
@@ -3470,31 +2694,19 @@ e=>{
 
 e.preventDefault();
 
-
 insertRow(
-
 "teachers",
-
 {
-
 name:
-$("teacherName")
-.value
-.trim(),
+$("teacherName").value.trim(),
 
 specialization:
-$("teacherSpecialization")
-.value
-.trim(),
+$("teacherSpecialization").value.trim(),
 
 status:
-$("teacherStatus")
-.value
-
+$("teacherStatus").value
 },
-
 e.target
-
 );
 
 }
@@ -3512,36 +2724,22 @@ e=>{
 
 e.preventDefault();
 
-
 insertRow(
-
 "enrollments",
-
 {
-
 name:
-$("enrollmentName")
-.value
-.trim(),
+$("enrollmentName").value.trim(),
 
 course:
-$("enrollmentCourse")
-.value
-.trim(),
+$("enrollmentCourse").value.trim(),
 
 contact:
-$("enrollmentContact")
-.value
-.trim(),
+$("enrollmentContact").value.trim(),
 
 status:
-$("enrollmentStatus")
-.value
-
+$("enrollmentStatus").value
 },
-
 e.target
-
 );
 
 }
@@ -3559,36 +2757,22 @@ e=>{
 
 e.preventDefault();
 
-
 insertRow(
-
 "schedules",
-
 {
-
 course:
-$("scheduleCourse")
-.value
-.trim(),
+$("scheduleCourse").value.trim(),
 
 day:
-$("scheduleDay")
-.value
-.trim(),
+$("scheduleDay").value.trim(),
 
 time_text:
-$("scheduleTime")
-.value
-.trim(),
+$("scheduleTime").value.trim(),
 
 mode:
-$("scheduleMode")
-.value
-
+$("scheduleMode").value
 },
-
 e.target
-
 );
 
 }
@@ -3606,31 +2790,21 @@ async e=>{
 
 e.preventDefault();
 
-
 const r=
 await supabaseClient
 .from("progress")
 .insert({
 
 student_id:
-Number(
-$("progressStudent")
-.value
-),
+Number($("progressStudent").value),
 
 course:
-$("progressCourse")
-.value
-.trim(),
+$("progressCourse").value.trim(),
 
 progress_percent:
-Number(
-$("progressPercent")
-.value
-)
+Number($("progressPercent").value)
 
 });
-
 
 if(r.error){
 
@@ -3645,11 +2819,7 @@ else{
 
 e.target.reset();
 
-
-setMessage(
-"Progress saved."
-);
-
+setMessage("Progress saved.");
 
 await loadProgress();
 
@@ -3660,7 +2830,7 @@ await loadProgress();
 
 
 /* ================================================= */
-/* ACCOUNT ROLE CHANGE */
+/* ACCOUNT ROLE */
 /* ================================================= */
 
 $("accountRole")
@@ -3694,30 +2864,28 @@ await supabaseClient
 .auth
 .getSession();
 
-
 if(r.data.session){
 
 await verifyAdmin(
 r.data.session.user
 );
 
-
 $("loginCard")
-.classList.add(
-"hidden"
-);
-
+.classList.add("hidden");
 
 $("dashboard")
-.classList.remove(
-"hidden"
-);
-
+.classList.remove("hidden");
 
 $("signedInEmail")
 .textContent=
-r.data.session.user.email||
-"";
+r.data.session.user.email||"";
+
+
+/* START TIMER FOR RESTORED SESSION */
+
+sessionActive=true;
+
+resetInactivityTimer();
 
 
 await refreshCounts();
@@ -3726,23 +2894,23 @@ await loadStudents();
 
 await loadTeachersForAccounts();
 
-await showPanel(
-"students"
-);
+await showPanel("students");
 
 }
 
 }
 catch(err){
 
+sessionActive=false;
+
+clearSessionTimers();
+
 await supabaseClient
 .auth
 .signOut();
 
-
 setLoginError(
-err.message||
-String(err)
+err.message||String(err)
 );
 
 }
